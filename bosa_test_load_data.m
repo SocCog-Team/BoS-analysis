@@ -9,7 +9,7 @@ function out = bosa_test_load_data(path2matfile)
 
 load(path2matfile);
 
-T = array2table(report_struct.data,'VariableNames',report_struct.header); % make a table
+TTT = array2table(report_struct.data,'VariableNames',report_struct.header); % make a table
 
 
 out.T = T;
