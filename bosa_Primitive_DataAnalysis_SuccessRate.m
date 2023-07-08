@@ -10,10 +10,8 @@ loadedDATA = bosa_load_data(answer)
 %% because if trials is fucked up, there is no reward to be accumulated to the next trial.
 
 Accumulated_REWARD = diff(loadedDATA.A_TotalRewardActiveDur_ms);
-Reward_Value = Accumulated_REWARD./210
-RealTrials_ID = 
-
-
+Reward_Value = Accumulated_REWARD./210; % reward value for each trial, values are from payoff matrix
+RealTrials_ID = find(Reward_Value>0); %Real trial ID that are not aborted or fucked up and subject received reward
 
 
 
