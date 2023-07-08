@@ -2,7 +2,16 @@ close all, clear, clc
 %% Main script
 answer = string(inputdlg('Which month and day?, import it like 0705'))
 loadedDATA = bosa_load_data(answer)
+%% From what I understrood from the data table, column: A_TotalRewardActiveDur_ms
+%% contains accumulated rewards, if we get dif of this column,numbers inside this column tell me that minimum reward is 210 ( 1 in payoff  matrix)
+%% then 2*210 = 420 means "2" in payoff matrix, 630 means 3 and 840 here, means 4 in payoff matrix
+%% one very simple approach to discover REAL TRIALS is to look at this column(lets call it Accumulated_REWARD vector)
+%% and get the difference between rows, when trial is NOT real, difference of reward between two trials is zero
+%% because if trials is fucked up, there is no reward to be accumulated to the next trial.
 
+Accumulated_REWARD = diff(loadedDATA.A_TotalRewardActiveDur_ms);
+Reward_Value = Accumulated_REWARD./210
+RealTrials_ID = 
 
 
 
