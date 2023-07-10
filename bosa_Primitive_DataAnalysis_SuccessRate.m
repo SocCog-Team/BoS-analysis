@@ -35,6 +35,8 @@ end
 OutputFigName = strcat('2023',answer,FigName)  % plot will be saved with this name
 cd 'C:\Users\zahra\OneDrive\Documents\GitHub\BoS-analysis' % directory for saving the plot
 exportgraphics(gcf,FigName,'Resolution',600) % change the resolution if you want
+
+
 %% Functions!
 function loadedDATA = bosa_load_data(answer)
 % loadedDATA is data of each session in table format
