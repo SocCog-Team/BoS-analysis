@@ -48,5 +48,6 @@ cd(strcat("23",answer)) %opening date folder
 InsideFolder = ls; %gets what is inside the date folder
 load(InsideFolder(end,:)); %load the mat file inside the  date folder
 loadedDATA = array2table(report_struct.data,'VariableNames',report_struct.header); % converts data which is structure to table
+StringInformation = 
 end
 
