@@ -33,6 +33,8 @@ RT_B_ms  = loadedDATA.B_InitialFixationReleaseTime_ms - loadedDATA.B_GoSignalTim
 
 % split into 3 categories: simultaneous, A first, B first
 
+%%
+
 
 
 
