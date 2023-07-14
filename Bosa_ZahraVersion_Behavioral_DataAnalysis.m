@@ -14,9 +14,11 @@ function [loadedDATA, report_struct] = Bosa_ZahraVersion_Behavioral_DataAnalysis
 % of that given date, then loads what inside is and converts it to table.
 % cd 'C:\Users\zahra\Documents\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2023'; % year directory
 % cd(strcat("23",answer)) %opening date folder
-cd(answer)
-InsideFolder = ls; %gets what is inside the date folder
-load(InsideFolder(end,:)); %load the mat file inside the  date folder
+% cd(answer)
+% InsideFolder = ls; %gets what is inside the date folder
+% load(InsideFolder(end,:)); %load the mat file inside the  date folder
+
+load(answer);
 loadedDATA = array2table(report_struct.data,'VariableNames',report_struct.header); % converts data which is structure to table
 Rewarded_Aborted  = report_struct.unique_lists.A_OutcomeENUM(loadedDATA.A_OutcomeENUM_idx); % this vector shows which trial was aborted, which was successful,
 % if you use a cellarray.a vector, you create repetiton of cell member
@@ -45,7 +47,7 @@ RewadValues = loadedDATA.A_NumberRewardPulsesDelivered_HIT(RewardedID); % this: 
 % reward values on each trials, 0 means trial was aborted, 1 means 1 from
 % the payoff matrix and 2 means 2 from the payoff matrix, it is filtered by
 % RewardedID because we only want rewarded values on rewarded trials.
-TaskType_AND_Rewarded = Trial_TaskType(RewardedID);
+TaskType_Rewarded = Trial_TaskType(RewardedID);
 
 SoloA_AND_RewardedID = intersect(SoloAID,RewardedID); % I learned it from Igor!,insted of "AND rule filter" simply use builtin function "intersect"
 SemiSolo_AND_RewardedID = intersect(SemiSoloID,RewardedID);
