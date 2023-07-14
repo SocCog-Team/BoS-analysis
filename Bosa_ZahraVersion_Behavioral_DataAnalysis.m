@@ -6,14 +6,15 @@
 % cd 'C:\Users\zahra\OneDrive\Documents\PostDoc_DPZ\Zahra codes'
 
 %% Functions!
-function [loadedDATA, report_struct] = bosa_behav_analysis(answer)
+function [loadedDATA, report_struct] = Bosa_ZahraVersion_Behavioral_DataAnalysis(answer)
 % report structure is whole information (headers and string information) from each session
 % loadedDATA is data of each session in table format
 % bosa_load_data function goes to the directory of the data 2023 and asks
 % wich date you want to look at, after giving the date, it opens the file
 % of that given date, then loads what inside is and converts it to table.
-cd 'C:\Users\zahra\Documents\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2023'; % year directory
-cd(strcat("23",answer)) %opening date folder
+% cd 'C:\Users\zahra\Documents\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2023'; % year directory
+% cd(strcat("23",answer)) %opening date folder
+cd(answer)
 InsideFolder = ls; %gets what is inside the date folder
 load(InsideFolder(end,:)); %load the mat file inside the  date folder
 loadedDATA = array2table(report_struct.data,'VariableNames',report_struct.header); % converts data which is structure to table
@@ -74,4 +75,4 @@ hold on
 
 %split into 3 categories: simultaneous, A first, B first
 % RTs are defined correctly? Intitial release and Go epoch?
-end
+
