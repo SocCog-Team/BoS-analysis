@@ -62,6 +62,16 @@ RT_B_ms_AllTrials  = loadedDATA.B_InitialFixationReleaseTime_ms - loadedDATA.B_G
 RT_A_ms_Rewarded  = RT_A_ms_AllTrials(RewardedID)
 RT_B_ms_Rewarded  = RT_B_ms_AllTrials(RewardedID)
 
+Actor_A = string(report_struct.unique_lists.A_Name)
+Actor_B = string(report_struct.unique_lists.B_Name)
+
+%% plotting: x-ax : trial number   y-ax: reward value
+% A colour is always red
+scatter(1:numel(RewardedID),RewadValues,"|")
+yticks(unique(loadedDATA.A_NumberRewardPulsesDelivered_HIT))
+ylim([min(RewadValues)-0.1 max(RewadValues)+0.1])
+hold on
+
 %split into 3 categories: simultaneous, A first, B first
 % RTs are defined correctly? Intitial release and Go epoch?
 end
