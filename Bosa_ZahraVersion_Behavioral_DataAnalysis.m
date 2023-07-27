@@ -1,7 +1,7 @@
 % A colour is always red
 % as sanity check look at the paper, figure 4, histogram of RT should be
 % accordance with AT of that figure
-function [loadedDATA, report_struct] = Bosa_ZahraVersion_Behavioral_DataAnalysis(NameOfData)
+function [loadedDATA, report_struct] = bosa_ZahraVersion_Behavioral_DataAnalysis(DataFilePath)
 % report structure is whole information (headers and string information) from each session
 % loadedDATA is data of each session in table format
 % unique list contains most of the string information (name of the
@@ -9,7 +9,7 @@ function [loadedDATA, report_struct] = Bosa_ZahraVersion_Behavioral_DataAnalysis
 
 % cd 'C:\Users\zahra\Documents\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2023'; % year directory
 % cd(strcat("23",answer)) %opening date folder
-load(NameOfData)
+load(DataFilePath);
 loadedDATA = array2table(report_struct.data,'VariableNames',report_struct.header); % converts data which is structure to table
 Rewarded_Aborted  = report_struct.unique_lists.A_OutcomeENUM(loadedDATA.A_OutcomeENUM_idx); % this vector shows which trial was aborted, which was successful,
 % if you use a cellarray.a vector, you create repetiton of cell member
@@ -78,6 +78,8 @@ Turn_ActorA_Second_Rewarded_ID = intersect(Turn_ActorA_Second_All_ID,RewardedID)
 
 
 %% Main plot1 : We want to look at RT histograms when A was first vs when A was Second
+% use ig_hist2per, from https://github.com/igorkagan/Igtools
+
 figure, histogram(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_ID),50) 
 hold on
 H = histogram(RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_ID),50)
