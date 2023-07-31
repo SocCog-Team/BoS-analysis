@@ -73,26 +73,36 @@ Actor_B = string(report_struct.unique_lists.B_Name);
 Turn_ActorA_Categ = {'first','second','simultaneously'}; % defining turn of actor in categorical data, later we will use this for plotting
 Turn_ActorA_Simul_All_ID = find(diffGoSignalTime_ms_AllTrials == 0); % Indices of trials that actor A and B acted simultaneously, attention! it is extracted from all trials, not rewarded.
 Turn_ActorA_Simul_Rewarded_ID = intersect(Turn_ActorA_Simul_All_ID,RewardedID); % Indices of trials that actor A and B acted simultaneously AND rewarded.
+Turn_ActorA_Simul_Rewarded_AND_SemiSolo_ID = intersect(Turn_ActorA_Simul_All_ID,SemiSolo_AND_RewardedID);% Indices of trials that actor A was the first (Rewarded trials in SemiSolo).
+Turn_ActorA_Simul_Rewarded_AND_Solo_ID = intersect(Turn_ActorA_Simul_All_ID,SoloA_AND_RewardedID);% Indices of trials that actor A was the first (Rewarded trials in SemiSolo).
+
 
 Turn_ActorA_First_All_ID = find(diffGoSignalTime_ms_AllTrials<0);  % Indices of trials that actor A was the first (among all trials).
 Turn_ActorA_First_Rewarded_ID = intersect(Turn_ActorA_First_All_ID,RewardedID);% Indices of trials that actor A was the first (Rewarded trials).
 Turn_ActorA_First_Rewarded_AND_SemiSolo_ID = intersect(Turn_ActorA_First_All_ID,SemiSolo_AND_RewardedID);% Indices of trials that actor A was the first (Rewarded trials in SemiSolo).
+Turn_ActorA_First_Rewarded_AND_Solo_ID = intersect(Turn_ActorA_First_All_ID,SoloA_AND_RewardedID);% Indices of trials that actor A was the first (Rewarded trials in SemiSolo).
+
 
 Turn_ActorA_Second_All_ID = find(diffGoSignalTime_ms_AllTrials>0); % Indices of trials that actor A was the second (among all trials).
 Turn_ActorA_Second_Rewarded_ID = intersect(Turn_ActorA_Second_All_ID,RewardedID); % Indices of trials that actor A was the second (Rewarded trials).
 Turn_ActorA_Second_Rewarded_AND_SemiSolo_ID = intersect(Turn_ActorA_Second_All_ID,SemiSolo_AND_RewardedID); % Indices of trials that actor A was the second (Rewarded trials in SemiSolo).
+Turn_ActorA_Second_Rewarded_AND_Solo_ID = intersect(Turn_ActorA_Second_All_ID,SoloA_AND_RewardedID); % Indices of trials that actor A was the second (Rewarded trials in SemiSolo).
 
 %% Actor B: Pay attention that diffGoSignalTime_ms_AllTrials negative means actor A is first, so actor B is second (line 82, should be more than zero and line 85 should be less than zero)
 Turn_ActorB_Simul_All_ID = Turn_ActorA_Simul_All_ID; % Indices of trials that actor A and B acted simultaneously, attention! it is extracted from all trials, not rewarded.
 Turn_ActorB_Simul_Rewarded_ID = intersect(Turn_ActorB_Simul_All_ID,RewardedID); % Indices of trials that actor A and B acted simultaneously AND rewarded.
+Turn_ActorB_Simul_Rewarded_AND_SemiSolo_ID = intersect(Turn_ActorB_Simul_All_ID,SemiSolo_AND_RewardedID);% Indices of trials that actor B was the first (Rewarded trials).
+Turn_ActorB_Simul_Rewarded_AND_Solo_ID = intersect(Turn_ActorB_Simul_All_ID,SoloA_AND_RewardedID);% Indices of trials that actor B was the first (Rewarded trials).
 
 Turn_ActorB_First_All_ID = find(diffGoSignalTime_ms_AllTrials>0);  % Indices of trials that actor B was the first (among all trials).
 Turn_ActorB_First_Rewarded_ID = intersect(Turn_ActorB_First_All_ID,RewardedID);% Indices of trials that actor B was the first (Rewarded trials).
 Turn_ActorB_First_Rewarded_AND_SemiSolo_ID = intersect(Turn_ActorB_First_All_ID,SemiSolo_AND_RewardedID);% Indices of trials that actor B was the first (Rewarded trials).
+Turn_ActorB_First_Rewarded_AND_Solo_ID = intersect(Turn_ActorB_First_All_ID,SoloA_AND_RewardedID);% Indices of trials that actor B was the first (Rewarded trials).
 
 Turn_ActorB_Second_All_ID = find(diffGoSignalTime_ms_AllTrials<0); % Indices of trials that actor B was the second (among all trials).
 Turn_ActorB_Second_Rewarded_ID = intersect(Turn_ActorB_Second_All_ID,RewardedID); % Indices of trials that actor B was the second (Rewarded trials).
 Turn_ActorB_Second_Rewarded_AND_SemiSolo_ID = intersect(Turn_ActorB_Second_All_ID,SemiSolo_AND_RewardedID); % Indices of trials that actor B was the second (Rewarded trials).
+Turn_ActorB_Second_Rewarded_AND_Solo_ID = intersect(Turn_ActorB_Second_All_ID,SoloA_AND_RewardedID); % Indices of trials that actor B was the second (Rewarded trials).
 
 
 %% Main plot1 : We want to look at RT histograms when A was first vs when A was Second
@@ -112,50 +122,79 @@ xlabel('reaction time(ms), bin width = 50 ms');
 ylabel('% of trials');
 %% showing all combinations of RTs in one 
 figure
-subplot(2,2,1)
-histogram(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_SemiSolo_ID),50,'DisplayStyle','bar','Normalization','probability') % Igor said it is better to show y-axis as percent instead of count,
+subplot(2,3,1)
+histogram(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_SemiSolo_ID),50,'DisplayStyle','bar','Normalization','probability','FaceColor','r') % Igor said it is better to show y-axis as percent instead of count,
 % if you set 'Normalization' to probability and then multiply it by 100,
 % this works same as "ig_hist2per function"
 hold on
-histogram(RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_AND_SemiSolo_ID),50,'Normalization','probability','FaceAlpha',0.1);
+histogram(RT_B_ms_AllTrials(Turn_ActorB_Second_Rewarded_AND_SemiSolo_ID),50,'Normalization','probability','FaceColor','b','FaceAlpha',0.1);
 ytix = get(gca, 'YTick')
 set(gca, 'YTick',ytix, 'YTickLabel',ytix*100);
-legend(strcat(sprintf(Actor_A),' was first!'),strcat(sprintf(Actor_A),' was second!'),'Location','northeastoutside'); % for the legend, name of Actor_A is printed
+legend(strcat(sprintf(Actor_A),' was first'),'Actor B was second','Location','northeastoutside'); % for the legend, name of Actor_A is printed
 xlabel('reaction time(ms), bin width = 50 ms');
 ylabel('% of trials');
+xlim([0 1000])
+ylim([0 12]./100)
 %%
-subplot(2,2,2)
-histogram(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_SemiSolo_ID),50,'DisplayStyle','bar','Normalization','probability') % Igor said it is better to show y-axis as percent instead of count,
+subplot(2,3,2)
+histogram(RT_A_ms_AllTrials(Turn_ActorA_Simul_Rewarded_AND_SemiSolo_ID),50,'DisplayStyle','bar','Normalization','probability','FaceColor','r') % Igor said it is better to show y-axis as percent instead of count,
 % if you set 'Normalization' to probability and then multiply it by 100,
 % this works same as "ig_hist2per function"
 hold on
-histogram(RT_B_ms_AllTrials(Turn_ActorB_Second_Rewarded_AND_SemiSolo_ID),50,'Normalization','probability','FaceAlpha',0.1);
+histogram(RT_B_ms_AllTrials(Turn_ActorB_Simul_Rewarded_AND_SemiSolo_ID),50,'Normalization','probability','FaceAlpha',0.1,'FaceColor','b');
 ytix = get(gca, 'YTick')
 set(gca, 'YTick',ytix, 'YTickLabel',ytix*100);
-legend(strcat(sprintf(Actor_A),' was first!'),' Actor B was second!','Location','northeastoutside'); % for the legend, name of Actor_A is printed
+legend(sprintf(Actor_A),'Actor B','Location','northeastoutside'); % for the legend, name of Actor_A is printed
+title ('simultaneously')
 xlabel('reaction time(ms), bin width = 50 ms');
 ylabel('% of trials');
+xlim([0 1000])
+ylim([0 12]./100)
 %%
-subplot(2,2,3)
-histogram(RT_B_ms_AllTrials(Turn_ActorB_First_Rewarded_AND_SemiSolo_ID),50,'DisplayStyle','bar','Normalization','probability') % Igor said it is better to show y-axis as percent instead of count,
+subplot(2,3,3)
+histogram(RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_AND_SemiSolo_ID),50,'DisplayStyle','bar','Normalization','probability','FaceColor','r') % Igor said it is better to show y-axis as percent instead of count,
 % if you set 'Normalization' to probability and then multiply it by 100,
 % this works same as "ig_hist2per function"
 hold on
-histogram(RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_AND_SemiSolo_ID),50,'Normalization','probability','FaceAlpha',0.1);
+histogram(RT_B_ms_AllTrials(Turn_ActorB_Second_Rewarded_AND_SemiSolo_ID),50,'Normalization','probability','FaceAlpha',0.1,'FaceColor','b');
 ytix = get(gca, 'YTick')
 set(gca, 'YTick',ytix, 'YTickLabel',ytix*100);
-legend('Actor B was first!',strcat(sprintf(Actor_A),' was second!'),'Location','northeastoutside'); % for the legend, name of Actor_A is printed
+legend(strcat(sprintf(Actor_A),' was second'),'Actor B was first','Location','northeastoutside'); % for the legend, name of Actor_A is printed
 xlabel('reaction time(ms), bin width = 50 ms');
 ylabel('% of trials');
+xlim([0 1000])
+ylim([0 12]./100)
 %%
-subplot(2,2,4)
-histogram(RT_B_ms_AllTrials(Turn_ActorB_First_Rewarded_AND_SemiSolo_ID),50,'DisplayStyle','bar','Normalization','probability') % Igor said it is better to show y-axis as percent instead of count,
+subplot(2,3,4)
+histogram(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_Solo_ID),50,'DisplayStyle','bar','Normalization','probability','FaceColor','r') % Igor said it is better to show y-axis as percent instead of count,
 % if you set 'Normalization' to probability and then multiply it by 100,
 % this works same as "ig_hist2per function"
-hold on
-histogram(RT_B_ms_AllTrials(Turn_ActorB_Second_Rewarded_AND_SemiSolo_ID),50,'Normalization','probability','FaceAlpha',0.1);
 set(gca, 'YTick',ytix, 'YTickLabel',ytix*100);
-legend('Actor B was first!',' Actor B was second!','Location','northeastoutside'); % for the legend, name of Actor_A is printed
+legend('Curius','Location','northeastoutside'); % for the legend, name of Actor_A is printed
 xlabel('reaction time(ms), bin width = 50 ms');
 ylabel('% of trials');
-sgtitle('Semi-Solo task')
+xlim([0 1000])
+ylim([0 12]./100)
+%%
+subplot(2,3,5)
+histogram(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_Solo_ID),50,'DisplayStyle','bar','Normalization','probability','FaceColor','r') % Igor said it is better to show y-axis as percent instead of count,
+% if you set 'Normalization' to probability and then multiply it by 100,
+% this works same as "ig_hist2per function"
+set(gca, 'YTick',ytix, 'YTickLabel',ytix*100);
+legend('Curius','Location','northeastoutside'); % for the legend, name of Actor_A is printed
+xlabel('reaction time(ms), bin width = 50 ms');
+ylabel('% of trials');
+xlim([0 1000])
+ylim([0 12]./100)
+%%
+subplot(2,3,6)
+histogram(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_Solo_ID),50,'DisplayStyle','bar','Normalization','probability','FaceColor','r') % Igor said it is better to show y-axis as percent instead of count,
+% if you set 'Normalization' to probability and then multiply it by 100,
+% this works same as "ig_hist2per function"
+set(gca, 'YTick',ytix, 'YTickLabel',ytix*100);
+legend('Curius','Location','northeastoutside'); % for the legend, name of Actor_A is printed
+xlabel('reaction time(ms), bin width = 50 ms');
+ylabel('% of trials');
+xlim([0 1000])
+ylim([0 12]./100)
+sgtitle('Upper plots: Semi-solo task, Lower plots: solo task')
