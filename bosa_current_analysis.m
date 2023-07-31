@@ -31,6 +31,16 @@ diffGoSignalTime_ms_Success = diffGoSignalTime_ms_All(idxSuccess);
 RT_A_ms  = loadedDATA.A_InitialFixationReleaseTime_ms - loadedDATA.A_GoSignalTime_ms;
 RT_B_ms  = loadedDATA.B_InitialFixationReleaseTime_ms - loadedDATA.B_GoSignalTime_ms;
 
+
+MT_A_ms = loadedDATA.A_TargetTouchTime_ms - loadedDATA.A_InitialFixationReleaseTime_ms;
+MT_B_ms = loadedDATA.B_TargetTouchTime_ms - loadedDATA.B_InitialFixationReleaseTime_ms;
+
+
+
+%% trial timing example
+unique(report_struct.SessionByTrial.data(:, report_struct.SessionByTrial.cn.TargetAcqTouchDur_ms)); % maximal time to reach the target from Go signal
+
+
 % split into 3 categories: simultaneous, A first, B first
 
 %%

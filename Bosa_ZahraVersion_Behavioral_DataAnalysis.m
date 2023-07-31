@@ -106,15 +106,18 @@ Turn_ActorB_Second_Rewarded_AND_Solo_ID = intersect(Turn_ActorB_Second_All_ID,So
 
 
 %% Main plot1 : We want to look at RT histograms when A was first vs when A was Second
+
+bins = [0:25:1000];
+
 % use ig_hist2per, from https://github.com/igorkagan/Igtools
 % A first vs A second
 % [N,edges] = histcounts(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_ID),50); %count in each bin
 % yscaled = (N./length(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_ID))).*100; %y-axis instead of count, should be in percent
-figure, histogram(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_SemiSolo_ID),50,'DisplayStyle','bar','Normalization','probability') % Igor said it is better to show y-axis as percent instead of count,
+figure, histogram(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_SemiSolo_ID),bins,'DisplayStyle','bar','Normalization','probability') % Igor said it is better to show y-axis as percent instead of count,
 % if you set 'Normalization' to probability and then multiply it by 100,
 % this works same as "ig_hist2per function"
 hold on
-histogram(RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_AND_SemiSolo_ID),50,'Normalization','probability','FaceAlpha',0.1);
+histogram(RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_AND_SemiSolo_ID),bins,'Normalization','probability','FaceAlpha',0.1);
 ytix = get(gca, 'YTick');
 set(gca, 'YTick',ytix, 'YTickLabel',ytix*100);
 legend(strcat(sprintf(Actor_A),' was first!'),strcat(sprintf(Actor_A),' was second!'),'Location','northeastoutside'); % for the legend, name of Actor_A is printed
@@ -122,79 +125,76 @@ xlabel('reaction time(ms), bin width = 50 ms');
 ylabel('% of trials');
 %% showing all combinations of RTs in one 
 figure
-subplot(2,3,1)
-histogram(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_SemiSolo_ID),50,'DisplayStyle','bar','Normalization','probability','FaceColor','r') % Igor said it is better to show y-axis as percent instead of count,
+sh(1) = subplot(2,3,1)
+histogram(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_SemiSolo_ID),bins,'DisplayStyle','bar','Normalization','probability','FaceColor','r') % Igor said it is better to show y-axis as percent instead of count,
 % if you set 'Normalization' to probability and then multiply it by 100,
 % this works same as "ig_hist2per function"
 hold on
-histogram(RT_B_ms_AllTrials(Turn_ActorB_Second_Rewarded_AND_SemiSolo_ID),50,'Normalization','probability','FaceColor','b','FaceAlpha',0.1);
+histogram(RT_B_ms_AllTrials(Turn_ActorB_Second_Rewarded_AND_SemiSolo_ID),bins,'Normalization','probability','FaceColor','b','FaceAlpha',0.1);
 ytix = get(gca, 'YTick')
 set(gca, 'YTick',ytix, 'YTickLabel',ytix*100);
 legend(strcat(sprintf(Actor_A),' was first'),'Actor B was second','Location','northeastoutside'); % for the legend, name of Actor_A is printed
 xlabel('reaction time(ms), bin width = 50 ms');
 ylabel('% of trials');
-xlim([0 1000])
-ylim([0 12]./100)
+
 %%
-subplot(2,3,2)
-histogram(RT_A_ms_AllTrials(Turn_ActorA_Simul_Rewarded_AND_SemiSolo_ID),50,'DisplayStyle','bar','Normalization','probability','FaceColor','r') % Igor said it is better to show y-axis as percent instead of count,
+sh(2) = subplot(2,3,2)
+histogram(RT_A_ms_AllTrials(Turn_ActorA_Simul_Rewarded_AND_SemiSolo_ID),bins,'DisplayStyle','bar','Normalization','probability','FaceColor','r') % Igor said it is better to show y-axis as percent instead of count,
 % if you set 'Normalization' to probability and then multiply it by 100,
 % this works same as "ig_hist2per function"
 hold on
-histogram(RT_B_ms_AllTrials(Turn_ActorB_Simul_Rewarded_AND_SemiSolo_ID),50,'Normalization','probability','FaceAlpha',0.1,'FaceColor','b');
+histogram(RT_B_ms_AllTrials(Turn_ActorB_Simul_Rewarded_AND_SemiSolo_ID),bins,'Normalization','probability','FaceAlpha',0.1,'FaceColor','b');
 ytix = get(gca, 'YTick')
 set(gca, 'YTick',ytix, 'YTickLabel',ytix*100);
 legend(sprintf(Actor_A),'Actor B','Location','northeastoutside'); % for the legend, name of Actor_A is printed
 title ('simultaneously')
 xlabel('reaction time(ms), bin width = 50 ms');
 ylabel('% of trials');
-xlim([0 1000])
-ylim([0 12]./100)
+
 %%
-subplot(2,3,3)
-histogram(RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_AND_SemiSolo_ID),50,'DisplayStyle','bar','Normalization','probability','FaceColor','r') % Igor said it is better to show y-axis as percent instead of count,
+sh(3) = subplot(2,3,3)
+histogram(RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_AND_SemiSolo_ID),bins,'DisplayStyle','bar','Normalization','probability','FaceColor','r') % Igor said it is better to show y-axis as percent instead of count,
 % if you set 'Normalization' to probability and then multiply it by 100,
 % this works same as "ig_hist2per function"
 hold on
-histogram(RT_B_ms_AllTrials(Turn_ActorB_Second_Rewarded_AND_SemiSolo_ID),50,'Normalization','probability','FaceAlpha',0.1,'FaceColor','b');
+histogram(RT_B_ms_AllTrials(Turn_ActorB_First_Rewarded_AND_SemiSolo_ID),bins,'Normalization','probability','FaceAlpha',0.1,'FaceColor','b');
 ytix = get(gca, 'YTick')
 set(gca, 'YTick',ytix, 'YTickLabel',ytix*100);
 legend(strcat(sprintf(Actor_A),' was second'),'Actor B was first','Location','northeastoutside'); % for the legend, name of Actor_A is printed
 xlabel('reaction time(ms), bin width = 50 ms');
 ylabel('% of trials');
-xlim([0 1000])
-ylim([0 12]./100)
+
 %%
-subplot(2,3,4)
-histogram(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_Solo_ID),50,'DisplayStyle','bar','Normalization','probability','FaceColor','r') % Igor said it is better to show y-axis as percent instead of count,
+sh(4) = subplot(2,3,4)
+histogram(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_Solo_ID),bins,'DisplayStyle','bar','Normalization','probability','FaceColor','r') % Igor said it is better to show y-axis as percent instead of count,
 % if you set 'Normalization' to probability and then multiply it by 100,
 % this works same as "ig_hist2per function"
 set(gca, 'YTick',ytix, 'YTickLabel',ytix*100);
 legend('Curius','Location','northeastoutside'); % for the legend, name of Actor_A is printed
 xlabel('reaction time(ms), bin width = 50 ms');
 ylabel('% of trials');
-xlim([0 1000])
-ylim([0 12]./100)
+
 %%
-subplot(2,3,5)
-histogram(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_Solo_ID),50,'DisplayStyle','bar','Normalization','probability','FaceColor','r') % Igor said it is better to show y-axis as percent instead of count,
+sh(5) = subplot(2,3,5)
+histogram(RT_A_ms_AllTrials(Turn_ActorA_Simul_Rewarded_AND_Solo_ID),bins,'DisplayStyle','bar','Normalization','probability','FaceColor','r') % Igor said it is better to show y-axis as percent instead of count,
 % if you set 'Normalization' to probability and then multiply it by 100,
 % this works same as "ig_hist2per function"
 set(gca, 'YTick',ytix, 'YTickLabel',ytix*100);
 legend('Curius','Location','northeastoutside'); % for the legend, name of Actor_A is printed
 xlabel('reaction time(ms), bin width = 50 ms');
 ylabel('% of trials');
-xlim([0 1000])
-ylim([0 12]./100)
+
 %%
-subplot(2,3,6)
-histogram(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_Solo_ID),50,'DisplayStyle','bar','Normalization','probability','FaceColor','r') % Igor said it is better to show y-axis as percent instead of count,
+sh(6) = subplot(2,3,6)
+histogram(RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_AND_Solo_ID),bins,'DisplayStyle','bar','Normalization','probability','FaceColor','r') % Igor said it is better to show y-axis as percent instead of count,
 % if you set 'Normalization' to probability and then multiply it by 100,
 % this works same as "ig_hist2per function"
 set(gca, 'YTick',ytix, 'YTickLabel',ytix*100);
 legend('Curius','Location','northeastoutside'); % for the legend, name of Actor_A is printed
 xlabel('reaction time(ms), bin width = 50 ms');
 ylabel('% of trials');
-xlim([0 1000])
-ylim([0 12]./100)
+
+set(sh,'Xlim',[0 1000]);
+ig_set_axes_equal_lim(sh,'Ylim');
+
 sgtitle('Upper plots: Semi-solo task, Lower plots: solo task')
