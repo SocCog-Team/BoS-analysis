@@ -1,7 +1,7 @@
 % A colour is always red
 % as sanity check look at the paper, figure 4, histogram of RT should be
 % accordance with AT of that figure
-function [loadedDATA, report_struct] = bosa_ZahraVersion_Behavioral_DataAnalysis(DataFilePath)
+function [loadedDATA, report_struct,T] = bosa_ZahraVersion_Behavioral_DataAnalysis(DataFilePath)
 % report structure is whole information (headers and string information) from each session
 % loadedDATA is data of each session in table format
 % unique list contains most of the string information (name of the
@@ -221,3 +221,6 @@ T.Stat = {'h';'p'}  % h = 1 rejecting the null hypothesis(mean are significantly
 T.Monkey_First = ([h_Monk1_Hum2;p_Monk1_Hum2])
 T.Simulataneously = ([h_Simul;p_Simul])
 T.Monkey_Second = ([h_Monk2_Hum1;p_Monk2_Hum1])
+%% Export as Excel file
+excelFile = 'PairedTtest_RT_ActorSturn.xlsx';
+writetable(T, excelFile, 'Sheet', 'Sheet1');
