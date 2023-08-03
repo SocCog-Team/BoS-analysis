@@ -125,7 +125,7 @@ xlabel('reaction time(ms), bin width = 50 ms');
 ylabel('% of trials');
 %% showing all combinations of RTs in one 
 figure
-sh(1) = subplot(2,3,1)
+sh(1) = subplot(2,3,1);
 histogram(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_SemiSolo_ID),bins,'DisplayStyle','bar','Normalization','probability','FaceColor','r') % Igor said it is better to show y-axis as percent instead of count,
 % if you set 'Normalization' to probability and then multiply it by 100,
 % this works same as "ig_hist2per function"
@@ -141,7 +141,7 @@ ylabel('% of trials');
 [h_Monk1_Hum2,p_Monk1_Hum2] = ttest(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_SemiSolo_ID),RT_B_ms_AllTrials(Turn_ActorB_Second_Rewarded_AND_SemiSolo_ID));
 % pbaspect([1 1 1])
 %%
-sh(2) = subplot(2,3,2)
+sh(2) = subplot(2,3,2);
 histogram(RT_A_ms_AllTrials(Turn_ActorA_Simul_Rewarded_AND_SemiSolo_ID),bins,'DisplayStyle','bar','Normalization','probability','FaceColor','r') % Igor said it is better to show y-axis as percent instead of count,
 % if you set 'Normalization' to probability and then multiply it by 100,
 % this works same as "ig_hist2per function"
@@ -158,7 +158,7 @@ ylabel('% of trials');
 [h_Simul,p_Simul] = ttest(RT_A_ms_AllTrials(Turn_ActorA_Simul_Rewarded_AND_SemiSolo_ID),RT_B_ms_AllTrials(Turn_ActorB_Simul_Rewarded_AND_SemiSolo_ID));
 % pbaspect([1 1 1])
 %%
-sh(3) = subplot(2,3,3)
+sh(3) = subplot(2,3,3);
 histogram(RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_AND_SemiSolo_ID),bins,'DisplayStyle','bar','Normalization','probability','FaceColor','r') % Igor said it is better to show y-axis as percent instead of count,
 % if you set 'Normalization' to probability and then multiply it by 100,
 % this works same as "ig_hist2per function"
@@ -174,7 +174,7 @@ ylabel('% of trials');
 [h_Monk2_Hum1,p_Monk2_Hum1] = ttest(RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_AND_SemiSolo_ID),RT_B_ms_AllTrials(Turn_ActorB_First_Rewarded_AND_SemiSolo_ID));
 % pbaspect([1 1 1])
 %% from here, we look at the "Solo" condition
-sh(4) = subplot(2,3,4)
+sh(4) = subplot(2,3,4);
 histogram(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_Solo_ID),bins,'DisplayStyle','bar','Normalization','probability','FaceColor','r') % Igor said it is better to show y-axis as percent instead of count,
 % if you set 'Normalization' to probability and then multiply it by 100,
 % this works same as "ig_hist2per function"
@@ -187,7 +187,7 @@ ylabel('% of trials');
 [h_Solo_vs_SemiSolo_First,p_Solo_vs_SemiSolo_First] = ttest2(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_Solo_ID),RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_SemiSolo_ID));
 % pbaspect([1 1 1])
 %%
-sh(5) = subplot(2,3,5)
+sh(5) = subplot(2,3,5);
 histogram(RT_A_ms_AllTrials(Turn_ActorA_Simul_Rewarded_AND_Solo_ID),bins,'DisplayStyle','bar','Normalization','probability','FaceColor','r') % Igor said it is better to show y-axis as percent instead of count,
 hold on
 plot(mean(RT_A_ms_AllTrials(Turn_ActorA_Simul_Rewarded_AND_Solo_ID)),-0.005,"^",'Color','r')
@@ -200,7 +200,7 @@ ylabel('% of trials');
 [h_Solo_vs_SemiSolo_Simul,p_Solo_vs_SemiSolo_Simul] = ttest2(RT_A_ms_AllTrials(Turn_ActorA_Simul_Rewarded_AND_Solo_ID),RT_A_ms_AllTrials(Turn_ActorA_Simul_Rewarded_AND_SemiSolo_ID));
 % pbaspect([1 1 1])
 %%
-sh(6) = subplot(2,3,6)
+sh(6) = subplot(2,3,6);
 histogram(RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_AND_Solo_ID),bins,'DisplayStyle','bar','Normalization','probability','FaceColor','r') % Igor said it is better to show y-axis as percent instead of count,
 hold on
 plot(mean(RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_AND_Solo_ID)),-0.005,"^",'Color','r')
