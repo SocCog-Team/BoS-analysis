@@ -1,7 +1,7 @@
 % A colour is always red
 % as sanity check look at the paper, figure 4, histogram of RT should be
 % accordance with AT of that figure
-function [loadedDATA, report_struct,T] = bosa_ZahraVersion_Behavioral_DataAnalysis(DataFilePath)
+function [loadedDATA, report_struct,T_WithinCondition_SemiSolo] = bosa_ZahraVersion_Behavioral_DataAnalysis(DataFilePath)
 % report structure is whole information (headers and string information) from each session
 % loadedDATA is data of each session in table format
 % unique list contains most of the string information (name of the
@@ -173,7 +173,7 @@ xlabel('reaction time(ms), bin width = 50 ms');
 ylabel('% of trials');
 [h_Monk2_Hum1,p_Monk2_Hum1] = ttest(RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_AND_SemiSolo_ID),RT_B_ms_AllTrials(Turn_ActorB_First_Rewarded_AND_SemiSolo_ID));
 % pbaspect([1 1 1])
-%%
+%% from here, we look at the "Solo" condition
 sh(4) = subplot(2,3,4)
 histogram(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_Solo_ID),bins,'DisplayStyle','bar','Normalization','probability','FaceColor','r') % Igor said it is better to show y-axis as percent instead of count,
 % if you set 'Normalization' to probability and then multiply it by 100,
@@ -184,6 +184,7 @@ set(gca, 'YTick',ytix, 'YTickLabel',ytix*100);
 legend('Curius',''); % for the legend, name of Actor_A is printed
 xlabel('reaction time(ms), bin width = 50 ms');
 ylabel('% of trials');
+[h_Solo_vs_SemiSolo_First,p_Solo_vs_SemiSolo_First] = ttest2(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_Solo_ID),RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_SemiSolo_ID));
 % pbaspect([1 1 1])
 %%
 sh(5) = subplot(2,3,5)
@@ -196,6 +197,7 @@ set(gca, 'YTick',ytix, 'YTickLabel',ytix*100);
 legend('Curius',''); % for the legend, name of Actor_A is printed
 xlabel('reaction time(ms), bin width = 50 ms');
 ylabel('% of trials');
+[h_Solo_vs_SemiSolo_Simul,p_Solo_vs_SemiSolo_Simul] = ttest2(RT_A_ms_AllTrials(Turn_ActorA_Simul_Rewarded_AND_Solo_ID),RT_A_ms_AllTrials(Turn_ActorA_Simul_Rewarded_AND_SemiSolo_ID));
 % pbaspect([1 1 1])
 %%
 sh(6) = subplot(2,3,6)
@@ -206,6 +208,7 @@ plot(mean(RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_AND_Solo_ID)),-0.005,"^"
 % this works same as "ig_hist2per function"
 set(gca, 'YTick',ytix, 'YTickLabel',ytix*100);
 legend('Curius',''); 
+[h_Solo_vs_SemiSolo_Second,p_Solo_vs_SemiSolo_Second] = ttest2(RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_AND_Solo_ID),RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_AND_SemiSolo_ID));
 xlabel('reaction time(ms), bin width = 50 ms');
 ylabel('% of trials');
 % pbaspect([1 1 1])
@@ -216,11 +219,21 @@ set(sh(:),'Ylim',[-0.01 0.25]);
 sgtitle('Upper plots: Semi-solo task, Lower plots: solo task')
 
 %% table to show paird-ttest results:
-T = table; 
-T.Stat = {'h';'p'}  % h = 1 rejecting the null hypothesis(mean are significantly different)
-T.Monkey_First = ([h_Monk1_Hum2;p_Monk1_Hum2])
-T.Simulataneously = ([h_Simul;p_Simul])
-T.Monkey_Second = ([h_Monk2_Hum1;p_Monk2_Hum1])
+T_WithinCondition_SemiSolo = table; 
+T_WithinCondition_SemiSolo.Stat = {'h';'p'}  % h = 1 rejecting the null hypothesis(mean are significantly different)
+T_WithinCondition_SemiSolo.Monkey_First = double(round(vpa(([h_Monk1_Hum2;p_Monk1_Hum2])),3))
+T_WithinCondition_SemiSolo.Simulataneously = double(round(vpa(([h_Simul;p_Simul])),3))
+T_WithinCondition_SemiSolo.Monkey_Second = double(round(vpa(([h_Monk2_Hum1;p_Monk2_Hum1])),3))
+%% table to show non-paird-ttest results:
+T_BetweenCondition = table;
+T_BetweenCondition.Stat = {'h';'p'}  % h = 1 rejecting the null hypothesis(mean are significantly different)
+T_BetweenCondition.First = double(round(vpa(([h_Solo_vs_SemiSolo_First;p_Solo_vs_SemiSolo_First])),3));
+T_BetweenCondition.Simul = double(round(vpa(([h_Solo_vs_SemiSolo_Simul;p_Solo_vs_SemiSolo_Simul])),3));
+T_BetweenCondition.Second = double(round(vpa(([h_Solo_vs_SemiSolo_Second;p_Solo_vs_SemiSolo_Second])),3));
 %% Export as Excel file
-excelFile = 'PairedTtest_RT_ActorSturn.xlsx';
-writetable(T, excelFile, 'Sheet', 'Sheet1');
+excelFile_WithinCond = 'PairedTtest_RT_ActorSturn.xlsx';
+writetable(T_WithinCondition_SemiSolo, excelFile_WithinCond);
+excelFile_BetwCond = 'SemiSolo_vs_Solo_Ttest_RT_ActorSturn.xlsx';
+writetable(T_BetweenCondition, excelFile_BetwCond);
+
+
