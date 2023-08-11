@@ -138,7 +138,7 @@ set(gca, 'YTick',ytix, 'YTickLabel',ytix*100);
 legend(strcat(sprintf(Actor_A),' was first'),'','Actor B was second',''); % for the legend, name of Actor_A is printed
 xlabel('reaction time(ms), bin width = 50 ms');
 ylabel('% of trials');
-[h_Monk1_Hum2,p_Monk1_Hum2] = ttest(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_SemiSolo_ID),RT_B_ms_AllTrials(Turn_ActorB_Second_Rewarded_AND_SemiSolo_ID));
+[h_Monk1_Hum2,p_Monk1_Hum2,ci_Monk1_Hum2,stat_Monk1_Hum2] = ttest(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_SemiSolo_ID),RT_B_ms_AllTrials(Turn_ActorB_Second_Rewarded_AND_SemiSolo_ID));
 % pbaspect([1 1 1])
 %%
 sh(2) = subplot(2,3,2);
@@ -155,7 +155,7 @@ legend(sprintf(Actor_A),'','Actor B',''); % for the legend, name of Actor_A is p
 title ('simultaneously')
 xlabel('reaction time(ms), bin width = 50 ms');
 ylabel('% of trials');
-[h_Simul,p_Simul] = ttest(RT_A_ms_AllTrials(Turn_ActorA_Simul_Rewarded_AND_SemiSolo_ID),RT_B_ms_AllTrials(Turn_ActorB_Simul_Rewarded_AND_SemiSolo_ID));
+[h_Simul,p_Simul,ci_Simul,stat_Simul] = ttest(RT_A_ms_AllTrials(Turn_ActorA_Simul_Rewarded_AND_SemiSolo_ID),RT_B_ms_AllTrials(Turn_ActorB_Simul_Rewarded_AND_SemiSolo_ID));
 % pbaspect([1 1 1])
 %%
 sh(3) = subplot(2,3,3);
@@ -171,7 +171,7 @@ set(gca, 'YTick',ytix, 'YTickLabel',ytix*100);
 legend(strcat(sprintf(Actor_A),' was second'),'','Actor B was first',''); % for the legend, name of Actor_A is printed
 xlabel('reaction time(ms), bin width = 50 ms');
 ylabel('% of trials');
-[h_Monk2_Hum1,p_Monk2_Hum1] = ttest(RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_AND_SemiSolo_ID),RT_B_ms_AllTrials(Turn_ActorB_First_Rewarded_AND_SemiSolo_ID));
+[h_Monk2_Hum1,p_Monk2_Hum1,ci_Monk2_Hum1,stat_Monk2_Hum1] = ttest(RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_AND_SemiSolo_ID),RT_B_ms_AllTrials(Turn_ActorB_First_Rewarded_AND_SemiSolo_ID));
 % pbaspect([1 1 1])
 %% from here, we look at the "Solo" condition
 sh(4) = subplot(2,3,4);
@@ -184,7 +184,7 @@ set(gca, 'YTick',ytix, 'YTickLabel',ytix*100);
 legend('Curius',''); % for the legend, name of Actor_A is printed
 xlabel('reaction time(ms), bin width = 50 ms');
 ylabel('% of trials');
-[h_Solo_vs_SemiSolo_First,p_Solo_vs_SemiSolo_First] = ttest2(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_Solo_ID),RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_SemiSolo_ID));
+[h_Solo_vs_SemiSolo_First,p_Solo_vs_SemiSolo_First,ci_Solo_vs_SemiSolo_First,stat_Solo_vs_SemiSolo_First] = ttest2(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_Solo_ID),RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_SemiSolo_ID),'Vartype','unequal');
 % pbaspect([1 1 1])
 %%
 sh(5) = subplot(2,3,5);
@@ -197,7 +197,7 @@ set(gca, 'YTick',ytix, 'YTickLabel',ytix*100);
 legend('Curius',''); % for the legend, name of Actor_A is printed
 xlabel('reaction time(ms), bin width = 50 ms');
 ylabel('% of trials');
-[h_Solo_vs_SemiSolo_Simul,p_Solo_vs_SemiSolo_Simul] = ttest2(RT_A_ms_AllTrials(Turn_ActorA_Simul_Rewarded_AND_Solo_ID),RT_A_ms_AllTrials(Turn_ActorA_Simul_Rewarded_AND_SemiSolo_ID));
+[h_Solo_vs_SemiSolo_Simul,p_Solo_vs_SemiSolo_Simul,ci_Solo_vs_SemiSolo_Simul,stat_Solo_vs_SemiSolo_Simul] = ttest2(RT_A_ms_AllTrials(Turn_ActorA_Simul_Rewarded_AND_Solo_ID),RT_A_ms_AllTrials(Turn_ActorA_Simul_Rewarded_AND_SemiSolo_ID),'Vartype','unequal');
 % pbaspect([1 1 1])
 %%
 sh(6) = subplot(2,3,6);
@@ -208,7 +208,7 @@ plot(mean(RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_AND_Solo_ID)),-0.005,"^"
 % this works same as "ig_hist2per function"
 set(gca, 'YTick',ytix, 'YTickLabel',ytix*100);
 legend('Curius',''); 
-[h_Solo_vs_SemiSolo_Second,p_Solo_vs_SemiSolo_Second] = ttest2(RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_AND_Solo_ID),RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_AND_SemiSolo_ID));
+[h_Solo_vs_SemiSolo_Second,p_Solo_vs_SemiSolo_Second,ci_Solo_vs_SemiSolo_Second,stat_Solo_vs_SemiSolo_Second] = ttest2(RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_AND_Solo_ID),RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_AND_SemiSolo_ID),'Vartype','unequal');
 xlabel('reaction time(ms), bin width = 50 ms');
 ylabel('% of trials');
 % pbaspect([1 1 1])
@@ -220,20 +220,54 @@ sgtitle('Upper plots: Semi-solo task, Lower plots: solo task')
 
 %% table to show paird-ttest results:
 T_WithinCondition_SemiSolo = table; 
-T_WithinCondition_SemiSolo.Stat = {'h';'p'}  % h = 1 rejecting the null hypothesis(mean are significantly different)
-T_WithinCondition_SemiSolo.Monkey_First = double(round(vpa(([h_Monk1_Hum2;p_Monk1_Hum2])),3))
-T_WithinCondition_SemiSolo.Simulataneously = double(round(vpa(([h_Simul;p_Simul])),3))
-T_WithinCondition_SemiSolo.Monkey_Second = double(round(vpa(([h_Monk2_Hum1;p_Monk2_Hum1])),3))
+T_WithinCondition_SemiSolo.Stat = {'h';'p';'CI_lower';'CI_upper';'tstat';'df';'sd'}  % h = 1 rejecting the null hypothesis(mean are significantly different)
+% T_WithinCondition_SemiSolo.Monkey_First = double(round(vpa(([h_Monk1_Hum2;p_Monk1_Hum2;ci_Monk1_Hum2;stat_Monk1_Hum2.tstat;stat_Monk1_Hum2.df;stat_Monk1_Hum2.sd])),3))
+% T_WithinCondition_SemiSolo.Simulataneously = double(round(vpa(([h_Simul;p_Simul;ci_Simul;stat_Simul.tstat;stat_Simul.df;stat_Simul.sd])),3))
+% T_WithinCondition_SemiSolo.Monkey_Second = double(round(vpa(([h_Monk2_Hum1;p_Monk2_Hum1;ci_Monk2_Hum1;stat_Monk2_Hum1.tstat;stat_Monk2_Hum1.df;stat_Monk2_Hum1.sd])),3))
+
+T_WithinCondition_SemiSolo.Monkey_First = num2str([h_Monk1_Hum2;p_Monk1_Hum2;ci_Monk1_Hum2;stat_Monk1_Hum2.tstat;stat_Monk1_Hum2.df;stat_Monk1_Hum2.sd],'%0.3f'); %printing the numbers to 5 values after the decimal
+T_WithinCondition_SemiSolo.Simulataneously = num2str([h_Simul;p_Simul;ci_Simul;stat_Simul.tstat;stat_Simul.df;stat_Simul.sd],'%0.3f');
+T_WithinCondition_SemiSolo.Monkey_Second = num2str([h_Monk2_Hum1;p_Monk2_Hum1;ci_Monk2_Hum1;stat_Monk2_Hum1.tstat;stat_Monk2_Hum1.df;stat_Monk2_Hum1.sd],'%0.3f');
+
 %% table to show non-paird-ttest results:
 T_BetweenCondition = table;
-T_BetweenCondition.Stat = {'h';'p'}  % h = 1 rejecting the null hypothesis(mean are significantly different)
-T_BetweenCondition.First = double(round(vpa(([h_Solo_vs_SemiSolo_First;p_Solo_vs_SemiSolo_First])),3));
-T_BetweenCondition.Simul = double(round(vpa(([h_Solo_vs_SemiSolo_Simul;p_Solo_vs_SemiSolo_Simul])),3));
-T_BetweenCondition.Second = double(round(vpa(([h_Solo_vs_SemiSolo_Second;p_Solo_vs_SemiSolo_Second])),3));
+T_BetweenCondition.Stat = {'h';'p';'CI_lower';'CI_upper';'tstat';'df';'sd_min';'sd_max'}  % h = 1 rejecting the null hypothesis(mean are significantly different)
+% T_BetweenCondition.First = double(round(vpa(([h_Solo_vs_SemiSolo_First;p_Solo_vs_SemiSolo_First;ci_Solo_vs_SemiSolo_First;stat_Solo_vs_SemiSolo_First.tstat;stat_Solo_vs_SemiSolo_First.df;stat_Solo_vs_SemiSolo_First.sd])),3));
+% T_BetweenCondition.Simul = double(round(vpa(([h_Solo_vs_SemiSolo_Simul;p_Solo_vs_SemiSolo_Simul;ci_Solo_vs_SemiSolo_Simul;stat_Solo_vs_SemiSolo_Simul.tstat;stat_Solo_vs_SemiSolo_Simul.df;stat_Solo_vs_SemiSolo_Simul.sd])),3));
+% T_BetweenCondition.Second = double(round(vpa(([h_Solo_vs_SemiSolo_Second;p_Solo_vs_SemiSolo_Second;ci_Solo_vs_SemiSolo_Second;stat_Solo_vs_SemiSolo_Second.tstat;stat_Solo_vs_SemiSolo_Second.df;stat_Solo_vs_SemiSolo_Second.sd])),3));
+
+T_BetweenCondition.First = num2str([h_Solo_vs_SemiSolo_First;p_Solo_vs_SemiSolo_First;ci_Solo_vs_SemiSolo_First;stat_Solo_vs_SemiSolo_First.tstat;stat_Solo_vs_SemiSolo_First.df;stat_Solo_vs_SemiSolo_First.sd],'%0.3f');
+T_BetweenCondition.Simul = num2str([h_Solo_vs_SemiSolo_Simul;p_Solo_vs_SemiSolo_Simul;ci_Solo_vs_SemiSolo_Simul;stat_Solo_vs_SemiSolo_Simul.tstat;stat_Solo_vs_SemiSolo_Simul.df;stat_Solo_vs_SemiSolo_Simul.sd],'%0.3f');
+T_BetweenCondition.Second = num2str([h_Solo_vs_SemiSolo_Second;p_Solo_vs_SemiSolo_Second;ci_Solo_vs_SemiSolo_Second;stat_Solo_vs_SemiSolo_Second.tstat;stat_Solo_vs_SemiSolo_Second.df;stat_Solo_vs_SemiSolo_Second.sd],'%0.3f');
 %% Export as Excel file
 excelFile_WithinCond = 'PairedTtest_RT_ActorSturn.xlsx';
 writetable(T_WithinCondition_SemiSolo, excelFile_WithinCond);
 excelFile_BetwCond = 'SemiSolo_vs_Solo_Ttest_RT_ActorSturn.xlsx';
 writetable(T_BetweenCondition, excelFile_BetwCond);
 
+%% reporting the statistics of t-test on the plot, p val, t and df
+for st = 1 : 6
+    if st < 4
+        subtitletext{1} = strcat('p = ',table2array(T_WithinCondition_SemiSolo(2,st+1)));
+        subtitletext{2} = strcat(sprintf('t(%d) = ',str2num(table2array(T_WithinCondition_SemiSolo(6,st+1)))),table2array(T_WithinCondition_SemiSolo(5,st+1)));
+        subtitle(sh(st),char(subtitletext{1},subtitletext{2}))
+    end
+    if st > 3
+        subtitletext{1} = strcat('p = ',table2array(T_BetweenCondition(2,st-2)));
+        subtitletext{2} = strcat(sprintf('t(%0.2f) = ',str2num(table2array(T_BetweenCondition(6,st-2)))),table2array(T_BetweenCondition(5,st-2)));
+        subtitle(sh(st),char(subtitletext{1},subtitletext{2}))
+    end
+end
 
+%%
+%% performing   2 way ANOVA for two factors affecting the RT of A: Timing and Task type.
+ResponseVariable_A = RT_A_ms_Rewarded;
+TaskType_A = TaskType_Rewarded; 
+Timing_A = strings(size(diffGoSignalTime_ms_AllTrials,1),1); % intializing timing vector with nan
+Timing_A(Turn_ActorA_Simul_All_ID) = repelem({'Simul'},length(Turn_ActorA_Simul_All_ID));
+Timing_A(Turn_ActorA_First_All_ID) = repelem({'First'},length(Turn_ActorA_First_All_ID));
+Timing_A(Turn_ActorA_Second_All_ID) = repelem({'Second'},length(Turn_ActorA_Second_All_ID));
+
+Timing_A_Rewarded = Timing_A(RewardedID);  % Timing vector is from all trials, we need only rewarded
+[p,tbl,stats,terms] = anovan(ResponseVariable_A,{Timing_A_Rewarded,TaskType_A},'model',2,'varnames',{'Timing','TaskType'})
+[c,m,h,gnames] = multcompare(stats);
