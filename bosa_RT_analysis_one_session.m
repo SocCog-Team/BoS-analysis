@@ -1,7 +1,13 @@
+function [loadedDATA, report_struct, T_WithinCondition_SemiSolo, STAT_WITHIN_SUBJ_A] = bosa_RT_analysis_one_session(DataFilePath)
+
+% STAT_BETWEEN_SUBJ % A vs B
+% STAT_WITHIN_SUBJ_A
+% STAT_WITHIN_SUBJ_B
+
 % A colour is always red
 % as sanity check look at the paper, figure 4, histogram of RT should be
 % accordance with AT of that figure
-function [loadedDATA, report_struct,T_WithinCondition_SemiSolo] = bosa_ZahraVersion_Behavioral_DataAnalysis(DataFilePath)
+
 % report structure is whole information (headers and string information) from each session
 % loadedDATA is data of each session in table format
 % unique list contains most of the string information (name of the
@@ -133,7 +139,7 @@ hold on
 plot(mean(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_SemiSolo_ID)),-0.005,"^",'Color','r')
 histogram(RT_B_ms_AllTrials(Turn_ActorB_Second_Rewarded_AND_SemiSolo_ID),bins,'Normalization','probability','FaceColor','b','FaceAlpha',0.1);
 plot(mean(RT_B_ms_AllTrials(Turn_ActorB_Second_Rewarded_AND_SemiSolo_ID)),-0.005,"^",'Color','b')
-ytix = get(gca, 'YTick')
+ytix = get(gca, 'YTick');
 set(gca, 'YTick',ytix, 'YTickLabel',ytix*100);
 legend(strcat(sprintf(Actor_A),' was first'),'','Actor B was second',''); % for the legend, name of Actor_A is printed
 xlabel('reaction time(ms), bin width = 50 ms');
@@ -149,7 +155,7 @@ hold on
 plot(mean(RT_A_ms_AllTrials(Turn_ActorA_Simul_Rewarded_AND_SemiSolo_ID)),-0.005,"^",'Color','r')
 histogram(RT_B_ms_AllTrials(Turn_ActorB_Simul_Rewarded_AND_SemiSolo_ID),bins,'Normalization','probability','FaceAlpha',0.1,'FaceColor','b');
 plot(mean(RT_B_ms_AllTrials(Turn_ActorB_Simul_Rewarded_AND_SemiSolo_ID)),-0.005,"^",'Color','b')
-ytix = get(gca, 'YTick')
+ytix = get(gca, 'YTick');
 set(gca, 'YTick',ytix, 'YTickLabel',ytix*100);
 legend(sprintf(Actor_A),'','Actor B',''); % for the legend, name of Actor_A is printed
 title ('simultaneously')
@@ -166,7 +172,7 @@ hold on
 plot(mean(RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_AND_SemiSolo_ID)),-0.005,"^",'Color','r')
 histogram(RT_B_ms_AllTrials(Turn_ActorB_First_Rewarded_AND_SemiSolo_ID),bins,'Normalization','probability','FaceAlpha',0.1,'FaceColor','b');
 plot(mean(RT_B_ms_AllTrials(Turn_ActorB_First_Rewarded_AND_SemiSolo_ID)),-0.005,"^",'Color','b')
-ytix = get(gca, 'YTick')
+ytix = get(gca, 'YTick');
 set(gca, 'YTick',ytix, 'YTickLabel',ytix*100);
 legend(strcat(sprintf(Actor_A),' was second'),'','Actor B was first',''); % for the legend, name of Actor_A is printed
 xlabel('reaction time(ms), bin width = 50 ms');
@@ -260,7 +266,8 @@ for st = 1 : 6
 end
 
 %%
-%% performing   2 way ANOVA for two factors affecting the RT of A: Timing and Task type.
+%% performing   2 way ANOVA for two factors affecting the RT of A: Timing and Task type
+figure;
 ResponseVariable_A = RT_A_ms_Rewarded;
 TaskType_A = TaskType_Rewarded; 
 Timing_A = strings(size(diffGoSignalTime_ms_AllTrials,1),1); % intializing timing vector with nan
@@ -269,5 +276,10 @@ Timing_A(Turn_ActorA_First_All_ID) = repelem({'First'},length(Turn_ActorA_First_
 Timing_A(Turn_ActorA_Second_All_ID) = repelem({'Second'},length(Turn_ActorA_Second_All_ID));
 
 Timing_A_Rewarded = Timing_A(RewardedID);  % Timing vector is from all trials, we need only rewarded
-[p,tbl,stats,terms] = anovan(ResponseVariable_A,{Timing_A_Rewarded,TaskType_A},'model',2,'varnames',{'Timing','TaskType'})
-[c,m,h,gnames] = multcompare(stats);
+[p,tbl,stats,terms] = anovan(ResponseVariable_A,{Timing_A_Rewarded,TaskType_A},'model',2,'varnames',{'Timing','TaskType'});
+[c,m,h,gnames] = multcompare(stats,'Dimension',[1 2],'Ctype','bonferroni');
+
+STAT_WITHIN_SUBJ_A.anovan.p = p;
+STAT_WITHIN_SUBJ_A.anovan.tbl = tbl;
+% ...
+
