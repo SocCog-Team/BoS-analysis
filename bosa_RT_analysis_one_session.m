@@ -1,4 +1,4 @@
-function [loadedDATA, report_struct, T_WithinCondition_SemiSolo, STAT_WITHIN_SUBJ_A] = bosa_RT_analysis_one_session(DataFilePath)
+function [loadedDATA, report_struct,STAT_BETWEEN_SUBJ, STAT_WITHIN_SUBJ_A] = bosa_RT_analysis_one_session(DataFileName)
 
 % STAT_BETWEEN_SUBJ % A vs B
 % STAT_WITHIN_SUBJ_A
@@ -48,9 +48,9 @@ RewadValues_All = loadedDATA.A_NumberRewardPulsesDelivered_HIT;
 TaskType_Rewarded = Trial_TaskType_All(RewardedID);
 
 SoloA_AND_RewardedID = intersect(SoloAID_All,RewardedID); % I learned it from Igor!,insted of "AND rule filter" simply use builtin function "intersect"
-figure, plot(RewadValues_All(SoloA_AND_RewardedID),'o');  % this is a sanity check: if the SoloA_AND_RewardedID vector is extracted correctly, all values should be 2
+% figure, plot(RewadValues_All(SoloA_AND_RewardedID),'o');  % this is a sanity check: if the SoloA_AND_RewardedID vector is extracted correctly, all values should be 2
 SemiSolo_AND_RewardedID = intersect(SemiSoloID_All,RewardedID);
-figure, plot(RewadValues_All(SemiSolo_AND_RewardedID),'o') ; % this is a sanity check: if the SemiSolo_AND_RewardedID vector is extracted correctly, all values should be either 1 or 2
+% figure, plot(RewadValues_All(SemiSolo_AND_RewardedID),'o') ; % this is a sanity check: if the SemiSolo_AND_RewardedID vector is extracted correctly, all values should be either 1 or 2
 
 diffGoSignalTime_ms_AllTrials = loadedDATA.A_GoSignalTime_ms - loadedDATA.B_GoSignalTime_ms; % negative means actor A is first 
 % initiation of each trial is by "Go signal", if we seperate Go signal time
@@ -58,7 +58,7 @@ diffGoSignalTime_ms_AllTrials = loadedDATA.A_GoSignalTime_ms - loadedDATA.B_GoSi
 % actor, % pay attention this vector is all trials (aborted and rewarded)
 diffGoSignalTime_ms_SemiSolo_AND_Rewarded = diffGoSignalTime_ms_AllTrials(SemiSolo_AND_RewardedID);
 diffGoSignalTime_ms_Rewarded = diffGoSignalTime_ms_AllTrials(RewardedID); 
-figure, histogram(diffGoSignalTime_ms_Rewarded,100); % this is a sanity check: diffGoSignalTime_ms_Rewarded if is extracted correctly should have a bell shape histogram with mean around zero
+% figure, histogram(diffGoSignalTime_ms_Rewarded,100); % this is a sanity check: diffGoSignalTime_ms_Rewarded if is extracted correctly should have a bell shape histogram with mean around zero
 
 RT_A_ms_AllTrials  = loadedDATA.A_InitialFixationReleaseTime_ms - loadedDATA.A_GoSignalTime_ms;
 RT_B_ms_AllTrials  = loadedDATA.B_InitialFixationReleaseTime_ms - loadedDATA.B_GoSignalTime_ms;
@@ -68,7 +68,7 @@ RT_B_ms_Rewarded  = RT_B_ms_AllTrials(RewardedID);
 
 RT_A_ms_Rewarded_AND_SemiSolo  = RT_A_ms_AllTrials(SemiSolo_AND_RewardedID);
 RT_B_ms_Rewarded_AND_SemiSolo  = RT_B_ms_AllTrials(SemiSolo_AND_RewardedID);
-figure, histogram(RT_A_ms_Rewarded_AND_SemiSolo-RT_B_ms_Rewarded_AND_SemiSolo,50); %sanity check: This shouldnt be like figure4 paper?(with shorter tails because here we look at RT, not AT)
+% figure, histogram(RT_A_ms_Rewarded_AND_SemiSolo-RT_B_ms_Rewarded_AND_SemiSolo,50); %sanity check: This shouldnt be like figure4 paper?(with shorter tails because here we look at RT, not AT)
 %% it is like that because it is a mixture of solo and semi-solo task.
 Actor_A = string(report_struct.unique_lists.A_Name);
 Actor_B = string(report_struct.unique_lists.B_Name);
@@ -119,16 +119,16 @@ bins = [0:25:1000];
 % A first vs A second
 % [N,edges] = histcounts(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_ID),50); %count in each bin
 % yscaled = (N./length(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_ID))).*100; %y-axis instead of count, should be in percent
-figure, histogram(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_SemiSolo_ID),bins,'DisplayStyle','bar','Normalization','probability') % Igor said it is better to show y-axis as percent instead of count,
+% figure, histogram(RT_A_ms_AllTrials(Turn_ActorA_First_Rewarded_AND_SemiSolo_ID),bins,'DisplayStyle','bar','Normalization','probability') % Igor said it is better to show y-axis as percent instead of count,
 % if you set 'Normalization' to probability and then multiply it by 100,
 % this works same as "ig_hist2per function"
-hold on
-histogram(RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_AND_SemiSolo_ID),bins,'Normalization','probability','FaceAlpha',0.1);
-ytix = get(gca, 'YTick');
-set(gca, 'YTick',ytix, 'YTickLabel',ytix*100);
-legend(strcat(sprintf(Actor_A),'',' was first!',''),strcat(sprintf(Actor_A),' was second!')); % for the legend, name of Actor_A is printed
-xlabel('reaction time(ms), bin width = 50 ms');
-ylabel('% of trials');
+% hold on
+% histogram(RT_A_ms_AllTrials(Turn_ActorA_Second_Rewarded_AND_SemiSolo_ID),bins,'Normalization','probability','FaceAlpha',0.1);
+% ytix = get(gca, 'YTick');
+% set(gca, 'YTick',ytix, 'YTickLabel',ytix*100);
+% legend(strcat(sprintf(Actor_A),'',' was first!',''),strcat(sprintf(Actor_A),' was second!')); % for the legend, name of Actor_A is printed
+% xlabel('reaction time(ms), bin width = 50 ms');
+% ylabel('% of trials');
 %% showing all combinations of RTs in one 
 figure
 sh(1) = subplot(2,3,1);
@@ -279,7 +279,25 @@ Timing_A_Rewarded = Timing_A(RewardedID);  % Timing vector is from all trials, w
 [p,tbl,stats,terms] = anovan(ResponseVariable_A,{Timing_A_Rewarded,TaskType_A},'model',2,'varnames',{'Timing','TaskType'});
 [c,m,h,gnames] = multcompare(stats,'Dimension',[1 2],'Ctype','bonferroni');
 
+%% Creating structure to wrap up the statistical results
+
+STAT_WITHIN_SUBJ_A.multcompareTest.c = c;
+STAT_WITHIN_SUBJ_A.multcompareTest.m = m;
+STAT_WITHIN_SUBJ_A.multcompareTest.h = h;
+STAT_WITHIN_SUBJ_A.multcompareTest.gnames = gnames;
+
 STAT_WITHIN_SUBJ_A.anovan.p = p;
 STAT_WITHIN_SUBJ_A.anovan.tbl = tbl;
+STAT_WITHIN_SUBJ_A.anovan.stats = stats;
+STAT_WITHIN_SUBJ_A.anovan.terms = terms;
+STAT_WITHIN_SUBJ_A.ttest_Solo_VS_SemiSolo = T_BetweenCondition;
+
+
+STAT_BETWEEN_SUBJ.ttest.WithinCondition_SemiSolo = T_WithinCondition_SemiSolo;
+
+
+
+
+
 % ...
 
