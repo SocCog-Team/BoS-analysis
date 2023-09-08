@@ -1,5 +1,5 @@
 
-Session_Solo_FullPath = {'\\172.16.9.188\snd\taskcontroller\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2023\230109\20230109T141535.A_Curius.B_None.SCP_01.sessiondir\20230109T141535.A_Curius.B_None.SCP_01.triallog.v017.mat'
+Session_SoloA_FullPath = {'\\172.16.9.188\snd\taskcontroller\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2023\230109\20230109T141535.A_Curius.B_None.SCP_01.sessiondir\20230109T141535.A_Curius.B_None.SCP_01.triallog.v017.mat'
 
 
 '\\172.16.9.188\snd\taskcontroller\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2023\230110\20230110T132359.A_Curius.B_None.SCP_01.sessiondir\20230110T132359.A_Curius.B_None.SCP_01.triallog.v017.mat'
