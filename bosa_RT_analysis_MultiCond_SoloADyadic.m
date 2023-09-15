@@ -1,6 +1,6 @@
 function [AllSessions_Statitical_Results,Mean_RTDyadic_SoloADyadicSessions,SD_RTDyadic_SoloADyadicSessions LineSlopeDyadic] = bosa_RT_analysis_MultiCond_SoloADyadic
 
-run('MultiCondSoloADyadicSessions_FullPath.m');               %% run the script to have the path for each session data
+run('MultiCondSoloADyadicSessions_FullPath');               %% run the script to have the path for each session data
  
 AllSessions_Statitical_Results = struct();   %% 2] Initializing structure for final statistical results of all sessions
                       
@@ -196,7 +196,7 @@ ylim([min(min(YSoloA))-100 max(max(YSoloA))+100])
 title('RT among sessions with Dyadic and SoloA')
 subtitle('magenta: dyadic, blue: SoloA')
     
-% %% Repeated measure anova  with two  factor timing and task (mixed model)
+% %% Repeated measure anova  with two  factor timing and task
 % %Example from Mathwork
 % % t = table(species,meas(:,1),meas(:,2),meas(:,3),meas(:,4),...
 % % 'VariableNames',{'species','meas1','meas2','meas3','meas4'});
@@ -205,28 +205,16 @@ subtitle('magenta: dyadic, blue: SoloA')
 % 
 % RESPONSEDyadic = Mean_RTDyadic_SoloADyadicSessions'; % Data for Task 1
 % RESPONSESoloA = Mean_RTSoloA_SoloADyadicSessions'; % Data for Task 2
-% % ResponseDyadicAllTimes = reshape(RESPONSEDyadic,(size(RESPONSEDyadic,1)*3),1);
-% % ResponseSoloAAllTimes = reshape(RESPONSESoloA,(size(RESPONSESoloA,1)*3),1);
-% Time = {'First','Simult','Second'}';
-% Time = [Time;Time];
-% TaskType = [repmat({'Dyadic'},3,1);repmat({'SoloA'},3,1)]
-% % Time = [repmat({'First'},size(RESPONSEDyadic,1),1);repmat({'Simult'},size(RESPONSEDyadic,1),1);repmat({'Second'},size(RESPONSEDyadic,1),1)];
-% RESPONSE_All = [RESPONSEDyadic;RESPONSESoloA];
-% % TaskType_All = [repmat({'Dyadic'},size(RESPONSEDyadic,1)*3,1);repmat({'SoloA'},size(RESPONSESoloA,1)*3,1)];
-% 
-% % SessionNumb = 1:size(RESPONSEDyadic,1);
-% % ColumnName = cell(1,size(RESPONSEDyadic,2))
-% % for i = 1:size(RESPONSEDyadic,2)
-% %     ColumnName{i} = ['RT_Sess', num2str(i)];  % Assign column names
-% % end
-% % ColumnName = ['Task','Timing',ColumnName]
-% between = table(TaskType,Time,RESPONSE_All);
-% within = table(categorical(1:42),
-% 
-% % rm = fitrm(t,'First-Second ~ Task','WithinDesign',Time,'WithinModel','orthogonalcontrasts')
-% 
-% rm = fitrm(between,'RT ~ TaskType*Tim');
-% ranovatbl = ranova(rm)
+
+Y = [Mean_RTDyadic_SoloADyadicSessions Mean_RTSoloA_SoloADyadicSessions];
+
+between = table(Y(:,1),Y(:,2),Y(:,3),Y(:,4),Y(:,5),Y(:,6),...
+'VariableNames',{'first_dyad', 'simul_dyad', 'second_dyad', 'first_solo', 'simul_solo', 'second_solo',});
+
+within = table(['1'	'2'	'3'	'1'	'2'	'3']',['1' '1' '1' '2' '2' '2']','VariableNames',{'Timing','Task'}); 
+
+rm = fitrm(between,'first_dyad,simul_dyad,second_dyad,first_solo,simul_solo,second_solo ~ 1','WithinDesign',within);
+ranovatbl = ranova(rm,'WithinModel','Timing*Task')
 
 
 
