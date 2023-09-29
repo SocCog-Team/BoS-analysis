@@ -1,4 +1,6 @@
-function [AllSessions_Statitical_Results,Mean_RTDyadic_SoloADyadicSessions,SD_RTDyadic_SoloADyadicSessions LineSlopeDyadic] = bosa_RT_analysis_MultiCond_SoloADyadic
+function [AllSessions_Statitical_Results,Mean_RTDyadic_SoloADyadicSessions,SD_RTDyadic_SoloADyadicSessions ] = bosa_RT_analysis_MultiCond_SoloADyadicCuriusHuman
+ColorFor_Dyadicplots = [0 153 153]./255;
+ColorFor_SoloAplots = [128,0,128]./255;
 
 run('MultiCondSoloADyadicSessions_FullPath');               %% run the script to have the path for each session data
  
@@ -23,7 +25,11 @@ for SessNum = 1 : numel(SessionsMultiCond_SoloADyadic_FullPath)
 
 end
 
+WholeTrials = 0;
+WholeSessNum = numel(SessionsMultiCond_SoloADyadic_FullPath);
+
 %% Going through SoloADyadic and extracting mean RT and SD RT
+
 Mean_RTDyadic_SoloADyadicSessions = nan(numel(SessionsMultiCond_SoloADyadic_FullPath),3);  %initializng the mran RT matrix, 3 columns for 3 timings
 SD_RTDyadic_SoloADyadicSessions  = nan(numel(SessionsMultiCond_SoloADyadic_FullPath),3); % the same for Standard deviation
 
@@ -40,6 +46,8 @@ for SessSolo =  1 : numel(SessionsMultiCond_SoloADyadic_FullPath)
     loadedDATA = array2table(report_struct.data,'VariableNames',report_struct.header);
     Rewarded_Aborted  = report_struct.unique_lists.A_OutcomeENUM(loadedDATA.A_OutcomeENUM_idx); % this vector shows which trial was aborted, which was successful,
     Trial_TaskType_All = report_struct.unique_lists.A_TrialSubTypeENUM(loadedDATA.A_TrialSubTypeENUM_idx); % this vector shows trial type based on task.
+    WholeTrials = WholeTrials+numel(Rewarded_Aborted);
+
 
     diffGoSignalTime_ms_AllTrials = loadedDATA.A_GoSignalTime_ms - loadedDATA.B_GoSignalTime_ms;
     RewardedID = find(strcmp(Rewarded_Aborted,'REWARD')); % indices of rewarded trials
@@ -134,41 +142,44 @@ end
 
 figure
 for S = 1 : size(Mean_RTDyadic_SoloADyadicSessions,1)
-    plot(1:3,Mean_RTDyadic_SoloADyadicSessions(S,:),'o-','Color',[204 0 204]./255)
+    plot(1:3,Mean_RTDyadic_SoloADyadicSessions(S,:),'o-','MarkerFaceColor',ColorFor_Dyadicplots,'Color',ColorFor_Dyadicplots)
     hold on
     xticks([1 2 3])
     xlim([0 4])
     xticklabels(["First","Simul","Second"])
 end
 for S = 1 : size(Mean_RTSoloA_SoloADyadicSessions,1)
-    plot(1:3,Mean_RTSoloA_SoloADyadicSessions(S,:),'o-','Color',[0 204 204]./255)
+    plot(1:3,Mean_RTSoloA_SoloADyadicSessions(S,:),'o-','MarkerFaceColor',ColorFor_SoloAplots,'Color',ColorFor_SoloAplots)
     hold on
     xticks([1 2 3])
     xlim([0 4])
     xticklabels(["First","Simul","Second"])
+    ylim([400 700])
 end
-title('Mean RT in sessions with Dyadic and SoloA')
-subtitle('magenta: dyadic, blue: SoloA')
+title('Mean RT of monkey in sessions with Dyadic and SoloA conditions','magenta: dyadic, blue: SoloA')
+subtitle_Text = strcat('number of trials:'," ",string(WholeTrials),", ",'number of sessions:',string(WholeSessNum))
+subtitle(subtitle_Text)
+fig1 = gcf;
 
-%% Showing variance
-
-figure
-for S = 1 : size(Mean_RTDyadic_SoloADyadicSessions,1)
-    plot(1:3,SD_RTDyadic_SoloADyadicSessions(S,:),'o-','Color',[204 0 204]./255)
-    hold on
-    xticks([1 2 3])
-    xlim([0 4])
-    xticklabels(["First","Simul","Second"])
-end
-for S = 1 : size(Mean_RTSoloA_SoloADyadicSessions,1)
-    plot(1:3,SD_RTSoloA_SoloADyadicSessions(S,:),'o-','Color',[0 204 204]./255)
-    hold on
-    xticks([1 2 3])
-    xlim([0 4])
-    xticklabels(["First","Simul","Second"])
-end
-title('SD od RT in sessions with Dyadic and SoloA')
-subtitle('magenta: dyadic, blue: SoloA')
+% %% Showing variance
+% 
+% figure
+% for S = 1 : size(Mean_RTDyadic_SoloADyadicSessions,1)
+%     plot(1:3,SD_RTDyadic_SoloADyadicSessions(S,:),'o-','MarkerFaceColor',ColorFor_Dyadicplots,'Color',ColorFor_Dyadicplots)
+%     hold on
+%     xticks([1 2 3])
+%     xlim([0 4])
+%     xticklabels(["First","Simul","Second"])
+% end
+% for S = 1 : size(Mean_RTSoloA_SoloADyadicSessions,1)
+%     plot(1:3,SD_RTSoloA_SoloADyadicSessions(S,:),'o-','MarkerFaceColor',ColorFor_SoloAplots,'Color',ColorFor_SoloAplots)
+%     hold on
+%     xticks([1 2 3])
+%     xlim([0 4])
+%     xticklabels(["First","Simul","Second"])
+% end
+% title('SD od RT in sessions with Dyadic and SoloA')
+% subtitle('magenta: dyadic, blue: SoloA')
 
 
 
@@ -187,16 +198,17 @@ YDyadic = Mean_RTDyadic_SoloADyadicSessions;
 % 'mc','k',...
 % 'medc','r--')
 CatName = cell({"First","Simult","Second"})
-violinplot(YDyadic,CatName,'ViolinColor',[204 0 204]./255)
+violinplot(YDyadic,CatName,'ViolinColor',ColorFor_Dyadicplots)
 hold on
 YSoloA = Mean_RTSoloA_SoloADyadicSessions
-violinplot(YSoloA,CatName,'ViolinColor',[0 204 204]./255)
+violinplot(YSoloA,CatName,'ViolinColor',ColorFor_SoloAplots)
 ylabel('mean RT(ms)','FontSize',14)
-ylim([min(min(YSoloA))-100 max(max(YSoloA))+100])
-title('RT among sessions with Dyadic and SoloA')
-subtitle('magenta: dyadic, blue: SoloA')
+ylim([400 700])
+title('RT of monkey among sessions with Dyadic and SoloA','magenta: dyadic, blue: SoloA')
+subtitle(subtitle_Text)
+fig2 = gcf;
     
-% %% Repeated measure anova  with two  factor timing and task
+%% Repeated measure anova  with two  factor timing and task
 % %Example from Mathwork
 % % t = table(species,meas(:,1),meas(:,2),meas(:,3),meas(:,4),...
 % % 'VariableNames',{'species','meas1','meas2','meas3','meas4'});
@@ -214,7 +226,19 @@ between = table(Y(:,1),Y(:,2),Y(:,3),Y(:,4),Y(:,5),Y(:,6),...
 within = table(['1'	'2'	'3'	'1'	'2'	'3']',['1' '1' '1' '2' '2' '2']','VariableNames',{'Timing','Task'}); 
 
 rm = fitrm(between,'first_dyad,simul_dyad,second_dyad,first_solo,simul_solo,second_solo ~ 1','WithinDesign',within);
-ranovatbl = ranova(rm,'WithinModel','Timing*Task')
+[ranovatbl,D] = ranova(rm,'WithinModel','Timing*Task')
+
+%% Printing out the figures
+% Set the figure properties for high-quality output
+
+fig1.Renderer = 'Painters';  % Set the renderer to painters for vector graphics
+fig2.Renderer = 'Painters';  % Set the renderer to painters for vector graphics
+
+% Specify the file name and save as SVG
+file1_name = 'MultiCondDyadicSoloCurius_AllSess_MeanRT.svg';
+file2_name = 'MultiCondDyadicSoloCurius_AllSess_ViolinRT.svg';
+% saveas(fig1, file1_name, 'svg');
+% saveas(fig2, file2_name, 'svg');
 
 
 

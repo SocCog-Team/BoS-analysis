@@ -41,7 +41,7 @@ Sessions = {
     %'20230323T125022.A_Curius.B_AE.SCP_01.triallog.v017.mat' % lack behavioral data
     %'20230327T145940.A_Curius.B_None.SCP_01.triallog.v017.mat'  Number of trials is not enough
     '20230328T133350.A_Curius.B_None.SCP_01.triallog.v017.mat'
-    '20230329T155746.A_Curius.B_None.SCP_01.triallog.v017.mat'
+    '20230329T134429.A_Curius.B_None.SCP_01.triallog.v017.mat'
     '20230330T133602.A_Curius.B_AE.SCP_01.triallog.v017.mat'
     '20230331T131059.A_Curius.B_AE.SCP_01.triallog.v017.mat'
     '20230403T155747.A_Curius.B_None.SCP_01.triallog.v017.mat'
@@ -103,4 +103,5 @@ for s = 1 : numel(Sessions)
     monthName = extractBetween(foldername,'20','T');
     FullSessionPath{s} = strcat(base_path,Year,'\',monthName,'\',foldername,'\',Sessions{s})
 end
+clearvars -except FullSessionPath
 %% attention:  use load(char(FullSessionPath{s})) to go through each directory

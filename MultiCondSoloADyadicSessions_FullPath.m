@@ -98,7 +98,7 @@ SessionsMultiCond_SoloADyadic_FullPath = {%'\\172.16.9.188\snd\taskcontroller\SC
 
     '\\172.16.9.188\snd\taskcontroller\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2023\230523\20230523T145755.A_Curius.B_SM.SCP_01.sessiondir\20230523T145755.A_Curius.B_SM.SCP_01.triallog.v017.mat'
 
-    '\\172.16.9.188\snd\taskcontroller\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2023\230526\20230526T102829.A_Curius.B_SM.SCP_01.sessiondir\20230526T102829.A_Curius.B_SM.SCP_01.triallog.v017.mat'
+    '\\172.16.9.188\snd\taskcontroller\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2023\230526\20230526T102829.A_Curius.B_SM.SCP_01.sessiondir\20230526T102829.A_Curius.B_SM.SCP_01.triallog.v017.mat'}
 
     %'\\172.16.9.188\snd\taskcontroller\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2023\230605\20230605T125111.A_Curius.B_None.SCP_01.sessiondir\20230605T125111.A_Curius.B_None.SCP_01.triallog.v017.mat'
 
@@ -115,7 +115,7 @@ SessionsMultiCond_SoloADyadic_FullPath = {%'\\172.16.9.188\snd\taskcontroller\SC
 
     %'\\172.16.9.188\snd\taskcontroller\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2023\230630\20230630T115937.A_Curius.B_Elmo.SCP_01.sessiondir\20230630T115937.A_Curius.B_Elmo.SCP_01.triallog.v017.mat'
 
-    '\\172.16.9.188\snd\taskcontroller\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2023\230704\20230704T130229.A_Curius.B_Elmo.SCP_01.sessiondir\20230704T130229.A_Curius.B_Elmo.SCP_01.triallog.v017.mat'}
+    %'\\172.16.9.188\snd\taskcontroller\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2023\230704\20230704T130229.A_Curius.B_Elmo.SCP_01.sessiondir\20230704T130229.A_Curius.B_Elmo.SCP_01.triallog.v017.mat'}
 
     %'\\172.16.9.188\snd\taskcontroller\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2023\230707\20230707T102457.A_Curius.B_Elmo.SCP_01.sessiondir\20230707T102457.A_Curius.B_Elmo.SCP_01.triallog.v017.mat'}
 
