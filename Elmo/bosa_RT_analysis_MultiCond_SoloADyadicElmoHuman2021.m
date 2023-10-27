@@ -41,6 +41,9 @@ for SessSolo =  1 : numel(FullSessPath)
     %load(char(FullSessionPath{ID}));
     report_struct = report_struct_list{SessSolo};
     loadedDATA = array2table(report_struct.data,'VariableNames',report_struct.header);
+    if SessSolo == 16
+       loadedDATA.A_TrialSubTypeENUM_idx(508) = 1; % we found out on trial 508 of session 20210608 the idx is wrong
+    end
     Rewarded_Aborted  = report_struct.unique_lists.A_OutcomeENUM(loadedDATA.A_OutcomeENUM_idx); % this vector shows which trial was aborted, which was successful,
     Trial_TaskType_All = report_struct.unique_lists.A_TrialSubTypeENUM(loadedDATA.A_TrialSubTypeENUM_idx); % this vector shows trial type based on task.
     WholeTrials = WholeTrials+numel(Rewarded_Aborted);
@@ -305,10 +308,16 @@ annotation('textbox',...
     [0.491104166666664 0.892008639308845 0.04275 0.0367170626349878],...
     'String',TX,...
     'FitBoxToText','on');
-
+figSingleSess = gcf;
+newWidth =1000;
+newHeight = 800;
+% Change the size of the figure using the 'Position' property
+set(gcf, 'Position', [100, 100, newWidth, newHeight])
+SingleSessFileName = strcat(TX,'.jpg')
+saveas(figSingleSess, SingleSessFileName, 'jpg')
 
 end
-fig0 = gcf;
+% fig0 = gcf;
 %% plottig
 
 figure
@@ -364,20 +373,57 @@ within = table(['1'	'2'	'3'	'1'	'2'	'3']',['1' '1' '1' '2' '2' '2']','VariableNa
 rm = fitrm(between,'first_dyad,simul_dyad,second_dyad,first_solo,simul_solo,second_solo ~ 1','WithinDesign',within);
 [ranovatbl,D] = ranova(rm,'WithinModel','Timing*Task')
 
+fig2 = gcf;
 %% Printing out the figures
 % Set the figure properties for high-quality output
 
-fig0.Renderer = 'Painters';  % Set the renderer to painters for vector graphics
+% fig0.Renderer = 'Painters';  % Set the renderer to painters for vector graphics
 fig1.Renderer = 'Painters';  % Set the renderer to painters for vector graphics
-% fig2.Renderer = 'Painters';  % Set the renderer to painters for vector graphics
+fig2.Renderer = 'Painters';  % Set the renderer to painters for vector graphics
 
 % Specify the file name and save as SVG
-file0_name = 'ElmoB_Curius_DyadicSolo_RTHist.svg';
-file1_name = 'ElmoB_Curius_DyadicSolo_MeanRT.svg';
-% file2_name = 'ElmoB_Curius_DyadicSolo_.svg';
-% saveas(fig0, file0_name, 'svg');
-% saveas(fig1, file1_name, 'svg');
+% file0_name = 'ElmoA_Curius_DyadicSolo_RTHist.svg';
+file1_name = 'ElmoA2021_HumanB_DyadicSolo_MeanRT.svg';
+file2_name = 'ElmoA2021_HumanB_DyadicSolo_ViolinPlot.svg';
 
+% saveas(fig0, file0_name, 'svg');
+
+saveas(fig1, file1_name, 'svg');
+saveas(fig2, file2_name, 'svg');
+
+%% Scatter plot: 
+% x-axis: mean RT of Elmo at each session at each timing (first,...) at SOLOA
+% Y-axis: mean RT of Elmo at each session at each timing (first,...) at
+% DYADIC
+figure;
+for Timing = 1 : 3
+    SZ = corrcoef(Mean_RTSoloA_SoloADyadicSessions(Timing,:),Mean_RTDyadic_SoloADyadicSessions(Timing,:));
+    SZ_EACH = (SZ(2)*100);
+    sz_each(Timing) = SZ(2);
+    if Timing == 1
+       C = [102 0 204]./255;
+    end
+    if Timing == 2
+       C = [255 51 255]./255;
+    end
+    if Timing == 3
+       C = [255 153 204]./255;
+    end
+    scatter(Mean_RTSoloA_SoloADyadicSessions(:,Timing),Mean_RTDyadic_SoloADyadicSessions(:,Timing),SZ_EACH,C,'filled')
+    hold on
+end
+
+plot(250:800,250:800,'--','color',[0.5 0.5 0.5])
+legend('first','simult','second','criterion line: x = y','Position',[0.624166662511372 0.140555551922511 0.265357147012438 0.165476194109235])
+subtitle('Pearson correlation coefficioent: first = 0.45, simul = 0.49, second = 0.57')
+xlabel('RT of Elmo in SoloA condition among sessions with SoloA and Dyadic,(ms)')
+ylabel('RT of Elmo in Dyadic condition among sessions with SoloA and Dyadic,(ms)')
+
+% ElmoMean_RTDyadic_SoloADyadicSessions = Mean_RTDyadic_SoloADyadicSessions;
+% ElmoMean_RTSoloA_SoloADyadicSessions = Mean_RTSoloA_SoloADyadicSessions;
+
+% save('ELMO_DyadicRT','ElmoMean_RTDyadic_SoloADyadicSessions')
+% save('ELMO_SoloART','ElmoMean_RTSoloA_SoloADyadicSessions')
 
 
 
