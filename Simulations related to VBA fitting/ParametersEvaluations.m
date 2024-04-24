@@ -117,8 +117,8 @@ feedbacks = arrayfun(transformChoiceToFeedback, choices);
     %[posterior,out] = VBA_NLStateSpaceModel(y,u,f_fname,g_fname,dim,options)
 
     [posterior] = VBA_NLStateSpaceModel(y, u, f_fname, g_fname, dim, options);
-    PHI_WorstSubj = posterior.muPhi;
-    THETA_WorstSubj = posterior.muTheta;
+    PHI_WorstSubj = exp(posterior.muPhi);
+    THETA_WorstSubj = VBA_sigmoid(posterior.muTheta);
 %% BestSubject:
     choices = BestSubject;
     feedbacks = arrayfun(transformChoiceToFeedback, choices);
@@ -127,11 +127,11 @@ feedbacks = arrayfun(transformChoiceToFeedback, choices);
     PrevFeedback = [nan,feedbacks(1:end-1)];
     u = [PrevChoice;PrevFeedback];
     [posterior] = VBA_NLStateSpaceModel(y, u, f_fname, g_fname, dim, options);
-    PHI_BestSubj = posterior.muPhi;
-    THETA_BestSubj = posterior.muTheta;
+    PHI_BestSubj = exp(posterior.muPhi);
+    THETA_BestSubj = VBA_sigmoid(posterior.muTheta);
     %inputs
     %%
-SampleSize = 1;
+SampleSize = 100;
 PHI_RandomSubj = nan(1,SampleSize);
 THETA_RandomSubj = nan(1,SampleSize);
 % simulation for random suject
@@ -228,8 +228,8 @@ for SAMPLE = 1 : SampleSize
 
     [posterior] = VBA_NLStateSpaceModel(y, u, f_fname, g_fname, dim, options);
 
-    PHI_RandomSubj(1,SAMPLE) = posterior.muPhi;
-    THETA_RandomSubj(1,SAMPLE) = posterior.muTheta;
+    PHI_RandomSubj(1,SAMPLE) = exp(posterior.muPhi);
+    THETA_RandomSubj(1,SAMPLE) = VBA_sigmoid(posterior.muTheta);
     display(SAMPLE)
 end
 figure,
@@ -251,17 +251,24 @@ ylabel('\phi parameter value')
 legend('Optimal subject','worst subject','random subject')
 
 %%
-DeltaTime = 50:50:300;
+DeltaTime = 10:10:300;
 RewardMat = [1,2];
 nTrials = 450
 SubjectChoice = nan(numel(DeltaTime),nTrials);
+FixedHighProb_AfterLearning = 0.9
+
 for DELTAt = 1 : numel(DeltaTime)
     DELTATIME = DeltaTime(DELTAt)
-    AccumulativeChoice = nTrials-DELTATIME;
-    ChoiceProb =(AccumulativeChoice/nTrials)/2;
+    % AccumulativeChoice = nTrials-DELTATIME;
+    % ChoiceProb =(AccumulativeChoice/nTrials)/2; %with this logic, a fast
+    % learner, also is a good learner and a slow learner, is not a good
+    % learner, as subjects learn value 2 exists, at the same time still
+    % randomness in his choices are high
+
+    ChoiceProb = FixedHighProb_AfterLearning;
     A = nan(1,nTrials);
     A(1:DELTATIME) = binornd(1,0.5,[1,DELTATIME]);
-    A(DELTATIME+1:end) = binornd(1,0.5+ChoiceProb,[1,nTrials-DELTATIME]);
+    A(DELTATIME+1:end) = binornd(1,ChoiceProb,[1,nTrials-DELTATIME]);
     SubjectChoice(DELTAt,:) = A;
 end
 n_t = nTrials;
@@ -278,8 +285,8 @@ for T = 1 : numel(DeltaTime)
     PrevFeedback = [nan,feedbacks(1:end-1)];
     u = [PrevChoice;PrevFeedback];
     [posterior] = VBA_NLStateSpaceModel(y, u, f_fname, g_fname, dim, options);
-    PHI_DeltaT(T) = posterior.muPhi;
-    Theta_DeltaT(T) = posterior.muTheta;
+    PHI_DeltaT(T) = exp(posterior.muPhi);
+    Theta_DeltaT(T) = VBA_sigmoid(posterior.muTheta);
     display(T)
 end
 figure,
@@ -294,6 +301,27 @@ figure(2)
 title('number of trials is 450!')
 figure(3)
 title('number of trials is 450!')
+%% subject with sigmoid learning pattern: probability of choice,
+%comes from a logistic distribution, for comparision between subjects
+%we keep the sigma fixed among subjects but mu (time of learning) differ
+
+MU = nTrials/2
+SIGMA = nTrials/4
+
+for M = 1 : numel(MU)
+    ProbCenter = MU(M)
+    % AccumulativeChoice = nTrials-DELTATIME;
+    % ChoiceProb =(AccumulativeChoice/nTrials)/2; %with this logic, a fast
+    % learner, also is a good learner and a slow learner, is not a good
+    % learner, as subjects learn value 2 exists, at the same time still
+    % randomness in his choices are high
+    R = random('Logistic',ProbCenter,SIGMA)
+    SigmoidChoiceProb = pdf("Logistic",R,ProbCenter,SIGMA);
+    A = nan(1,nTrials);
+    A(1:ProbCenter) = binornd(1,0.5,[1,ProbCenter]);
+    A(ProbCenter+1:end) = binornd(1,SigmoidChoiceProb,[1,nTrials-ProbCenter]);
+    SigmoidSubjectChoice(M,:) = A;
+end
 %% save variables and figures
 cd 'C:\Users\zahra\OneDrive\Documents\PostDoc_DPZ\Zahra codes\Simulations related to VBA fitting'
 
@@ -305,9 +333,20 @@ save('Theta_DeltaT','Theta_DeltaT')
 
 %sanity check
 figure
+tiledlayout('flow')
 for SubjNum = 1 : numel(DeltaTime)
-    subplot(3,2,SubjNum)
+    nexttile
     scatter(1:nTrials,SubjectChoice(SubjNum,:),'|')
+    yticks([0 1])
+    title(sprintf('DeltaT = %d trials',DeltaTime(SubjNum)))
+end
+    yticklabels({'choice for value 1','choice for value 2'})
+
+figure
+tiledlayout('flow')
+for SubjNum = 1 : numel(MU)
+    nexttile
+    scatter(1:nTrials,SigmoidSubjectChoice(SubjNum,:),'|')
     yticks([0 1])
     title(sprintf('DeltaT = %d trials',DeltaTime(SubjNum)))
 end
