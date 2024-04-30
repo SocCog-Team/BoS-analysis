@@ -1,4 +1,4 @@
-cd 'C:\Users\zahra\OneDrive\Documents\PostDoc_DPZ\Zahra codes\Simulations related to VBA fitting'
+% cd 'C:\Users\zahra\OneDrive\Documents\PostDoc_DPZ\Zahra codes\Simulations related to VBA fitting'
 %%
 clear
 clc
@@ -6,7 +6,7 @@ clc
 
 
 %%
-cd 'C:\Users\zahra\OneDrive\Documents\PostDoc_DPZ\Zahra codes\VBA_AllFunctions'
+% cd 'C:\Users\zahra\OneDrive\Documents\PostDoc_DPZ\Zahra codes\VBA_AllFunctions'
 
 
 %specify model:
@@ -76,16 +76,16 @@ transformChoiceToFeedback = @(x) (x == 1) + 1; %0 maps to 1, and 1 maps to 2
 %%
 DeltaTime = 10:10:300;
 RewardMat = [1,2];
-nTrials = 450
+nTrials = 100
 FixedHighProb_AfterLearning = 0.5:0.1:1;
 
 SubjectChoice = nan(numel(DeltaTime),nTrials,numel(FixedHighProb_AfterLearning));
 
 for LearningLevel = 1 % : numel(FixedHighProb_AfterLearning)
-    ChoiceProb = FixedHighProb_AfterLearning(LearningLevel);
+    ChoiceProb = 0.9; % FixedHighProb_AfterLearning(LearningLevel);
 
     for DELTAt = 1 % : numel(DeltaTime)
-        DELTATIME = DeltaTime(DELTAt)
+        DELTATIME = 50;
         % AccumulativeChoice = nTrials-DELTATIME;
         % ChoiceProb =(AccumulativeChoice/nTrials)/2; %with this logic, a fast
         % learner, also is a good learner and a slow learner, is not a good
@@ -119,11 +119,12 @@ for LearningLevel = 1 %: numel(FixedHighProb_AfterLearning)
         display(LearningLevel)
     end
 end
-
+PHI_DeltaT
+Theta_DeltaT
 
 
 %% save variables and figures
-cd 'C:\Users\zahra\OneDrive\Documents\PostDoc_DPZ\Zahra codes\Simulations related to VBA fitting'
+% cd 'C:\Users\zahra\OneDrive\Documents\PostDoc_DPZ\Zahra codes\Simulations related to VBA fitting'
 
 %% Theta figure
 figure('Position',[81.80000000000001,91.4,975.2,682.4000000000001])
