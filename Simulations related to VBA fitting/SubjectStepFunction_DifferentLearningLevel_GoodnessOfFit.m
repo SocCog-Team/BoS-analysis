@@ -78,6 +78,7 @@ DeltaTime = 10:10:300;
 RewardMat = [1,2];
 nTrials = 100
 FixedHighProb_AfterLearning = 0.5:0.1:1;
+Contingency = repelem(max(RewardMat),1,nTrials)
 
 SubjectChoice = nan(numel(DeltaTime),nTrials,numel(FixedHighProb_AfterLearning));
 
@@ -91,7 +92,7 @@ for LearningLevel = 1 % : numel(FixedHighProb_AfterLearning)
         % learner, also is a good learner and a slow learner, is not a good
         % learner, as subjects learn value 2 exists, at the same time still
         % randomness in his choices are high
-
+        
         A = nan(1,nTrials);
         A(1:DELTATIME) = binornd(1,0.5,[1,DELTATIME]);
         A(DELTATIME+1:end) = binornd(1,ChoiceProb,[1,nTrials-DELTATIME]);

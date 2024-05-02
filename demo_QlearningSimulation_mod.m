@@ -1,4 +1,4 @@
-function [choices, feedbacks, simulation]=demo_QlearningSimulation()
+function [choices, feedbacks, simulation]=demo_QlearningSimulation_mod()
 % // VBA toolbox //////////////////////////////////////////////////////////
 %
 % [choices, feedbacks] = demo_QlearningSimulation()
