@@ -1,0 +1,3 @@
+NHP_SoloA = {'\\172.16.9.188\snd\taskcontroller\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2018\180226\20180226T155639.A_Curius.B_None.SCP_01.sessiondir\20180226T155639.A_Curius.B_None.SCP_01.triallog.v016.mat'
+    '\\172.16.9.188\snd\taskcontroller\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2018\180227\20180227T130617.A_Curius.B_None.SCP_01.sessiondir\20180227T130617.A_Curius.B_None.SCP_01.triallog.v013.mat'
+    '\\172.16.9.188\snd\taskcontroller\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2018\180228\20180228T160712.A_Curius.B_None.SCP_01.sessiondir\20180228T160712.A_Curius.B_None.SCP_01.triallog.v012.mat'}
