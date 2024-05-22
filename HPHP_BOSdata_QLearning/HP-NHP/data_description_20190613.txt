@@ -1,0 +1,89 @@
+Quick documentation of data format: 
+
+This mat file contains a number of variables relevant for some of our analyses, most can be safely ignored, the following variables however will be required:
+
+
+1) info:
+This contains information useful to find the matching session folder (with all original log & tracker files)
+
+2) TrialsInCurrentSetIdx:
+is the set of trial indices for successful/rewarded trials in dual mode (with two active participants).
+
+(IGNORE FOR NOW:
+for completness, this set was calculated as shown below:
+    TrialsInCurrentSetIdx = intersect(TrialSets.ByOutcome.REWARD, TrialSets.ByChoices.NumChoices02);		% exclude trials with only one target (instructed reach, informed reach)
+    TrialsInCurrentSetIdx = intersect(TrialsInCurrentSetIdx, TrialSets.ByTrialType.InformedTrials);             % exclude free choice
+    TrialsInCurrentSetIdx = intersect(TrialsInCurrentSetIdx, TrialSets.ByJointness.DualSubjectJointTrials);     % exclude non-joint trials
+
+TrialSets:
+A structure that contains list of trial indices for trials in which specific conditions were met. 
+E.g. TrialSets.ByOutcome.REWARD contains a list of trials in which reward was dispensed, aka successful trials. 
+)
+
+
+3) FullPerTrialStruct:
+This contains a number of arrays giving the value of one parameter per trial. 
+To extract the data for the subset of dual, rewarded, completed trials use TrialsInCurrentSetIdx
+
+Example 1: trials where the view was blocked
+isTrialInvisible_AB = FullPerTrialStruct.isTrialInvisible_AB(TrialsInCurrentSetIdx); 
+
+Example 2: extract sequence of selection outcomes for dual, rewarded, completed trials
+(4,3,2,1, where 4 mean both selected A pref. target,  3 - both selected B pref. target, 2 - each selected own pref. target, 1 - each selected own nonpreferred target)
+
+is_red_trial	= PreferableTargetSelected_A & NonPreferableTargetSelected_B;
+is_blue_trial	= NonPreferableTargetSelected_A & PreferableTargetSelected_B;
+is_pink_trial	= PreferableTargetSelected_A & PreferableTargetSelected_B;
+is_green_trial	= NonPreferableTargetSelected_A & NonPreferableTargetSelected_B;
+
+all_trials_by_joint_combination = is_green_trial*1 + is_pink_trial*2 + is_blue_trial*3 + is_red_trial*4;
+trials_by_joint_combination	= all_trials_by_joint_combination(TrialsInCurrentSetIdx);
+
+
+Here is a full list of the members of FullPerTrialStruct structure:
+ 
+         isTrialInvisible_AB: bool: 1 if the hands of the partner where obstructed/not visible (face was always visible).
+
+         A_InitialTargetReleaseRT: double: time (in milliseconds) from choice-target onset to release of initial-fixation-target for agent A
+         B_InitialTargetReleaseRT: double: time (ms) from choice-target onset to release of initial-fixation-target for agent B
+         AB_InitialTargetReleaseRT_diff: double: time difference (ms) A_InitialTargetReleaseRT - B_InitialTargetReleaseRT
+         A_TargetAcquisitionRT: double: time (ms) from choice-target onset of acquisition of choice-target for agent A
+         B_TargetAcquisitionRT: double: time (ms) from choice-target onset of acquisition of choice-target for agent B
+         AB_TargetAcquisitionRT_diff: double: time difference (ms) A_TargetAcquisitionRT - B_TargetAcquisitionRT
+         A_IniTargRel_05MT_RT: double: time (ms) from choice-target onset to halfway between release of initial-fixation-target and acquisition of choice-target for agent A
+         B_IniTargRel_05MT_RT: double: time (ms) from choice-target onset to halfway between release of initial-fixation-target and acquisition of choice-target for agent B
+         AB_IniTargRel_05MT_RT_diff: double: time difference (ms) A_IniTargRel_05MT_RT - B_IniTargRel_05MT_RT
+        
+         AB_TrialStartTimeMS: double: time (ms) start time of trials relative to experimemt start (0.0, negative values are permitted and denote start-up phase of eventIDE)
+         RewardByTrial_A: int: number of reward units earned by agent A
+         RewardByTrial_B: int: number of reward units earned by agent B
+        
+         % note there are trial types in some sessions with only one target displayed, so (LeftTargetSelected_A = ~ RightTargetSelected_A) is not generally valid for each trial
+         PreferableTargetSelected_A: bool: 1 if prefereable target was selected by agent A
+         PreferableTargetSelected_B: bool: 1 if prefereable target was selected by agent B
+         NonPreferableTargetSelected_A: bool: 1 if non-prefereable target was selected by agent A
+         NonPreferableTargetSelected_B: bool: 1 if non-prefereable target was selected by agent B
+         
+	 % note there are trial types in some sessions with only one target displayed, so (NonPreferableTargetSelected_B = ~ PreferableTargetSelected_A) is not generally valid
+         % due to the transparent screen there are two ways to describe the side a stimulus was presented, relative to the respective agent (which we call subjective below) or relative to the
+	 % the front-side of the transparent screen (the side agent A is located)   
+         LeftTargetSelected_A: bool: 1 if objective left target (seen from A) was selected by agent A
+         LeftTargetSelected_B: bool: 1 if left target (seen from A) was selected by agent B
+         RightTargetSelected_A: bool: 1 if right (seen from A) target was selected by agent A
+         RightTargetSelected_B: bool: 1 if right (seen from A) target was selected by agent B
+    
+         SubjectiveLeftTargetSelected_A: bool: 1 if subjective left target (seen from A) was selected by agent A
+         SubjectiveLeftTargetSelected_B: bool: 1 if subjective left target (seen from B) was selected by agent B
+         SubjectiveRightTargetSelected_A: bool: 1 if subjective right target (seen from A) was selected by agent A
+         SubjectiveRightTargetSelected_B: bool: 1 if subjective right target (seen from A) was selected by agent A
+                
+         TrialIsJoint: bool: 1 if both agents had to participate in a trial
+         TrialIsSolo: bool: 1 if only one agent had to participate in a trial
+         NumChoiceTargetsPerTrial: int: number of choice-targets in a trial (to help separate out dual target informed-choice from single target informed-instructed-reach trias)
+         TrialIsRewarded: bool: 1 if the trial was rewarded
+         TrialIsAborted: bool: 1 if the trials was not rewarded but aborted instead
+
+
+ 
+
+
