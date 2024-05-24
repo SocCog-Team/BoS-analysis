@@ -1,0 +1,9 @@
+NHP_DyadicA = {'\\172.16.9.188\snd\taskcontroller\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2017\171019\20171019T132932.A_Flaffus.B_Curius.SCP_01.sessiondir\20171019T132932.A_Flaffus.B_Curius.SCP_01.triallog.v013.mat'
+               '\\172.16.9.188\snd\taskcontroller\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2017\171020\20171020T124628.A_Flaffus.B_Curius.SCP_01.sessiondir\20171020T124628.A_Flaffus.B_Curius.SCP_01.triallog.v012.mat'
+               '\\172.16.9.188\snd\taskcontroller\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2017\171026\20171026T150942.A_Flaffus.B_Curius.SCP_01.sessiondir\20171026T150942.A_Flaffus.B_Curius.SCP_01.triallog.v013.mat'
+               '\\172.16.9.188\snd\taskcontroller\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2017\171027\20171027T145027.A_Flaffus.B_Curius.SCP_01.sessiondir\20171027T145027.A_Flaffus.B_Curius.SCP_01.triallog.v012.mat'
+               '\\172.16.9.188\snd\taskcontroller\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2017\171031\20171031T124333.A_Flaffus.B_Curius.SCP_01.sessiondir\20171031T124333.A_Flaffus.B_Curius.SCP_01.triallog.v012.mat'
+               '\\172.16.9.188\snd\taskcontroller\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2017\171101\20171101T123413.A_Flaffus.B_Curius.SCP_01.sessiondir\20171101T123413.A_Flaffus.B_Curius.SCP_01.triallog.v012.mat'
+               '\\172.16.9.188\snd\taskcontroller\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2017\171102\20171102T102500.A_Flaffus.B_Curius.SCP_01.sessiondir\20171102T102500.A_Flaffus.B_Curius.SCP_01.triallog.v012.mat'
+               '\\172.16.9.188\snd\taskcontroller\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2017\171103\20171103T143324.A_Flaffus.B_Curius.SCP_01.sessiondir\20171103T143324.A_Flaffus.B_Curius.SCP_01.triallog.v012.mat'
+               '\\172.16.9.188\snd\taskcontroller\SCP_DATA\SCP-CTRL-01\SESSIONLOGS\2017\171107\20171107T131228.A_Flaffus.B_Curius.SCP_01.sessiondir\20171107T131228.A_Flaffus.B_Curius.SCP_01.triallog.v012.mat'}
