@@ -33,6 +33,8 @@ ConditionFoldersName = AllFolders(ConditionIndex);
 RT_ToleranceThreshold = 100;
 BeforeAfter_Length = 3;
 LW = 3 %Line Width
+MS = 14 % marker size
+
 LinkFunction = 'logit'
 DataDist = 'Binomial'
 FittingMethod = 'Laplace'
@@ -336,15 +338,30 @@ for fol = 1:length(ConditionFoldersName)
     end
 
     figure('Position',[1,49,1536,740.8])
+    xaxis = 1:BeforeAfter_Length;
+
 
     for AC = 1 : 2
         if AC == 1
 
             subplot(1,2,AC), hold on
 
-            plot(1:BeforeAfter_Length,flipud(MeanAcrossSessChoiceHistoryCoefs{AC}(1:BeforeAfter_Length,:)),'o-','Color',SelfHistCol,'LineWidth',LW)
-            plot(1:BeforeAfter_Length,flipud(MeanAcrossSessChoiceHistoryCoefs{AC}(BeforeAfter_Length+1:end,:)),'o-','Color',PartnerHistCol,'LineWidth',LW)
+            plot(1:BeforeAfter_Length,MeanAcrossSessChoiceHistoryCoefs{AC}(1:BeforeAfter_Length,:),'o-','Color',SelfHistCol,'LineWidth',LW)
+            plot(1:BeforeAfter_Length,MeanAcrossSessChoiceHistoryCoefs{AC}(BeforeAfter_Length+1:end,:),'o-','Color',PartnerHistCol,'LineWidth',LW)
             % ylim([-4 4])
+             yaxisSelf = MeanAcrossSessChoiceHistoryCoefs{AC}(1:BeforeAfter_Length);
+             StarFilterSelf =   MeanAcrossSessChoiceHistoryGoodnessPval{fol}(AC,1:BeforeAfter_Length)<0.05;
+            if sum(StarFilterSelf)~= 0
+                plot(xaxis(StarFilterSelf),yaxisSelf(StarFilterSelf),'*k','MarkerSize',MS)
+            end
+             yaxisOther = MeanAcrossSessChoiceHistoryCoefs{AC}(BeforeAfter_Length+1:end);
+             StarFilterOther =   MeanAcrossSessChoiceHistoryGoodnessPval{fol}(AC,BeforeAfter_Length+1:end)<0.05;
+            if sum(StarFilterOther)~= 0
+                plot(xaxis(StarFilterOther),yaxisOther(StarFilterOther),'*k','MarkerSize',MS)
+            end
+       
+
+   
 
             ylabel('GLM Weight')
             xticks(1:5)
@@ -353,9 +370,19 @@ for fol = 1:length(ConditionFoldersName)
             title(sprintf(A_Name))
         else
             subplot(1,2,AC), hold on
-            plot(1:BeforeAfter_Length,flipud(MeanAcrossSessChoiceHistoryCoefs{AC}(1:BeforeAfter_Length)),'o-','Color',SelfHistCol,'LineWidth',LW)
-            plot(1:BeforeAfter_Length,flipud(MeanAcrossSessChoiceHistoryCoefs{AC}(BeforeAfter_Length+1:end)),'o-','Color',PartnerHistCol,'LineWidth',LW)
+            plot(1:BeforeAfter_Length,MeanAcrossSessChoiceHistoryCoefs{AC}(1:BeforeAfter_Length),'o-','Color',SelfHistCol,'LineWidth',LW)
+            plot(1:BeforeAfter_Length,MeanAcrossSessChoiceHistoryCoefs{AC}(BeforeAfter_Length+1:end),'o-','Color',PartnerHistCol,'LineWidth',LW)
             % ylim([-4 4])
+             yaxisSelf = MeanAcrossSessChoiceHistoryCoefs{AC}(1:BeforeAfter_Length);
+             StarFilterSelf =   MeanAcrossSessChoiceHistoryGoodnessPval{fol}(AC,1:BeforeAfter_Length)<0.05;
+            if sum(StarFilterSelf)~= 0
+                plot(xaxis(StarFilterSelf),yaxisSelf(StarFilterSelf),'*k','MarkerSize',MS)
+            end
+             yaxisOther = MeanAcrossSessChoiceHistoryCoefs{AC}(BeforeAfter_Length+1:end);
+             StarFilterOther =   MeanAcrossSessChoiceHistoryGoodnessPval{fol}(AC,BeforeAfter_Length+1:end)<0.05;
+            if sum(StarFilterOther)~= 0
+                plot(xaxis(StarFilterOther),yaxisOther(StarFilterOther),'*k','MarkerSize',MS)
+            end
             ylabel('GLM Weight')
             xticks(1:5)
             xticklabels(string(xtickname))
@@ -376,7 +403,7 @@ for fol = 1:length(ConditionFoldersName)
     filename = []
     filename = strcat(A_Name,'-',B_Name,'-Current Choice, Choice History.jpg');
     ax = gcf;
-    % exportgraphics(ax,sprintf(filename),'Resolution',600)
+    exportgraphics(ax,sprintf(filename),'Resolution',600)
 
 end
 

@@ -31,7 +31,7 @@ ConditionIndex = ConfTrainedTogetherConditionIndex
 ConditionFoldersName = AllFolders(ConditionIndex);
 
 RT_ToleranceThreshold = 100;
-BeforeAfter_Length = 1;
+BeforeAfter_Length = 3;
 LW = 3 %Line Width
 MS = 14 % marker size
 LinkFunction = 'logit'

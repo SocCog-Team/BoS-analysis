@@ -158,7 +158,11 @@ for lag = 1 : MaxLag
     PVAL(lag) = p_value;
 end
 [MIN_P MinIndex] = min(PVAL);
-BestLag = MinIndex;
+if sum(diff(PVAL)) == 0
+    BestLag = MaxLag;
+else
+    BestLag = MinIndex;
+end
 p_valueGranger = MIN_P;
 LikelihoodRatioStatisticGranger = LR_EachLag(MinIndex);
 
