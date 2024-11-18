@@ -1,0 +1,4 @@
+definition of selfish switcher: when switcher is first and number of switches to his own color is more than when his partner is first and switches to own
+
+threshold to import the data is 9 switches, less than 9 is not valid
+for both selfish switcher and non selfish switcher
