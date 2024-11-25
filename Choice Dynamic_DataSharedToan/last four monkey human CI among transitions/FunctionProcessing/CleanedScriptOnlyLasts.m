@@ -1,14 +1,7 @@
 
-
-
 % Define the base directory where the project is located (adjust as necessary)
 % You might replace this with a base directory that's flexible for the user's setup.
-%baseDir = 'C:\Users\zahra\OneDrive\Documents\PostDoc_DPZ\Zahra codes';
-dbstop if error
-
-baseDir = fullfile('/', 'Users', 'smoeller', 'space', 'data_local', 'moeller', 'DPZ', 'taskcontroller',  'CODE', 'BoS-analysis');
-
-
+baseDir = 'C:\Users\zahra\OneDrive\Documents\PostDoc_DPZ\Zahra codes';
 
 % Define the specific paths for functions and data
 functionsDir = fullfile(baseDir, 'Functions for ChoiceDynamicAnalysis_AllDataSets');
@@ -21,12 +14,10 @@ addpath(functionsDir);
 starting_dir = dataDir;
 
 % Example: Check if paths are added correctly
-if ~exist(functionsDir, 'dir') % ~isfolder(functionsDir)
-	mkdir(functionsDir);
+if ~exist(functionsDir, 'dir')
     error('Functions directory does not exist.');
 end
 if ~exist(dataDir, 'dir')
-	mkdir(dataDir);
     error('Data directory does not exist.');
 end
 %%
@@ -54,7 +45,7 @@ ConditionFoldersName = AllFolders(ConditionIndex);
 %%
 AT_ToleranceThreshold = 100; % be aware that in this script, RT got replaced with Action time, AT. though the name of variable is still RT
 %% Define what do you want to look aton the Y axis? Choices or Time related behavior (AT or RT)
-%WhatOnYaxis = 'TimeBehavior';
+WhatOnYaxis = 'TimeBehavior';
 WhatOnYaxis = 'ChoiceDynamic';
 
 %% Time related behavior should be AT or RT?
