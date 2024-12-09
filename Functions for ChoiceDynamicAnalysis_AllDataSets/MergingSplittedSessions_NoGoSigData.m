@@ -10,22 +10,22 @@ ConditionFoldersName_dirstruct = dir(fullfile(folderName, '*.mat'));
 valid_ConditionFoldersName_dirstruct = ConditionFoldersName_dirstruct(~[ConditionFoldersName_dirstruct.isdir]);
 
 valid_matfile_list = {valid_ConditionFoldersName_dirstruct.name};
-PlayerA_Name = cell(1,length(valid_matfile_list))
+PlayerA_Name = cell(1,length(valid_matfile_list));
 for i_matfile = 1 : length(valid_matfile_list)
     MatFileName = valid_matfile_list{i_matfile};
     NeededString = extractBetween(MatFileName,'triallog','IC');
-    PlayerAName = extractBetween(NeededString,Actors{1},Actors{2})
-    PlayerA_Name{i_matfile} = extractBetween(PlayerAName,'.','.')
+    PlayerAName = extractBetween(NeededString,Actors{1},Actors{2});
+    PlayerA_Name{i_matfile} = extractBetween(PlayerAName,'.','.');
 end
 %% evaluate if the all mat file inside the current folder, have the same actor A or actor A changed to B in some sessions:
-FirstSessActorA = PlayerA_Name{1}
-FirstSessActorB = extractBetween(valid_matfile_list{1},'triallog','IC')
-FirstSessActorB = extractBetween(FirstSessActorB,Actors{2},'_')
-FirstSessActorB = extractAfter(FirstSessActorB,'.')
-Actor_A_matchesIdx = cellfun(@(x) strcmp(x, FirstSessActorA), PlayerA_Name)
-MatFile_ActorBgotA_IndexNumber = []
+FirstSessActorA = PlayerA_Name{1};
+FirstSessActorB = extractBetween(valid_matfile_list{1},'triallog','IC');
+FirstSessActorB = extractBetween(FirstSessActorB,Actors{2},'_');
+FirstSessActorB = extractAfter(FirstSessActorB,'.');
+Actor_A_matchesIdx = cellfun(@(x) strcmp(x, FirstSessActorA), PlayerA_Name);
+MatFile_ActorBgotA_IndexNumber = [];
 if sum(Actor_A_matchesIdx) ~= length(valid_matfile_list)
-    MatFile_ActorBgotA_IndexNumber = find(~Actor_A_matchesIdx)
+    MatFile_ActorBgotA_IndexNumber = find(~Actor_A_matchesIdx);
 end
 for i_matfile = 1 : length(valid_matfile_list)
     cur_valid_matfile = valid_matfile_list{i_matfile};
@@ -55,7 +55,7 @@ end
 UniqSess = unique(unique_key_idx);
 MergedData = cell(1,numel(UniqSess));
 
-AllDates_NotRepeat = unique(key_table)
+AllDates_NotRepeat = unique(key_table);
 
 extractNumbers = @(str) regexp(str, '[\d.]+', 'match');
 AllDates_NotRepeat = cellfun(extractNumbers, AllDates_NotRepeat, 'UniformOutput', false);
@@ -67,7 +67,7 @@ for WholeSess = 1 : numel(UniqSess)
     ACTORA{WholeSess} = cur_session_id_struct_arr.subject_A;
     ACTORB{WholeSess} = cur_session_id_struct_arr.subject_B;
 
-    SessionDate{WholeSess} = string(AllDates_NotRepeat{WholeSess})
+    SessionDate{WholeSess} = string(AllDates_NotRepeat{WholeSess});
 
 
 
@@ -75,10 +75,10 @@ for WholeSess = 1 : numel(UniqSess)
 end
 %% also you have to convert the MatFile_ActorBgotA_IndexNumber to idx of merged data
 if  ~isempty(MatFile_ActorBgotA_IndexNumber)
-    MatFile_ActorBgotA_IndexNumber =  unique_key_idx(MatFile_ActorBgotA_IndexNumber)
+    MatFile_ActorBgotA_IndexNumber =  unique_key_idx(MatFile_ActorBgotA_IndexNumber);
 end
 %%
 if isempty(MatFile_ActorBgotA_IndexNumber)
-    MatFile_ActorBgotA_IndexNumber = 0
+    MatFile_ActorBgotA_IndexNumber = 0;
 end
 CS = length(MergedData);

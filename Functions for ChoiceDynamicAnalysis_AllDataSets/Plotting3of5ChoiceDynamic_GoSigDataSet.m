@@ -277,10 +277,11 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
 
 
 
-                title(strcat(sprintf(FirstSessActorA{1}),' own to other'));
+                % title(strcat(sprintf(FirstSessActorA{1}),' own to other'));
                 OveralSwitch = [];
                 OveralSwitch = SelfOtherSwitchNum(Turn,1);
-                subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                title(strcat(sprintf(FirstSessActorA{1}),' own to other:'," ",string(OveralSwitch)));
                 if OveralSwitch == 0
                     % Find and delete all lines
                     hPlots = findobj(gca, 'Type', 'line');
@@ -385,10 +386,11 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                 set(SP,'XTickLabel', {'switch'});
                 set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-                title(strcat(sprintf(FirstSessActorA{1}),' other to own'));
+                % title(strcat(sprintf(FirstSessActorA{1}),' other to own'));
                 OveralSwitch = [];
                 OveralSwitch = OtherSelfSwitchNum(Turn,1);
-                subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                title(strcat(sprintf(FirstSessActorA{1}),' other to own:'," ",string(OveralSwitch)));
                 if OveralSwitch == 0
                     % Find and delete all lines
                     hPlots = findobj(gca, 'Type', 'line');
@@ -497,10 +499,11 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                 set(SP,'XTickLabel', {'switch'});
                 set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-                title(strcat(sprintf(FirstSessActorA{1}),' own to other'));
+                % title(strcat(sprintf(FirstSessActorA{1}),' own to other'));
                 OveralSwitch = [];
                 OveralSwitch = SelfOtherSwitchNum(Turn,1);
-                subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                title(strcat(sprintf(FirstSessActorA{1}),' own to other:'," ",string(OveralSwitch)));
                 if OveralSwitch == 0
                     % Find and delete all lines
                     hPlots = findobj(gca, 'Type', 'line');
@@ -609,10 +612,11 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                 set(SP,'XTickLabel', {'switch'});
                 set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-                title(strcat(sprintf(FirstSessActorA{1}),' other to own'));
+                % title(strcat(sprintf(FirstSessActorA{1}),' other to own'));
                 OveralSwitch = []
                 OveralSwitch = OtherSelfSwitchNum(Turn,1);
-                subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                title(strcat(sprintf(FirstSessActorA{1}),' other to own:'," ",string(OveralSwitch)));
                 if OveralSwitch == 0
                     % Find and delete all lines
                     hPlots = findobj(gca, 'Type', 'line');
@@ -725,10 +729,11 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                 set(SP,'XTickLabel', {'switch'});
                 % set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-                title(strcat(sprintf(FirstSessActorA{1}),' own to other'));
+                % title(strcat(sprintf(FirstSessActorA{1}),' own to other'));
                 OveralSwitch = [];
                 OveralSwitch = SelfOtherSwitchNum(Turn,1);
-                subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                title(strcat(sprintf(FirstSessActorA{1}),' own to other:'," ",string(OveralSwitch)));
                 if OveralSwitch == 0
                     % Find and delete all lines
                     hPlots = findobj(gca, 'Type', 'line');
@@ -841,10 +846,11 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                 set(SP,'XTickLabel', {'switch'});
                 % set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-                title(strcat(sprintf(FirstSessActorA{1}),' other to own'));
+                % title(strcat(sprintf(FirstSessActorA{1}),' other to own'));
                 OveralSwitch = [];
                 OveralSwitch = OtherSelfSwitchNum(Turn,1);
-                subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                title(strcat(sprintf(FirstSessActorA{1}),' other to own:'," ",string(OveralSwitch)));
                 if OveralSwitch == 0
                     % Find and delete all lines
                     hPlots = findobj(gca, 'Type', 'line');
@@ -990,10 +996,11 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                 set(SP,'XTickLabel', {'switch'});
                 set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-                title(strcat(sprintf(FirstSessActorB{1}),' own to other'));
+                % title(strcat(sprintf(FirstSessActorB{1}),' own to other'));
                 OveralSwitch = [];
                 OveralSwitch = SelfOtherSwitchNum(Turn,2);
-                subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                title(strcat(sprintf(FirstSessActorB{1}),' own to other:'," ",string(OveralSwitch)));
                 if OveralSwitch == 0
                     % Find and delete all lines
                     hPlots = findobj(gca, 'Type', 'line');
@@ -1092,10 +1099,11 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                 set(SP,'XTickLabel', {'switch'});
                 set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-                title(strcat(sprintf(FirstSessActorB{1}),' other to own'));
+                % title(strcat(sprintf(FirstSessActorB{1}),' other to own'));
                 OveralSwitch = [];
                 OveralSwitch = OtherSelfSwitchNum(Turn,2);
-                subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                title(strcat(sprintf(FirstSessActorB{1}),' other to own:'," ",string(OveralSwitch)));
                 if OveralSwitch == 0
                     % Find and delete all lines
                     hPlots = findobj(gca, 'Type', 'line');
@@ -1205,10 +1213,11 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                 set(SP,'XTickLabel', {'switch'});
                 set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-                title(strcat(sprintf(FirstSessActorB{1}),' own to other'));
+                % title(strcat(sprintf(FirstSessActorB{1}),' own to other'));
                 OveralSwitch = []
                 OveralSwitch = SelfOtherSwitchNum(Turn,2);
-                subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                title(strcat(sprintf(FirstSessActorB{1}),' own to other:'," ",string(OveralSwitch)));
                 if OveralSwitch == 0
                     % Find and delete all lines
                     hPlots = findobj(gca, 'Type', 'line');
@@ -1311,10 +1320,11 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                 set(SP,'XTickLabel', {'switch'});
                 set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-                title(strcat(sprintf(FirstSessActorB{1}),' other to own'));
+                % title(strcat(sprintf(FirstSessActorB{1}),' other to own'));
                 OveralSwitch = [];
                 OveralSwitch = OtherSelfSwitchNum(Turn,2);
-                subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                title(strcat(sprintf(FirstSessActorB{1}),' other to own:'," ",string(OveralSwitch)));
                 if OveralSwitch == 0
                     % Find and delete all lines
                     hPlots = findobj(gca, 'Type', 'line');
@@ -1419,10 +1429,11 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                 set(SP,'XTickLabel', {'switch'});
                 % set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-                title(strcat(sprintf(FirstSessActorB{1}),' own to other'));
+                % title(strcat(sprintf(FirstSessActorB{1}),' own to other'));
                 OveralSwitch = [];
                 OveralSwitch = SelfOtherSwitchNum(Turn,2);
-                subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                title(strcat(sprintf(FirstSessActorB{1}),' own to other:'," ",string(OveralSwitch)));
                 if OveralSwitch == 0
                     % Find and delete all lines
                     hPlots = findobj(gca, 'Type', 'line');
@@ -1538,8 +1549,9 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
 
                 OveralSwitch = [];
                 OveralSwitch = OtherSelfSwitchNum(Turn,2);
-                subtitle(strcat('(Num : ',string(OveralSwitch),')'));
-                title(strcat(sprintf(FirstSessActorB{1}),' other to own'));
+                % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                % title(strcat(sprintf(FirstSessActorB{1}),' other to own'));
+                title(strcat(sprintf(FirstSessActorB{1}),' other to own:'," ",string(OveralSwitch)));
                 if OveralSwitch == 0
                     % Find and delete all lines
                     hPlots = findobj(gca, 'Type', 'line');
@@ -1737,10 +1749,11 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     set(SP,'XTickLabel', {'switch'});
                     set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-                    title(strcat(sprintf(A_Name),' own to other'))
+                    % title(strcat(sprintf(A_Name),' own to other'))
                     OveralSwitch = [];
                     OveralSwitch = sum(SelfOtherSwitchNum(Turn,1,idata));
-                    subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                    % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                    title(strcat(sprintf(A_Name),' own to other:'," ",string(OveralSwitch)));
                     if OveralSwitch == 0
                         % Find and delete all lines
                         hPlots = findobj(gca, 'Type', 'line');
@@ -1849,10 +1862,11 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     set(SP,'XTickLabel', {'switch'});
                     set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-                    title(strcat(sprintf(A_Name),' other to own'))
+                    % title(strcat(sprintf(A_Name),' other to own'))
                     OveralSwitch = [];
                     OveralSwitch = sum(OtherSelfSwitchNum(Turn,1,idata));
-                    subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                    % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                    title(strcat(sprintf(A_Name),' other to own:'," ",string(OveralSwitch)));
                     if OveralSwitch == 0
                         % Find and delete all lines
                         hPlots = findobj(gca, 'Type', 'line');
@@ -1962,10 +1976,11 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     set(SP,'XTickLabel', {'switch'});
                     set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-                    title(strcat(sprintf(A_Name),' own to other'))
+                    % title(strcat(sprintf(A_Name),' own to other'))
                     OveralSwitch = [];
                     OveralSwitch = sum(SelfOtherSwitchNum(Turn,1,idata));
-                    subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                    % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                    title(strcat(sprintf(A_Name),' own to other:'," ",string(OveralSwitch)));
                     if OveralSwitch == 0
                         % Find and delete all lines
                         hPlots = findobj(gca, 'Type', 'line');
@@ -2075,10 +2090,12 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     set(SP,'XTickLabel', {'switch'});
                     set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-                    title(strcat(sprintf(A_Name),' other to own'))
+                    % title(strcat(sprintf(A_Name),' other to own'))
                     OveralSwitch = [];
                     OveralSwitch = sum(OtherSelfSwitchNum(Turn,1,idata));
-                    subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                    % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                    title(strcat(sprintf(A_Name),' other to own:'," ",string(OveralSwitch)));
+
                     if OveralSwitch == 0
                         % Find and delete all lines
                         hPlots = findobj(gca, 'Type', 'line');
@@ -2190,10 +2207,12 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
 
 
 
-                    title(strcat(sprintf(A_Name),' own to other'))
+                    % title(strcat(sprintf(A_Name),' own to other'))
                     OveralSwitch = []
                     OveralSwitch = sum(SelfOtherSwitchNum(Turn,1,idata));
-                    subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                    % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                    title(strcat(sprintf(A_Name),' own to other:'," ",string(OveralSwitch)));
+
                     if OveralSwitch == 0
                         % Find and delete all lines
                         hPlots = findobj(gca, 'Type', 'line');
@@ -2304,10 +2323,12 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     set(SP,'XTickLabel', {'switch'});
                     % set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-                    title(strcat(sprintf(A_Name),' other to own'))
+                    % title(strcat(sprintf(A_Name),' other to own'))
                     OveralSwitch = [];
                     OveralSwitch = sum(OtherSelfSwitchNum(Turn,1,idata));
-                    subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                    % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                    title(strcat(sprintf(A_Name),' other to own:'," ",string(OveralSwitch)));
+
                     if OveralSwitch == 0
                         % Find and delete all lines
                         hPlots = findobj(gca, 'Type', 'line');
@@ -2449,10 +2470,12 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     set(SP,'XTickLabel', {'switch'});
                     set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-                    title(strcat(sprintf(B_Name),' own to other'))
+                    % title(strcat(sprintf(B_Name),' own to other'))
                     OveralSwitch = [];
                     OveralSwitch = sum(SelfOtherSwitchNum(Turn,2,idata));
-                    subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                    % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                    title(strcat(sprintf(B_Name),' own to other:'," ",string(OveralSwitch)));
+
                     if OveralSwitch == 0
                         % Find and delete all lines
                         hPlots = findobj(gca, 'Type', 'line');
@@ -2552,10 +2575,12 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     set(SP,'XTickLabel', {'switch'});
                     set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-                    title(strcat(sprintf(B_Name),' other to own '))
+                    % title(strcat(sprintf(B_Name),' other to own '))
                     OveralSwitch = []
                     OveralSwitch = sum(OtherSelfSwitchNum(Turn,2,idata));
-                    subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                    % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                    title(strcat(sprintf(B_Name),' other to own:'," ",string(OveralSwitch)));
+
                     if OveralSwitch == 0
                         % Find and delete all lines
                         hPlots = findobj(gca, 'Type', 'line');
@@ -2667,10 +2692,12 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     set(SP,'XTickLabel', {'switch'});
                     set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-                    title(strcat(sprintf(B_Name),' own to other'))
+                    % title(strcat(sprintf(B_Name),' own to other'))
                     OveralSwitch = []
                     OveralSwitch = sum(SelfOtherSwitchNum(Turn,2,idata));
-                    subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                    % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                    title(strcat(sprintf(B_Name),' own to other:'," ",string(OveralSwitch)));
+
                     if OveralSwitch == 0
                         % Find and delete all lines
                         hPlots = findobj(gca, 'Type', 'line');
@@ -2772,10 +2799,11 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     set(SP,'XTickLabel', {'switch'});
                     set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-                    title(strcat(sprintf(B_Name),' other to own'))
+                    % title(strcat(sprintf(B_Name),' other to own'))
                     OveralSwitch = []
                     OveralSwitch = sum(OtherSelfSwitchNum(Turn,2,idata));
-                    subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                    % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                    title(strcat(sprintf(B_Name),' other to own:'," ",string(OveralSwitch)));
                     if OveralSwitch == 0
                         % Find and delete all lines
                         hPlots = findobj(gca, 'Type', 'line');
@@ -2883,10 +2911,11 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     set(SP,'XTickLabel', {'switch'});
                     % set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-                    title(strcat(sprintf(B_Name),' own to other'))
+                    % title(strcat(sprintf(B_Name),' own to other'))
                     OveralSwitch = []
                     OveralSwitch = sum(SelfOtherSwitchNum(Turn,2,idata));
-                    subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                    % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                    title(strcat(sprintf(B_Name),' own to other:'," ",string(OveralSwitch)));
                     if OveralSwitch == 0
                         % Find and delete all lines
                         hPlots = findobj(gca, 'Type', 'line');
@@ -3002,8 +3031,10 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
 
                     OveralSwitch = [];
                     OveralSwitch = sum(OtherSelfSwitchNum(Turn,2,idata));
-                    subtitle(strcat('(Num : ',string(OveralSwitch),')'));
-                    title(strcat(sprintf(B_Name),' other to own '));
+                    % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+                    % title(strcat(sprintf(B_Name),' other to own '));
+                    title(strcat(sprintf(B_Name),' other to own:'," ",string(OveralSwitch)));
+
                     if OveralSwitch == 0
                         % Find and delete all lines
                         hPlots = findobj(gca, 'Type', 'line');
@@ -3186,19 +3217,21 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
             xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth)
 
             pbaspect([1 1 1])
-            yylim([YlimRange(1) YlimRange(2)]);
-            %ylabel(Ylabel)
+            ylim([YlimRange(1) YlimRange(2)]);
+            ylabel(Ylabel)
             set(SP,'XTick', 6);
             set(SP,'XTickLabel', {'switch'});
             % set(SP, 'XColor', 'none'); % Make x-axis invisible
 
             % title(strcat(sprintf(A_Name),' own to other switch'))
-            title(' SECOND, own to other')
+            % title(' SECOND, own to other')
 
             OveralSwitch = []
             OveralSwitch = sum(SelfOtherSwitchNum(Turn+2,1,:),3)+sum(SelfOtherSwitchNum(Turn,2,:),3)
-            subtitle(strcat('(Num : ',string(OveralSwitch),')'));
-            set(gca, 'XColor', 'none'); % Make x-axis invisible
+            % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            title(strcat(' SECOND, own to other:'," ",string(OveralSwitch)));
+
+            % set(gca, 'XColor', 'none'); % Make x-axis invisible
             if OveralSwitch == 0
                 % Find and delete all lines
                 hPlots = findobj(gca, 'Type', 'line');
@@ -3310,18 +3343,19 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
 
             pbaspect([1 1 1])
             ylim([YlimRange(1) YlimRange(2)]);
-            ylabel(Ylabel)
+            % ylabel(Ylabel)
             set(SP,'XTick', 6);
             set(SP,'XTickLabel', {'switch'});
             % set(SP, 'XColor', 'none'); % Make x-axis invisible
 
             % title(strcat(sprintf(A_Name),' own to other switch'))
-            title(' SECOND, other to own')
+            % title(' SECOND, other to own')
 
             OveralSwitch = [];
             OveralSwitch = sum(OtherSelfSwitchNum(Turn+2,1,:),3)+sum(OtherSelfSwitchNum(Turn,2,:),3);
-            subtitle(strcat('(Num : ',string(OveralSwitch),')'));
-            set(gca, 'XColor', 'none'); % Make x-axis invisible
+            % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            title(strcat(' SECOND, other to own:'," ",string(OveralSwitch)));
+            % set(gca, 'XColor', 'none'); % Make x-axis invisible
             if OveralSwitch == 0
                 % Find and delete all lines
                 hPlots = findobj(gca, 'Type', 'line');
@@ -3440,15 +3474,16 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
             set(SP,'XTickLabel', {'switch'});
             set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-            title(' SIMUL, own to other')
+            % title(' SIMUL, own to other')
 
             OveralSwitch = sum(SelfOtherSwitchNum(Turn,1,:),3) + sum(SelfOtherSwitchNum(Turn,2,:),3);
-            subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            title(strcat(' SIMUL, own to other:'," ",string(OveralSwitch)));
             set(gca, 'XColor', 'none'); % Make x-axis invisible
 
             set(SP,'XTick', 6);
             set(SP,'XTickLabel', {'switch'});
-            set(ylabel,Ylabel)
+            ylabel(Ylabel)
 
             if OveralSwitch == 0
                 % Find and delete all lines
@@ -3554,17 +3589,18 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
 
             pbaspect([1 1 1])
             ylim([YlimRange(1) YlimRange(2)]);
-            ylabel(Ylabel);
+            % ylabel(Ylabel);
             set(SP,'XTick', 6);
             set(SP,'XTickLabel', {'switch'});
             set(SP, 'XColor', 'none'); % Make x-axis invisible
 
             % title(strcat(sprintf(A_Name),' own to other switch'))
-            title(' SIMUL, other to own')
+            % title(' SIMUL, other to own')
 
             OveralSwitch = [];
             OveralSwitch = sum(OtherSelfSwitchNum(Turn,1,:),3)+sum(OtherSelfSwitchNum(Turn,2,:),3);
-            subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            title(strcat(' SIMUL, other to own:'," ",string(OveralSwitch)));
             set(gca, 'XColor', 'none'); % Make x-axis invisible
             if OveralSwitch == 0
                 % Find and delete all lines
@@ -3680,17 +3716,18 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
 
             pbaspect([1 1 1])
             ylim([YlimRange(1) YlimRange(2)]);
-            % ylabel(Ylabel);
+            ylabel(Ylabel);
             set(SP,'XTick', 6);
             set(SP,'XTickLabel', {'switch'});
             set(SP, 'XColor', 'none'); % Make x-axis invisible
 
             % title(strcat(sprintf(A_Name),' own to other switch'))
-            title(' FIRST, own to other')
+            % title(' FIRST, own to other')
 
             OveralSwitch = []
             OveralSwitch = sum(SelfOtherSwitchNum(Turn-2,1,:),3)+sum(SelfOtherSwitchNum(Turn,2,:),3)
-            subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            title(strcat(' FIRST, own to other:'," ",string(OveralSwitch)));
             set(gca, 'XColor', 'none'); % Make x-axis invisible
             if OveralSwitch == 0
                 % Find and delete all lines
@@ -3803,22 +3840,23 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
 
             pbaspect([1 1 1])
             ylim([YlimRange(1) YlimRange(2)]);
-            ylabel(Ylabel);
+            % ylabel(Ylabel);
             set(SP,'XTick', 6);
             set(SP,'XTickLabel', {'switch'});
             set(SP, 'XColor', 'none'); % Make x-axis invisible
 
             % title(strcat(sprintf(A_Name),' own to other switch'))
-            title(' FIRST, other to own')
+            % title(' FIRST, other to own')
 
             OveralSwitch = []
             OveralSwitch = sum(OtherSelfSwitchNum(Turn-2,1,:),3)+sum(OtherSelfSwitchNum(Turn,2,:),3)
-            subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            title(strcat(' FIRST, other to own:'," ",string(OveralSwitch)));
             set(gca, 'XColor', 'none'); % Make x-axis invisible
 
             set(SP,'XTick', 6);
             set(SP,'XTickLabel', {'switch'});
-            set(ylabel,Ylabel)
+            % ylabel(Ylabel)
 
             if OveralSwitch == 0
                 % Find and delete all lines
@@ -3994,10 +4032,11 @@ else
             set(SP,'XTickLabel', {'switch'});
             set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-            title(strcat(sprintf(FirstSessActorA{1}),' own to other'));
+            % title(strcat(sprintf(FirstSessActorA{1}),' own to other'));
             OveralSwitch = [];
             OveralSwitch = sum(SelfOtherSwitchNum(Turn,1,:));
-            subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            title(strcat(sprintf(FirstSessActorA{1}),' own to other:'," ",string(OveralSwitch)));
             if OveralSwitch == 0
                 % Find and delete all lines
                 hPlots = findobj(gca, 'Type', 'line');
@@ -4105,10 +4144,11 @@ else
             set(SP,'XTickLabel', {'switch'});
             set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-            title(strcat(sprintf(FirstSessActorA{1}),' other to own'));
+            % title(strcat(sprintf(FirstSessActorA{1}),' other to own'));
             OveralSwitch = [];
             OveralSwitch = sum(OtherSelfSwitchNum(Turn,1,:));
-            subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            title(strcat(sprintf(FirstSessActorA{1}),' other to own:'," ",string(OveralSwitch)));
             if OveralSwitch == 0
                 % Find and delete all lines
                 hPlots = findobj(gca, 'Type', 'line');
@@ -4221,10 +4261,11 @@ else
             set(SP,'XTickLabel', {'switch'});
             set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-            title(strcat(sprintf(FirstSessActorA{1}),' own to other'));
+            % title(strcat(sprintf(FirstSessActorA{1}),' own to other'));
             OveralSwitch = [];
             OveralSwitch = sum(SelfOtherSwitchNum(Turn,1,:));
-            subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            title(strcat(sprintf(FirstSessActorA{1}),' own to other:'," ",string(OveralSwitch)));
             if OveralSwitch == 0
                 % Find and delete all lines
                 hPlots = findobj(gca, 'Type', 'line');
@@ -4333,10 +4374,11 @@ else
             set(SP,'XTickLabel', {'switch'});
             set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-            title(strcat(sprintf(FirstSessActorA{1}),' other to own'));
+            % title(strcat(sprintf(FirstSessActorA{1}),' other to own'));
             OveralSwitch = []
             OveralSwitch = sum(OtherSelfSwitchNum(Turn,1,:));
-            subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            title(strcat(sprintf(FirstSessActorA{1}),' other to own:'," ",string(OveralSwitch)));
             if OveralSwitch == 0
                 % Find and delete all lines
                 hPlots = findobj(gca, 'Type', 'line');
@@ -4450,10 +4492,11 @@ else
             set(SP,'XTickLabel', {'switch'});
             % set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-            title(strcat(sprintf(FirstSessActorA{1}),' own to other '));
+            % title(strcat(sprintf(FirstSessActorA{1}),' own to other '));
             OveralSwitch = [];
             OveralSwitch = sum(SelfOtherSwitchNum(Turn,1,:));
-            subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            title(strcat(sprintf(FirstSessActorA{1}),' own to other:'," ",string(OveralSwitch)));
             if OveralSwitch == 0
                 % Find and delete all lines
                 hPlots = findobj(gca, 'Type', 'line');
@@ -4565,10 +4608,11 @@ else
             set(SP,'XTickLabel', {'switch'});
             % set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-            title(strcat(sprintf(FirstSessActorA{1}),' other to own'));
+            % title(strcat(sprintf(FirstSessActorA{1}),' other to own'));
             OveralSwitch = [];
             OveralSwitch = sum(OtherSelfSwitchNum(Turn,1,:));
-            subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            title(strcat(sprintf(FirstSessActorA{1}),' other to own:'," ",string(OveralSwitch)));
             if OveralSwitch == 0
                 % Find and delete all lines
                 hPlots = findobj(gca, 'Type', 'line');
@@ -4714,10 +4758,11 @@ else
             set(SP,'XTickLabel', {'switch'});
             set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-            title(strcat(sprintf(FirstSessActorB{1}),' own to other'));
+            % title(strcat(sprintf(FirstSessActorB{1}),' own to other'));
             OveralSwitch = [];
             OveralSwitch = sum(SelfOtherSwitchNum(Turn,2,:));
-            subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            title(strcat(sprintf(FirstSessActorB{1}),' own to other:'," ",string(OveralSwitch)));
             if OveralSwitch == 0
                 % Find and delete all lines
                 hPlots = findobj(gca, 'Type', 'line');
@@ -4817,10 +4862,11 @@ else
             set(SP,'XTickLabel', {'switch'});
             set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-            title(strcat(sprintf(FirstSessActorB{1}),' other to own'));
+            % title(strcat(sprintf(FirstSessActorB{1}),' other to own'));
             OveralSwitch = [];
             OveralSwitch = sum(OtherSelfSwitchNum(Turn,2,:));
-            subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            title(strcat(sprintf(FirstSessActorB{1}),' other to own:'," ",string(OveralSwitch)));
             if OveralSwitch == 0
                 % Find and delete all lines
                 hPlots = findobj(gca, 'Type', 'line');
@@ -4931,10 +4977,11 @@ else
             set(SP,'XTickLabel', {'switch'});
             set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-            title(strcat(sprintf(FirstSessActorB{1}),' own to other'));
+            % title(strcat(sprintf(FirstSessActorB{1}),' own to other'));
             OveralSwitch = []
             OveralSwitch = sum(SelfOtherSwitchNum(Turn,2,:));
-            subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            title(strcat(sprintf(FirstSessActorB{1}),' own to other:'," ",string(OveralSwitch)));
             if OveralSwitch == 0
                 % Find and delete all lines
                 hPlots = findobj(gca, 'Type', 'line');
@@ -5033,10 +5080,11 @@ else
             set(SP,'XTickLabel', {'switch'});
             set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-            title(strcat(sprintf(FirstSessActorB{1}),' other to own'));
+            % title(strcat(sprintf(FirstSessActorB{1}),' other to own'));
             OveralSwitch = [];
             OveralSwitch = sum(OtherSelfSwitchNum(Turn,2,:));
-            subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            title(strcat(sprintf(FirstSessActorB{1}),' other to own:',string(OveralSwitch)));
             if OveralSwitch == 0
                 % Find and delete all lines
                 hPlots = findobj(gca, 'Type', 'line');
@@ -5143,10 +5191,11 @@ else
             set(SP,'XTickLabel', {'switch'});
             % set(SP, 'XColor', 'none'); % Make x-axis invisible
 
-            title(strcat(sprintf(FirstSessActorB{1}),' own to other'));
+            % title(strcat(sprintf(FirstSessActorB{1}),' own to other'));
             OveralSwitch = [];
             OveralSwitch = sum(SelfOtherSwitchNum(Turn,2,:));
-            subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            title(strcat(sprintf(FirstSessActorB{1}),' own to other:'," ",string(OveralSwitch)));
             if OveralSwitch == 0
                 % Find and delete all lines
                 hPlots = findobj(gca, 'Type', 'line');
@@ -5257,8 +5306,8 @@ else
 
             OveralSwitch = [];
             OveralSwitch = sum(OtherSelfSwitchNum(Turn,2,:));
-            subtitle(strcat('(Num : ',string(OveralSwitch),')'));
-            title(strcat(sprintf(FirstSessActorB{1}),' other to own'));
+            % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
+            title(strcat(sprintf(FirstSessActorB{1}),' other to own:'," ",string(OveralSwitch)));
             if OveralSwitch == 0
                 % Find and delete all lines
                 hPlots = findobj(gca, 'Type', 'line');

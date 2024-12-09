@@ -1,4 +1,4 @@
-function Results_CoreProcessing3of5ChoiceDynamic_NoGoSigDataSet = CoreProcessing3of5ChoiceDynamic_NoGoSigDataSet(WhatOnYaxis,TimeMeasuredBehv,scriptName,MergedData,AT_ToleranceThreshold,MatFile_ActorBgotA_IndexNumber)
+function Results_CoreProcessing3of5ChoiceDynamic_NoGoSigDataSet = CoreProcessing3of5ChoiceDynamic_NoGoSigDataSet(WhatOnYaxis,TimeMeasuredBehv,scriptName,MergedData,AT_ToleranceThreshold,MatFile_ActorBgotA_IndexNumber);
 
 %% variables critical for switch determination
 %% here you determine if there are at least 'MinimumSameColor'
@@ -21,17 +21,17 @@ calcSEM = @(data) std(data,1,'omitnan') / sqrt(size(data,1));
 
 
 %%
-WholeSess_SelfOther = cell(2,3)
-WholeSess_OtherSelf = cell(2,3)
+WholeSess_SelfOther = cell(2,3);
+WholeSess_OtherSelf = cell(2,3);
 
-WholeSess_CrossSelfOther = cell(2,3)
-WholeSess_CrossOtherSelf = cell(2,3)
+WholeSess_CrossSelfOther = cell(2,3);
+WholeSess_CrossOtherSelf = cell(2,3);
 
-WholeSess_AtSwitchSelfother = cell(2,3)
-WholeSess_AtSwitchOtherSelf = cell(2,3)
+WholeSess_AtSwitchSelfother = cell(2,3);
+WholeSess_AtSwitchOtherSelf = cell(2,3);
 
-WholeSess_AtSwitchCrossSelfother = cell(2,3)
-WholeSess_AtSwitchCrossOtherSelf = cell(2,3)
+WholeSess_AtSwitchCrossSelfother = cell(2,3);
+WholeSess_AtSwitchCrossOtherSelf = cell(2,3);
 %% for single sess create cells, then each sess analysis will be stored in
 
 SingleSess_SelfOther =  cellfun(@(x) cell(2, 3), cell(1, length(MergedData)), 'UniformOutput', false);
@@ -390,23 +390,23 @@ for idata = 1 : length(MergedData)
     %%
     ANotValidSwitchID_SelfOther = [];
     BNotValidSwitchID_SelfOther = [];
-    SelfOther_NotValidSwitchId = cell(2,1)
+    SelfOther_NotValidSwitchId = cell(2,1);
     for Ac = 1 : 2
         str = sprintf('%c_SelfToOther', 'A' + (Ac-1));
         c = 1;
         for i_SelfOther = 1 : numel(eval(str))
-            DATA = []
+            DATA = [];
             DATA = ColorChoice(Ac,:);
-            SwitchVec = []
+            SwitchVec = [];
             SwitchVec = eval(str);
             SwitchChoice = 0;
             BeforeIdx = SwitchVec(i_SelfOther)-BeforeAfter_Length;
             AfterIdx =  SwitchVec(i_SelfOther)+BeforeAfter_Length;
 
-            BeforeSwitchVec =  sum(DATA(BeforeIdx:(BeforeIdx+WindowAroundSwitch)) == not(SwitchChoice)) >= MinimumSameColor
-            AfterSwitchVec = sum(DATA(SwitchVec(i_SelfOther)+1:AfterIdx) == SwitchChoice) >= MinimumSameColor
+            BeforeSwitchVec =  sum(DATA(BeforeIdx:(BeforeIdx+WindowAroundSwitch)) == not(SwitchChoice)) >= MinimumSameColor;
+            AfterSwitchVec = sum(DATA(SwitchVec(i_SelfOther)+1:AfterIdx) == SwitchChoice) >= MinimumSameColor;
             if not(BeforeSwitchVec&AfterSwitchVec)
-                SelfOther_NotValidSwitchId{Ac}(c) = SwitchVec(i_SelfOther)
+                SelfOther_NotValidSwitchId{Ac}(c) = SwitchVec(i_SelfOther);
                 c = c+1;
             end
         end
@@ -424,7 +424,7 @@ for idata = 1 : length(MergedData)
         for i_OtherSelf = 1 : numel(eval(str))
             DATA = [];
             DATA = ColorChoice(Ac,:);
-            SwitchVec = []
+            SwitchVec = [];
             SwitchVec = eval(str);
             SwitchChoice = 1;
             BeforeIdx = SwitchVec(i_OtherSelf) - BeforeAfter_Length;

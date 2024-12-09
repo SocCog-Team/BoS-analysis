@@ -8,7 +8,7 @@
 
 % Define the base directory where the project is located (adjust as necessary)
 % You might replace this with a base directory that's flexible for the user's setup.
-baseDir = 'C:\Users\zahra\OneDrive\Documents\PostDoc_DPZ\Zahra codes';
+baseDir = 'C:\Users\zahra\OneDrive\Documents\GitHub\BoS-analysis';
 
 % Define the specific paths for functions and data
 functionsDir = fullfile(baseDir, 'Functions for ChoiceDynamicAnalysis_AllDataSets');
