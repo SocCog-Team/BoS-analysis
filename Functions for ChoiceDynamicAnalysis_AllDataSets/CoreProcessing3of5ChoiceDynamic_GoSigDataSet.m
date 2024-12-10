@@ -14,20 +14,20 @@ calcSEM = @(data) std(data,1,'omitnan') / sqrt(size(data,1));
 ActionTimingMeasure = 'GoSig';
 TimeRange_ToleranceThreshold = AT_ToleranceThreshold;
 SimulGoSig_DividingThreshold = 100;
-TrialThreshold = 100
+TrialThreshold = 100;
 
 %%
-WholeSess_SelfOther = cell(2,3)
-WholeSess_OtherSelf = cell(2,3)
+WholeSess_SelfOther = cell(2,3);
+WholeSess_OtherSelf = cell(2,3);
 
-WholeSess_CrossSelfOther = cell(2,3)
-WholeSess_CrossOtherSelf = cell(2,3)
+WholeSess_CrossSelfOther = cell(2,3);
+WholeSess_CrossOtherSelf = cell(2,3);
 
-WholeSess_AtSwitchSelfother = cell(2,3)
-WholeSess_AtSwitchOtherSelf = cell(2,3)
+WholeSess_AtSwitchSelfother = cell(2,3);
+WholeSess_AtSwitchOtherSelf = cell(2,3);
 
-WholeSess_AtSwitchCrossSelfother = cell(2,3)
-WholeSess_AtSwitchCrossOtherSelf = cell(2,3)
+WholeSess_AtSwitchCrossSelfother = cell(2,3);
+WholeSess_AtSwitchCrossOtherSelf = cell(2,3);
 %% for single sess create cells, then each sess analysis will be stored in
 
 SingleSess_SelfOther =  cellfun(@(x) cell(2, 3), cell(1, length(MergedData)), 'UniformOutput', false);
@@ -50,8 +50,8 @@ if contains(scriptName,'Hum' )
         ColorChoice = [];
         RTA = [];
         RTB = [];
-        diffGoSignalTime_ms_AllTrials = []
-        diffGoSignalTime_ms_DyadicRewarded = []
+        diffGoSignalTime_ms_AllTrials = [];
+        diffGoSignalTime_ms_DyadicRewarded = [];
 
         BeforeShedding = MergedData{idata};
 
@@ -86,16 +86,16 @@ if contains(scriptName,'Hum' )
                         BlockedTrialsAll = BlockedOrShuffledStruct.BLOCKED_GEN_LIST;
                         ShuffledTrialsAll = BlockedOrShuffledStruct.RND_GEN_LIST;
 
-                        ShuffledDyadicRewarded = intersect(ShuffledTrialsAll,DyadicTrialRewardedIdx)
-                        BlockedDyadicRewarded = intersect(BlockedTrialsAll,DyadicTrialRewardedIdx)
+                        ShuffledDyadicRewarded = intersect(ShuffledTrialsAll,DyadicTrialRewardedIdx);
+                        BlockedDyadicRewarded = intersect(BlockedTrialsAll,DyadicTrialRewardedIdx);
 
                     catch
-                        ShuffledDyadicRewarded = []
-                        BlockedDyadicRewarded = DyadicTrialRewardedIdx
+                        ShuffledDyadicRewarded = [];
+                        BlockedDyadicRewarded = DyadicTrialRewardedIdx;
                     end
 
 
-                    I = []
+                    I = [];
                     I = sum([numel(ShuffledDyadicRewarded)>=TrialThreshold,numel(BlockedDyadicRewarded)>=TrialThreshold]);
 
                     WholeTrialsChoiceVectorA = TransientData.FullPerTrialStruct.PreferableTargetSelected_A;
@@ -115,7 +115,7 @@ if contains(scriptName,'Hum' )
                     if numel(ShuffledDyadicRewarded)>=TrialThreshold
                         % sanity check: isequal(Rewarded_Dyadic_IDs,TrialsInCurrentSetIdx)
 
-                        ShuffledColorChoice = []
+                        ShuffledColorChoice = [];
                         ShuffledColorChoice(1,:) = WholeTrialsChoiceVectorA(ShuffledDyadicRewarded); %own colour = 1
                         ShuffledColorChoice(2,:) = WholeTrialsChoiceVectorB(ShuffledDyadicRewarded); %own colour = 1
 
@@ -134,7 +134,7 @@ if contains(scriptName,'Hum' )
 
 
 
-                        ShuffleddiffGoSignalTime_ms_DyadicRewarded = diffGoSignalTime_ms_AllTrials(ShuffledDyadicRewarded)
+                        ShuffleddiffGoSignalTime_ms_DyadicRewarded = diffGoSignalTime_ms_AllTrials(ShuffledDyadicRewarded);
 
                     end
                     if numel(BlockedDyadicRewarded) >= TrialThreshold
@@ -186,15 +186,15 @@ if contains(scriptName,'Hum' )
                         BlockedTrialsAll = BlockedOrShuffledStruct.BLOCKED_GEN_LIST;
                         ShuffledTrialsAll = BlockedOrShuffledStruct.RND_GEN_LIST;
 
-                        ShuffledDyadicRewarded = intersect(ShuffledTrialsAll,DyadicTrialRewardedIdx)
-                        BlockedDyadicRewarded = intersect(BlockedTrialsAll,DyadicTrialRewardedIdx)
+                        ShuffledDyadicRewarded = intersect(ShuffledTrialsAll,DyadicTrialRewardedIdx);
+                        BlockedDyadicRewarded = intersect(BlockedTrialsAll,DyadicTrialRewardedIdx);
 
                     catch
-                        ShuffledDyadicRewarded = []
-                        BlockedDyadicRewarded = DyadicTrialRewardedIdx
+                        ShuffledDyadicRewarded = [];
+                        BlockedDyadicRewarded = DyadicTrialRewardedIdx;
                     end
 
-                    transientI = []
+                    transientI = [];
                     transientI = sum([numel(ShuffledDyadicRewarded)>=TrialThreshold,numel(BlockedDyadicRewarded)>=TrialThreshold]);
                     I = I+transientI;
 
@@ -213,7 +213,7 @@ if contains(scriptName,'Hum' )
                     if numel(ShuffledDyadicRewarded)>=TrialThreshold
                         % sanity check: isequal(Rewarded_Dyadic_IDs,TrialsInCurrentSetIdx)
 
-                        TransientShuffledColorChoice = []
+                        TransientShuffledColorChoice = [];
                         TransientShuffledColorChoice(1,:) = WholeTrialsChoiceVectorA(ShuffledDyadicRewarded); %own colour = 1
                         TransientShuffledColorChoice(2,:) = WholeTrialsChoiceVectorB(ShuffledDyadicRewarded); %own colour = 1
 
@@ -298,18 +298,18 @@ if contains(scriptName,'Hum' )
                 BlockedTrialsAll = BlockedOrShuffledStruct.BLOCKED_GEN_LIST;
                 ShuffledTrialsAll = BlockedOrShuffledStruct.RND_GEN_LIST;
 
-                ShuffledDyadicRewarded = intersect(ShuffledTrialsAll,DyadicTrialRewardedIdx)
-                BlockedDyadicRewarded = intersect(BlockedTrialsAll,DyadicTrialRewardedIdx)
+                ShuffledDyadicRewarded = intersect(ShuffledTrialsAll,DyadicTrialRewardedIdx);
+                BlockedDyadicRewarded = intersect(BlockedTrialsAll,DyadicTrialRewardedIdx);
 
             catch
-                ShuffledDyadicRewarded = []
-                BlockedDyadicRewarded = DyadicTrialRewardedIdx
+                ShuffledDyadicRewarded = [];
+                BlockedDyadicRewarded = DyadicTrialRewardedIdx;
             end
 
 
 
 
-            I = []
+            I = [];
             I = sum([numel(ShuffledDyadicRewarded)>=TrialThreshold,numel(BlockedDyadicRewarded)>=TrialThreshold]);
 
             WholeTrialsChoiceVectorA = TransientData.FullPerTrialStruct.PreferableTargetSelected_A;
@@ -329,7 +329,7 @@ if contains(scriptName,'Hum' )
             if numel(ShuffledDyadicRewarded)>=TrialThreshold
                 % sanity check: isequal(Rewarded_Dyadic_IDs,TrialsInCurrentSetIdx)
 
-                ShuffledColorChoice = []
+                ShuffledColorChoice = [];
                 ShuffledColorChoice(1,:) = WholeTrialsChoiceVectorA(ShuffledDyadicRewarded); %own colour = 1
                 ShuffledColorChoice(2,:) = WholeTrialsChoiceVectorB(ShuffledDyadicRewarded); %own colour = 1
 
@@ -348,7 +348,7 @@ if contains(scriptName,'Hum' )
 
 
 
-                ShuffleddiffGoSignalTime_ms_DyadicRewarded = diffGoSignalTime_ms_AllTrials(ShuffledDyadicRewarded)
+                ShuffleddiffGoSignalTime_ms_DyadicRewarded = diffGoSignalTime_ms_AllTrials(ShuffledDyadicRewarded);
 
             end
             if numel(BlockedDyadicRewarded) >= TrialThreshold
@@ -407,7 +407,7 @@ if contains(scriptName,'Hum' )
                     diffRT_AB = [];
                     diffRT_AB = ATA - ATB;  % minus means actor A was first, o means simul, positive means Actor A was second
                 case 'GoSig'
-                    diffRT_AB = []
+                    diffRT_AB = [];
                     diffRT_AB = diffGoSignalTime_ms_DyadicRewarded;
 
             end
@@ -431,7 +431,7 @@ if contains(scriptName,'Hum' )
                     tmp_BgoA = diffRT_AB > ( AT_ToleranceThreshold);
                     % tmp_ABgo = (diffRT_AB > 0) & (diffRT_AB < RT_ToleranceThreshold);
                     tmp_ABgo = diffRT_AB == 0;
-                    DiifAT = []
+                    DiifAT = [];
                     DiifAT = ATA - ATB;
                     GoSimul_AgoB = DiifAT < (- SimulGoSig_DividingThreshold);
                     GoSimul_BgoA = DiifAT > ( SimulGoSig_DividingThreshold);
@@ -536,23 +536,23 @@ if contains(scriptName,'Hum' )
             %% for example at least 3 same choice should be before the switch and 3 same choice should be after the switch otherwise switch is not valid
             ANotValidSwitchID_SelfOther = [];
             BNotValidSwitchID_SelfOther = [];
-            SelfOther_NotValidSwitchId = cell(1,2)
+            SelfOther_NotValidSwitchId = cell(1,2);
             for Ac = 1 : 2
                 str = sprintf('%c_SelfToOther', 'A' + (Ac-1));
                 c = 1;
                 for i_SelfOther = 1 : numel(eval(str))
-                    DATA = []
+                    DATA = [];
                     DATA = ColorChoice(Ac,:);
-                    SwitchVec = []
+                    SwitchVec = [];
                     SwitchVec = eval(str);
                     SwitchChoice = 0;
                     BeforeIdx = SwitchVec(i_SelfOther)-BeforeAfter_Length;
                     AfterIdx =  SwitchVec(i_SelfOther)+BeforeAfter_Length;
 
-                    BeforeSwitchVec =  sum(DATA(BeforeIdx:(BeforeIdx+WindowAroundSwitch)) == not(SwitchChoice)) >= MinimumSameColor
-                    AfterSwitchVec = sum(DATA(SwitchVec(i_SelfOther)+1:AfterIdx) == SwitchChoice) >= MinimumSameColor
+                    BeforeSwitchVec =  sum(DATA(BeforeIdx:(BeforeIdx+WindowAroundSwitch)) == not(SwitchChoice)) >= MinimumSameColor;
+                    AfterSwitchVec = sum(DATA(SwitchVec(i_SelfOther)+1:AfterIdx) == SwitchChoice) >= MinimumSameColor;
                     if not(BeforeSwitchVec&AfterSwitchVec)
-                        SelfOther_NotValidSwitchId{Ac}(c) = SwitchVec(i_SelfOther)
+                        SelfOther_NotValidSwitchId{Ac}(c) = SwitchVec(i_SelfOther);
                         c = c+1;
                     end
                 end
@@ -570,7 +570,7 @@ if contains(scriptName,'Hum' )
                 for i_OtherSelf = 1 : numel(eval(str))
                     DATA = [];
                     DATA = ColorChoice(Ac,:);
-                    SwitchVec = []
+                    SwitchVec = [];
                     SwitchVec = eval(str);
                     SwitchChoice = 1;
                     BeforeIdx = SwitchVec(i_OtherSelf) - BeforeAfter_Length;
@@ -648,7 +648,7 @@ if contains(scriptName,'Hum' )
                         OtherSelf_NeededSwitchVector(i,:) = NeededSwitchVector(BEG:END);
                     end
 
-                    SingleSess_SelfOther{idata}{AC,Turn} = SelfOther_NeededSwitchVector
+                    SingleSess_SelfOther{idata}{AC,Turn} = SelfOther_NeededSwitchVector;
 
                     SelfOther_CategorizedSwitches{AC,Turn} = SelfOther_NeededSwitchVector;
                     OtherSelf_CategorizedSwitches{AC,Turn} = OtherSelf_NeededSwitchVector;
@@ -957,15 +957,15 @@ if contains(scriptName,'Hum' )
                     CrossSqueezedAtSwitchMeanSelfOther = (squeeze(CrossAtSwitch_MeanSelfOther(Turn,:,AC,idata)));
                     CrossSqueezedAtSwitchMeanOtherSelf = (squeeze(CrossAtSwitc_MeanOtherSelf(Turn,:,AC,idata)));
 
-                    MeanOverSessSelfOther(Turn,:,AC) = (squeezedMeanSelfOther)
-                    MeanOverSessOtherSelf(Turn,:,AC) = (squeezedMeanOtherSelf)
-                    MeanOverSessAtSwitch_MeanSelfOther(Turn,:,AC) = (squeezedAtSwitch_MeanSelfOther)
-                    MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,AC) = (squeezedAtSwitch_MeanOtherSelf)
+                    MeanOverSessSelfOther(Turn,:,AC) = (squeezedMeanSelfOther);
+                    MeanOverSessOtherSelf(Turn,:,AC) = (squeezedMeanOtherSelf);
+                    MeanOverSessAtSwitch_MeanSelfOther(Turn,:,AC) = (squeezedAtSwitch_MeanSelfOther);
+                    MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,AC) = (squeezedAtSwitch_MeanOtherSelf);
 
-                    CrossMeanOverSessSelfOther(Turn,:,AC) = (CrossSqueezedMeanSelfOther)
-                    CrossMeanOverSessOtherSelf(Turn,:,AC) = (CrossSqueezedMeanOtherSelf)
-                    CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,AC) = (CrossSqueezedAtSwitchMeanSelfOther)
-                    CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,AC) = (CrossSqueezedAtSwitchMeanOtherSelf)
+                    CrossMeanOverSessSelfOther(Turn,:,AC) = (CrossSqueezedMeanSelfOther);
+                    CrossMeanOverSessOtherSelf(Turn,:,AC) = (CrossSqueezedMeanOtherSelf);
+                    CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,AC) = (CrossSqueezedAtSwitchMeanSelfOther);
+                    CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,AC) = (CrossSqueezedAtSwitchMeanOtherSelf);
 
 
 
@@ -1018,8 +1018,8 @@ if contains(scriptName,'Hum' )
             end
 
             %%
-            SubTypeTrialString = []
-            SubTypeTrialString = " Blocked"
+            SubTypeTrialString = [];
+            SubTypeTrialString = " Blocked";
             SubTypeTrialString_AllSess{idata} = SubTypeTrialString;
 
 
@@ -1027,17 +1027,17 @@ if contains(scriptName,'Hum' )
             for ii = 1 : I
 
                 if ii == 1
-                    ColorChoice = []
+                    ColorChoice = [];
                     ColorChoice = ShuffledColorChoice;
-                    RTA = []
-                    RTB =[]
+                    RTA = [];
+                    RTB =[];
                     RTA = ShuffledRTA;
                     RTB = ShuffledRTB;
-                    ATA = []
-                    ATB = []
+                    ATA = [];
+                    ATB = [];
                     ATA = ShuffledATA;
                     ATB = ShuffledATB;
-                    diffGoSignalTime_ms_DyadicRewarded = []
+                    diffGoSignalTime_ms_DyadicRewarded = [];
                     diffGoSignalTime_ms_DyadicRewarded = ShuffleddiffGoSignalTime_ms_DyadicRewarded;
 
                 else
@@ -1070,7 +1070,7 @@ if contains(scriptName,'Hum' )
                         diffRT_AB = [];
                         diffRT_AB = ATA - ATB;  % minus means actor A was first, o means simul, positive means Actor A was second
                     case 'GoSig'
-                        diffRT_AB = []
+                        diffRT_AB = [];
                         diffRT_AB = diffGoSignalTime_ms_DyadicRewarded;
 
                 end
@@ -1194,23 +1194,23 @@ if contains(scriptName,'Hum' )
                 %% for example at least 3 same choice should be before the switch and 3 same choice should be after the switch otherwise switch is not valid
                 ANotValidSwitchID_SelfOther = [];
                 BNotValidSwitchID_SelfOther = [];
-                SelfOther_NotValidSwitchId = cell(1,2)
+                SelfOther_NotValidSwitchId = cell(1,2);
                 for Ac = 1 : 2
                     str = sprintf('%c_SelfToOther', 'A' + (Ac-1));
                     c = 1;
                     for i_SelfOther = 1 : numel(eval(str))
-                        DATA = []
+                        DATA = [];
                         DATA = ColorChoice(Ac,:);
-                        SwitchVec = []
+                        SwitchVec = [];
                         SwitchVec = eval(str);
                         SwitchChoice = 0;
                         BeforeIdx = SwitchVec(i_SelfOther)-BeforeAfter_Length;
                         AfterIdx =  SwitchVec(i_SelfOther)+BeforeAfter_Length;
 
-                        BeforeSwitchVec =  sum(DATA(BeforeIdx:(BeforeIdx+WindowAroundSwitch)) == not(SwitchChoice)) >= MinimumSameColor
-                        AfterSwitchVec = sum(DATA(SwitchVec(i_SelfOther)+1:AfterIdx) == SwitchChoice) >= MinimumSameColor
+                        BeforeSwitchVec =  sum(DATA(BeforeIdx:(BeforeIdx+WindowAroundSwitch)) == not(SwitchChoice)) >= MinimumSameColor;
+                        AfterSwitchVec = sum(DATA(SwitchVec(i_SelfOther)+1:AfterIdx) == SwitchChoice) >= MinimumSameColor;
                         if not(BeforeSwitchVec&AfterSwitchVec)
-                            SelfOther_NotValidSwitchId{Ac}(c) = SwitchVec(i_SelfOther)
+                            SelfOther_NotValidSwitchId{Ac}(c) = SwitchVec(i_SelfOther);
                             c = c+1;
                         end
                     end
@@ -1228,7 +1228,7 @@ if contains(scriptName,'Hum' )
                     for i_OtherSelf = 1 : numel(eval(str))
                         DATA = [];
                         DATA = ColorChoice(Ac,:);
-                        SwitchVec = []
+                        SwitchVec = [];
                         SwitchVec = eval(str);
                         SwitchChoice = 1;
                         BeforeIdx = SwitchVec(i_OtherSelf) - BeforeAfter_Length;
@@ -1612,15 +1612,15 @@ if contains(scriptName,'Hum' )
                         CrossSqueezedAtSwitchMeanSelfOther = (squeeze(CrossAtSwitch_MeanSelfOther(Turn,:,AC,idata)));
                         CrossSqueezedAtSwitchMeanOtherSelf = (squeeze(CrossAtSwitc_MeanOtherSelf(Turn,:,AC,idata)));
 
-                        MeanOverSessSelfOther(Turn,:,AC) = (squeezedMeanSelfOther)
-                        MeanOverSessOtherSelf(Turn,:,AC) = (squeezedMeanOtherSelf)
-                        MeanOverSessAtSwitch_MeanSelfOther(Turn,:,AC) = (squeezedAtSwitch_MeanSelfOther)
-                        MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,AC) = (squeezedAtSwitch_MeanOtherSelf)
+                        MeanOverSessSelfOther(Turn,:,AC) = (squeezedMeanSelfOther);
+                        MeanOverSessOtherSelf(Turn,:,AC) = (squeezedMeanOtherSelf);
+                        MeanOverSessAtSwitch_MeanSelfOther(Turn,:,AC) = (squeezedAtSwitch_MeanSelfOther);
+                        MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,AC) = (squeezedAtSwitch_MeanOtherSelf);
 
-                        CrossMeanOverSessSelfOther(Turn,:,AC) = (CrossSqueezedMeanSelfOther)
-                        CrossMeanOverSessOtherSelf(Turn,:,AC) = (CrossSqueezedMeanOtherSelf)
-                        CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,AC) = (CrossSqueezedAtSwitchMeanSelfOther)
-                        CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,AC) = (CrossSqueezedAtSwitchMeanOtherSelf)
+                        CrossMeanOverSessSelfOther(Turn,:,AC) = (CrossSqueezedMeanSelfOther);
+                        CrossMeanOverSessOtherSelf(Turn,:,AC) = (CrossSqueezedMeanOtherSelf);
+                        CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,AC) = (CrossSqueezedAtSwitchMeanSelfOther);
+                        CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,AC) = (CrossSqueezedAtSwitchMeanOtherSelf);
 
 
 
@@ -1675,11 +1675,11 @@ if contains(scriptName,'Hum' )
                 %%
 
                 if ii == 1
-                    SubTypeTrialString = []
-                    SubTypeTrialString = " Shuffled"
+                    SubTypeTrialString = [];
+                    SubTypeTrialString = " Shuffled";
                 else
-                    SubTypeTrialString = []
-                    SubTypeTrialString = " Blocked"
+                    SubTypeTrialString = [];
+                    SubTypeTrialString = " Blocked";
                 end
                 SubTypeTrialString_AllSess{idata} = SubTypeTrialString;
 
@@ -1695,8 +1695,8 @@ else
         ColorChoice = [];
         ATA = [];
         ATB = [];
-        diffGoSignalTime_ms_AllTrials = []
-        diffGoSignalTime_ms_DyadicRewarded = []
+        diffGoSignalTime_ms_AllTrials = [];
+        diffGoSignalTime_ms_DyadicRewarded = [];
 
         BeforeShedding = MergedData{idata};
         if length(BeforeShedding)>1
@@ -1735,7 +1735,7 @@ else
 
 
                     diffGoSignalTime_ms_AllTrials = TransientData.FullPerTrialStruct.A_GoSignalTime - TransientData.FullPerTrialStruct.B_GoSignalTime;
-                    diffGoSignalTime_ms_DyadicRewarded = diffGoSignalTime_ms_AllTrials(DyadicTrialRewardedIdx)
+                    diffGoSignalTime_ms_DyadicRewarded = diffGoSignalTime_ms_AllTrials(DyadicTrialRewardedIdx);
 
 
 
@@ -1785,14 +1785,14 @@ else
                     % RTB = TransientRTB;
 
 
-                    Transient_DiffGoSig = []
+                    Transient_DiffGoSig = [];
 
 
                     Transient_DiffGoSig = TransientData.FullPerTrialStruct.A_GoSignalTime - TransientData.FullPerTrialStruct.B_GoSignalTime;
                     Transient_DiffGoSig = Transient_DiffGoSig(DyadicTrialRewardedIdx);
 
 
-                    diffGoSignalTime_ms_DyadicRewarded = [diffGoSignalTime_ms_DyadicRewarded;Transient_DiffGoSig]
+                    diffGoSignalTime_ms_DyadicRewarded = [diffGoSignalTime_ms_DyadicRewarded;Transient_DiffGoSig];
 
 
 
@@ -1843,10 +1843,10 @@ else
             % RTA = TransientData.FullPerTrialStruct.A_InitialTargetReleaseRT(TransientData.TrialsInCurrentSetIdx);
             % RTB = TransientData.FullPerTrialStruct.B_InitialTargetReleaseRT(TransientData.TrialsInCurrentSetIdx);
 
-            diffGoSignalTime_ms_AllTrials = []
-            diffGoSignalTime_ms_DyadicRewarded = []
+            diffGoSignalTime_ms_AllTrials = [];
+            diffGoSignalTime_ms_DyadicRewarded = [];
             diffGoSignalTime_ms_AllTrials = TransientData.FullPerTrialStruct.A_GoSignalTime - TransientData.FullPerTrialStruct.B_GoSignalTime;
-            diffGoSignalTime_ms_DyadicRewarded = diffGoSignalTime_ms_AllTrials(DyadicTrialRewardedIdx)
+            diffGoSignalTime_ms_DyadicRewarded = diffGoSignalTime_ms_AllTrials(DyadicTrialRewardedIdx);
 
 
 
@@ -1979,23 +1979,23 @@ else
         %% for example at least 3 same choice should be before the switch and 3 same choice should be after the switch otherwise switch is not valid
         ANotValidSwitchID_SelfOther = [];
         BNotValidSwitchID_SelfOther = [];
-        SelfOther_NotValidSwitchId = cell(1,2)
+        SelfOther_NotValidSwitchId = cell(1,2);
         for Ac = 1 : 2
             str = sprintf('%c_SelfToOther', 'A' + (Ac-1));
             c = 1;
             for i_SelfOther = 1 : numel(eval(str))
-                DATA = []
+                DATA = [];
                 DATA = ColorChoice(Ac,:);
-                SwitchVec = []
+                SwitchVec = [];
                 SwitchVec = eval(str);
                 SwitchChoice = 0;
                 BeforeIdx = SwitchVec(i_SelfOther)-BeforeAfter_Length;
                 AfterIdx =  SwitchVec(i_SelfOther)+BeforeAfter_Length;
 
-                BeforeSwitchVec =  sum(DATA(BeforeIdx:(BeforeIdx+WindowAroundSwitch)) == not(SwitchChoice)) >= MinimumSameColor
-                AfterSwitchVec = sum(DATA(SwitchVec(i_SelfOther)+1:AfterIdx) == SwitchChoice) >= MinimumSameColor
+                BeforeSwitchVec =  sum(DATA(BeforeIdx:(BeforeIdx+WindowAroundSwitch)) == not(SwitchChoice)) >= MinimumSameColor;
+                AfterSwitchVec = sum(DATA(SwitchVec(i_SelfOther)+1:AfterIdx) == SwitchChoice) >= MinimumSameColor;
                 if not(BeforeSwitchVec&AfterSwitchVec)
-                    SelfOther_NotValidSwitchId{Ac}(c) = SwitchVec(i_SelfOther)
+                    SelfOther_NotValidSwitchId{Ac}(c) = SwitchVec(i_SelfOther);
                     c = c+1;
                 end
             end
@@ -2013,7 +2013,7 @@ else
             for i_OtherSelf = 1 : numel(eval(str))
                 DATA = [];
                 DATA = ColorChoice(Ac,:);
-                SwitchVec = []
+                SwitchVec = [];
                 SwitchVec = eval(str);
                 SwitchChoice = 1;
                 BeforeIdx = SwitchVec(i_OtherSelf) - BeforeAfter_Length;
@@ -2414,7 +2414,7 @@ if ~isempty(SemiSoloTrialRewardedIdx) && contains(scriptName,'SingleSess')
     CrossSEM_OverSess_SelfOther(:,:,:,idata) = SEM_NaN_Filled;
     CrossSEM_OverSess_OtherSelf(:,:,:,idata) = SEM_NaN_Filled;
 
-    SubTypeTrialString_AllSess{idata} = "SemiSolo!"
+    SubTypeTrialString_AllSess{idata} = "SemiSolo!";
 
 end
 

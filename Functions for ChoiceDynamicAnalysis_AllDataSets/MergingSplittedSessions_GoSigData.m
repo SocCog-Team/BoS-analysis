@@ -1,5 +1,5 @@
 function [MergedData,MatFile_ActorBgotA_IndexNumber,CS,ACTORA,ACTORB,SessionDate,FirstSessActorA,FirstSessActorB,HumanSubj_AorB] = MergingSplittedSessions_GoSigData(scriptName,StartingDir,OpenedConditionFoldersName)
-CS = 0
+CS = 0;
 Actors = {'A','B'};
 
 
@@ -13,25 +13,25 @@ valid_ConditionFoldersName_dirstruct = MonkeyFoldersName_dirstruct(~[MonkeyFolde
 
 valid_matfile_list = {valid_ConditionFoldersName_dirstruct.name};
 if contains(scriptName,'MonkMonk')
-    valid_matfile_list = valid_matfile_list(contains(valid_matfile_list,'JointTrials'))
+    valid_matfile_list = valid_matfile_list(contains(valid_matfile_list,'JointTrials'));
 end
 
-PlayerA_Name = cell(1,length(valid_matfile_list))
+PlayerA_Name = cell(1,length(valid_matfile_list));
 for i_matfile = 1 : length(valid_matfile_list)
     MatFileName = valid_matfile_list{i_matfile};
     NeededString = extractBetween(MatFileName,'triallog','IC');
-    PlayerAName = extractBetween(NeededString,Actors{1},Actors{2})
-    PlayerA_Name{i_matfile} = extractBetween(PlayerAName,'.','.')
+    PlayerAName = extractBetween(NeededString,Actors{1},Actors{2});
+    PlayerA_Name{i_matfile} = extractBetween(PlayerAName,'.','.');
 end
 %% evaluate if the all mat file inside the current folder, have the same actor A or actor A changed to B in some sessions:
-FirstSessActorA = PlayerA_Name{1}
-FirstSessActorB = extractBetween(valid_matfile_list{1},'triallog','IC')
-FirstSessActorB = extractBetween(FirstSessActorB,Actors{2},'_')
-FirstSessActorB = extractAfter(FirstSessActorB,'.')
-Actor_A_matchesIdx = cellfun(@(x) strcmp(x, FirstSessActorA), PlayerA_Name)
-MatFile_ActorBgotA_IndexNumber = []
+FirstSessActorA = PlayerA_Name{1};
+FirstSessActorB = extractBetween(valid_matfile_list{1},'triallog','IC');
+FirstSessActorB = extractBetween(FirstSessActorB,Actors{2},'_');
+FirstSessActorB = extractAfter(FirstSessActorB,'.');
+Actor_A_matchesIdx = cellfun(@(x) strcmp(x, FirstSessActorA), PlayerA_Name);
+MatFile_ActorBgotA_IndexNumber = [];
 if sum(Actor_A_matchesIdx) ~= length(valid_matfile_list)
-    MatFile_ActorBgotA_IndexNumber = find(~Actor_A_matchesIdx)
+    MatFile_ActorBgotA_IndexNumber = find(~Actor_A_matchesIdx);
 end
 for i_matfile = 1 : length(valid_matfile_list)
     cur_valid_matfile = valid_matfile_list{i_matfile};
@@ -60,7 +60,7 @@ end
 
 UniqSess = unique(unique_key_idx);
 MergedData = cell(1,numel(UniqSess));
-AllDates_NotRepeat = unique(key_table)
+AllDates_NotRepeat = unique(key_table);
 
 extractNumbers = @(str) regexp(str, '[\d.]+', 'match');
 AllDates_NotRepeat = cellfun(extractNumbers, AllDates_NotRepeat, 'UniformOutput', false);
@@ -73,8 +73,8 @@ end
    SubjA_All = {cur_session_id_struct_arr.subject_A};
     SubjB_All = {cur_session_id_struct_arr.subject_B};
 
-    SubjA_NotRep_Sess = SubjA_All(UniqSess)
-    SubjB_NotRep_Sess = SubjB_All(UniqSess)
+    SubjA_NotRep_Sess = SubjA_All(UniqSess);
+    SubjB_NotRep_Sess = SubjB_All(UniqSess);
 
     SubjA_LetterToNum = cellfun(@(x) regexprep(x, '[A-Za-z]', '1'), SubjA_NotRep_Sess, 'UniformOutput', false); %CONVERT EVERY LETTER TO 1
     SubjB_LetterToNum = cellfun(@(x) regexprep(x, '[A-Za-z]', '1'), SubjB_NotRep_Sess, 'UniformOutput', false); %CONVERT EVERY LETTER TO 1
@@ -82,10 +82,10 @@ end
     %The logic behind finding human actor: every human is encoded with two
     %letters so if we convert letters to 1 and find 11 (two 1s after each other), we
     %know if the subject was human or non human
-    SubjA_numeric = cellfun(@str2double, SubjA_LetterToNum)
-    SubjB_numeric = cellfun(@str2double, SubjB_LetterToNum)
+    SubjA_numeric = cellfun(@str2double, SubjA_LetterToNum);
+    SubjB_numeric = cellfun(@str2double, SubjB_LetterToNum);
 
-    HumanSubj_AorB = cell(1,length(valid_matfile_list))
+    HumanSubj_AorB = cell(1,length(valid_matfile_list));
     HumanSubj_AorB(SubjA_numeric == 11) = {'A'};
     HumanSubj_AorB(SubjB_numeric == 11) = {'B'};
 

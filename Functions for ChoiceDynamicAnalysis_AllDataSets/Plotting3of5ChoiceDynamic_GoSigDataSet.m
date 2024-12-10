@@ -1,7 +1,7 @@
 function Plotting3of5ChoiceDynamic_GoSigDataSet(scriptName,ACTORA,ACTORB,FirstSessActorA,FirstSessActorB,SessionDate,MergedData,Results_CoreProcessing3of5ChoiceDynamic_GoSigDataSet)
 
 
-Str2Vars(Results_CoreProcessing3of5ChoiceDynamic_GoSigDataSet)
+Str2Vars(Results_CoreProcessing3of5ChoiceDynamic_GoSigDataSet);
 alpha = 0.05;
 BeforeAfter_Length = 5;
 
@@ -63,20 +63,20 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
         GetAverageRange = GetAverageFromBEG : GetAverageFromEND;
     end
     if contains(scriptName,'OnlyLasts')
-        clear SEM_OverSess_SelfOther
-        clear SEM_OverSess_OtherSelf
-        clear SEM_OverSessAtSwitch_SelfOther
-        clear SEM_OverSessAtSwitch_OtherSelf
+        clear SEM_OverSess_SelfOther;
+        clear SEM_OverSess_OtherSelf;
+        clear SEM_OverSessAtSwitch_SelfOther;
+        clear SEM_OverSessAtSwitch_OtherSelf;
 
-        clear CrossSEM_OverSess_SelfOther
-        clear CrossSEM_OverSess_OtherSelf
-        clear CrossAtSwitch_SEM_OverSess_SelfOther
-        clear CrossAtSwitch_SEM_OverSess_OtherSelf
+        clear CrossSEM_OverSess_SelfOther;
+        clear CrossSEM_OverSess_OtherSelf;
+        clear CrossAtSwitch_SEM_OverSess_SelfOther;
+        clear CrossAtSwitch_SEM_OverSess_OtherSelf;
 
-        clear SelfOtherSwitchNum
-        clear OtherSelfSwitchNum
-        clear AtSwitch_SelfOther_SwitchNum
-        clear AtSwitch_OtherSelf_SwitchNum
+        clear SelfOtherSwitchNum;
+        clear OtherSelfSwitchNum;
+        clear AtSwitch_SelfOther_SwitchNum;
+        clear AtSwitch_OtherSelf_SwitchNum;
         for AC = 1 : 2
             for Turn = 1 :3
 
@@ -104,13 +104,13 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     squeezedAtSwitch_MeanOtherSelf = [squeezedAtSwitch_MeanOtherSelf;AtSwitchOtherSelf_SingleSess{GetAverageRange(i_avg)}{AC,Turn}];
                 end
                 %%
-                squeezedAtSwitch_MeanOtherSelf = []
+                squeezedAtSwitch_MeanOtherSelf = [];
                 squeezedAtSwitch_MeanOtherSelf = AtSwitchOtherSelf_SingleSess{GetAverageRange(1)}{AC,Turn};
                 for i_avg = 2 :LASTsessBeAvr
                     squeezedAtSwitch_MeanOtherSelf = [squeezedAtSwitch_MeanOtherSelf;AtSwitchOtherSelf_SingleSess{GetAverageRange(i_avg)}{AC,Turn}];
                 end
                 %%
-                CrossSqueezedMeanSelfOther = []
+                CrossSqueezedMeanSelfOther = [];
                 CrossSqueezedMeanSelfOther = CrossSelfOther_SingleSess{GetAverageRange(1)}{AC,Turn};
                 for i_avg = 2 :LASTsessBeAvr
                     CrossSqueezedMeanSelfOther = [CrossSqueezedMeanSelfOther;CrossSelfOther_SingleSess{GetAverageRange(i_avg)}{AC,Turn}];
@@ -184,8 +184,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
         figure('Name',sprintf(FigName), 'NumberTitle', 'off','Position',[488,49.800000000000004,500.2,732.8000000000001]);
         for Turn = 1 : 3
             if Turn == 1
-                clear SP, SP = subplot(3,2,1)
-                hold on
+                clear SP, SP = subplot(3,2,1);
+                hold on;
                 %                 %% red curve
                 plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanSelfOther(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
                 %% calcualte and plot 95% confidence interval based on t dist SEM
@@ -296,13 +296,13 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     delete([hPlots; hXLines; hPatches]);
                 end
                 %%
-                clear SP, SP = subplot(3,2,2)
-                hold on
+                clear SP, SP = subplot(3,2,2);
+                hold on;
                 %                 %% blue curve
                 plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
                 %% calcualte and plot 95% confidence interval based on t dist SEM
-                DegreeFreddom =AtSwitch_OtherSelf_SwitchNum(Turn,1)
-                t_critical = tinv(1 - alpha/2, DegreeFreddom - 1)
+                DegreeFreddom =AtSwitch_OtherSelf_SwitchNum(Turn,1);
+                t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
                 margin_of_errorAtSwitchOtherSelf = t_critical .* SEM_OverSessAtSwitch_OtherSelf(Turn,:,1);
                 ci_lowerAtSwitchOtherSelf = MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1) - margin_of_errorAtSwitchOtherSelf;
                 ci_upperAtSwitchOtherSelf = MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1) + margin_of_errorAtSwitchOtherSelf;
@@ -409,14 +409,14 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
             end
             %%
             if Turn == 2
-                clear SP, SP = subplot(3,2,3)
-                hold on
+                clear SP, SP = subplot(3,2,3);
+                hold on;
                 %                 %% blue curve
                 plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanSelfOther(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
                 %% calcualte and plot 95% confidence interval based on t dist SEM
                 DegreeFreddom = AtSwitch_SelfOther_SwitchNum(Turn,1);
                 t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
-                margin_of_errorAtSwitchSelfOther = t_critical .* SEM_OverSessAtSwitch_SelfOther(Turn,:,1)
+                margin_of_errorAtSwitchSelfOther = t_critical .* SEM_OverSessAtSwitch_SelfOther(Turn,:,1);
                 ci_lowerAtSwitchSelfOther = MeanOverSessAtSwitch_MeanSelfOther(Turn,:,1) - margin_of_errorAtSwitchSelfOther;
                 ci_upperAtSwitchSelfOther = MeanOverSessAtSwitch_MeanSelfOther(Turn,:,1) + margin_of_errorAtSwitchSelfOther;
                 %here you make sure if upper CI is more than 1 and lowe CI
@@ -490,8 +490,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                 % plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperAtSwitchSelfOther(Turn,:,2),'-m','LineWidth',CI_Lines_LineWidth)
                 %
                 % fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerAtSwitchSelfOther(Turn,:,2), fliplr(Cross_ci_upperAtSwitchSelfOther(Turn,:,2))],'m', 'FaceAlpha', 0.3,'EdgeColor','none');
-                xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth)
-                pbaspect([1 1 1])
+                xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth);
+                pbaspect([1 1 1]);
                 ylim([YlimRange(1) YlimRange(2)]);
                 %ylabel(Ylabel)
 
@@ -518,14 +518,14 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     delete([hPlots; hXLines; hPatches]);
                 end
                 %%
-                clear SP, SP = subplot(3,2,4)
-                hold on
+                clear SP, SP = subplot(3,2,4);
+                hold on;
                 %                 %% blue curve
                 plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
                 %% calcualte and plot 95% confidence interval based on t dist SEM
                 DegreeFreddom = AtSwitch_OtherSelf_SwitchNum(Turn,1);
                 t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
-                margin_of_errorAtSwitchOtherSelf = t_critical .* SEM_OverSessAtSwitch_OtherSelf(Turn,:,1)
+                margin_of_errorAtSwitchOtherSelf = t_critical .* SEM_OverSessAtSwitch_OtherSelf(Turn,:,1);
                 ci_lowerAtSwitchOtherSelf = MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1) - margin_of_errorAtSwitchOtherSelf;
                 ci_upperAtSwitchOtherSelf = MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1) + margin_of_errorAtSwitchOtherSelf;
                 %here you make sure if upper CI is more than 1 and lowe CI
@@ -578,7 +578,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                 %                 %% pink curve
                 plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2),'o-','Color',ActorBAtSwitchCol,'MarkerFaceColor',ActorBAtSwitchCol,'LineWidth',MainLineWidth);
                 %% calcualte and plot 95% confidence interval based on t dist SEM
-                CrossMarginOfError_AtSwitchOtherSelf = t_critical .*CrossAtSwitch_SEM_OverSess_OtherSelf(Turn,:,2)
+                CrossMarginOfError_AtSwitchOtherSelf = t_critical .*CrossAtSwitch_SEM_OverSess_OtherSelf(Turn,:,2);
                 Cross_ci_lowerOtherSelf = CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2) - CrossMarginOfError_AtSwitchOtherSelf;
                 Cross_ci_upperOtherSelf = CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2) + CrossMarginOfError_AtSwitchOtherSelf;
 
@@ -613,7 +613,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                 set(SP, 'XColor', 'none'); % Make x-axis invisible
 
                 % title(strcat(sprintf(FirstSessActorA{1}),' other to own'));
-                OveralSwitch = []
+                OveralSwitch = [];
                 OveralSwitch = OtherSelfSwitchNum(Turn,1);
                 % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
                 title(strcat(sprintf(FirstSessActorA{1}),' other to own:'," ",string(OveralSwitch)));
@@ -636,8 +636,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
             end
             %%
             if Turn == 3
-                clear SP, SP = subplot(3,2,5)
-                hold on
+                clear SP, SP = subplot(3,2,5);
+                hold on;
                 %                 %% blue curve
                 plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanSelfOther(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
                 %% calcualte and plot 95% confidence interval based on t dist SEM
@@ -695,7 +695,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                 % %
                 %                  fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerSelfOther(Turn,:,2), fliplr(Cross_ci_upperSelfOther(Turn,:,2))],'r', 'FaceAlpha', 0.3,'EdgeColor','none');
                 %                 %% pink curve
-                plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,2),'o-','Color',ActorBAtSwitchCol,'MarkerFaceColor',ActorBAtSwitchCol,'LineWidth',MainLineWidth)
+                plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,2),'o-','Color',ActorBAtSwitchCol,'MarkerFaceColor',ActorBAtSwitchCol,'LineWidth',MainLineWidth);
                 %% calcualte and plot 95% confidence interval based on t dist SEM
                 CrossMarginOfError_AtSwitchSelfOther = t_critical .* CrossAtSwitch_SEM_OverSess_SelfOther(Turn,:,2);
                 Cross_ci_lowerSelfOther = CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,2) - CrossMarginOfError_AtSwitchSelfOther;
@@ -752,8 +752,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
 
                 end
                 %%
-                clear SP, SP = subplot(3,2,6)
-                hold on
+                clear SP, SP = subplot(3,2,6);
+                hold on;
                 %                 %% blue curve
                 plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
                 %% calcualte and plot 95% confidence interval based on t dist SEM
@@ -915,8 +915,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
         figure('Name',sprintf(FigName), 'NumberTitle', 'off','Position',[488,49.800000000000004,500.2,732.8000000000001]);
         for Turn = 1 : 3
             if Turn == 1
-                clear SP, SP = subplot(3,2,1)
-                hold on
+                clear SP, SP = subplot(3,2,1);
+                hold on;
                 %                 %% red curve
                 plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanSelfOther(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
                 %% calcualte and plot 95% confidence interval based on t dist SEM
@@ -1015,14 +1015,14 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     delete([hPlots; hXLines; hPatches]);
                 end
                 %%
-                clear SP, SP = subplot(3,2,2)
-                hold on
+                clear SP, SP = subplot(3,2,2);
+                hold on;
                 %                 %% blue curve
                 plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
                 %% calcualte and plot 95% confidence interval based on t dist SEM
                 DegreeFreddom = AtSwitch_OtherSelf_SwitchNum(Turn,2);
                 t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
-                margin_of_errorAtSwitchOtherSelf = t_critical .* SEM_OverSessAtSwitch_OtherSelf(Turn,:,2)
+                margin_of_errorAtSwitchOtherSelf = t_critical .* SEM_OverSessAtSwitch_OtherSelf(Turn,:,2);
                 ci_lowerAtSwitchOtherSelf = MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2) - margin_of_errorAtSwitchOtherSelf;
                 ci_upperAtSwitchOtherSelf = MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2) + margin_of_errorAtSwitchOtherSelf;
                 %here you make sure if upper CI is more than 1 and lowe CI
@@ -1061,8 +1061,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     Cross_ci_upperOtherSelf(Cross_ci_upperOtherSelf > Valid_Max_FCO) = Valid_Max_FCO;
                 end
 
-                plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                 fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerOtherSelf, fliplr(Cross_ci_upperOtherSelf)],ActorAcolor, 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -1094,7 +1094,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                 xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth);
                 pbaspect([1 1 1]);
                 ylim([YlimRange(1) YlimRange(2)]);
-                ylabel(Ylabel)
+                ylabel(Ylabel);
                 set(SP,'XTick', 6);
                 set(SP,'XTickLabel', {'switch'});
                 set(SP, 'XColor', 'none'); % Make x-axis invisible
@@ -1121,8 +1121,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
             end
             %%
             if Turn == 2
-                clear SP, SP = subplot(3,2,3)
-                hold on
+                clear SP, SP = subplot(3,2,3);
+                hold on;
                 %                 %% blue curve
                 plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanSelfOther(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
                 %% calcualte and plot 95% confidence interval based on t dist SEM
@@ -1214,7 +1214,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                 set(SP, 'XColor', 'none'); % Make x-axis invisible
 
                 % title(strcat(sprintf(FirstSessActorB{1}),' own to other'));
-                OveralSwitch = []
+                OveralSwitch = [];
                 OveralSwitch = SelfOtherSwitchNum(Turn,2);
                 % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
                 title(strcat(sprintf(FirstSessActorB{1}),' own to other:'," ",string(OveralSwitch)));
@@ -1232,8 +1232,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     delete([hPlots; hXLines; hPatches]);
                 end
                 %%
-                clear SP, SP = subplot(3,2,4)
-                hold on
+                clear SP, SP = subplot(3,2,4);
+                hold on;
                 %                 %% blue curve
                 plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
                 %% calcualte and plot 95% confidence interval based on t dist SEM
@@ -1294,7 +1294,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                 %                 %% pink curve
                 plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1),'o-','Color',ActorAatSwitchCol,'MarkerFaceColor',ActorAatSwitchCol,'LineWidth',MainLineWidth);
                 %% calcualte and plot 95% confidence interval based on t dist SEM
-                CrossMarginOfError_AtSwitchOtherSelf = t_critical .* CrossAtSwitch_SEM_OverSess_OtherSelf(Turn,:,1)
+                CrossMarginOfError_AtSwitchOtherSelf = t_critical .* CrossAtSwitch_SEM_OverSess_OtherSelf(Turn,:,1);
                 Cross_ci_lowerOtherSelf = CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1) - CrossMarginOfError_AtSwitchOtherSelf;
                 Cross_ci_upperOtherSelf = CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1) + CrossMarginOfError_AtSwitchOtherSelf;
 
@@ -1343,8 +1343,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
             end
             %%
             if Turn == 3
-                clear SP, SP = subplot(3,2,5)
-                hold on
+                clear SP, SP = subplot(3,2,5);
+                hold on;
                 %                 %% blue curve
                 plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanSelfOther(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
                 %% calcualte and plot 95% confidence interval based on t dist SEM
@@ -1453,8 +1453,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                 end
                 %%
                 %%
-                clear SP, SP = subplot(3,2,6)
-                hold on
+                clear SP, SP = subplot(3,2,6);
+                hold on;
                 %                 %% blue curve
                 plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
                 %% calcualte and plot 95% confidence interval based on t dist SEM
@@ -1642,10 +1642,10 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     MeanOverSessAtSwitch_MeanSelfOther(Turn,:,AC) = mean(squeezedAtSwitch_MeanSelfOther,1,'omitmissing');
                     MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,AC) = mean(squeezedAtSwitch_MeanOtherSelf,1,'omitmissing');
 
-                    CrossMeanOverSessSelfOther(Turn,:,AC) = mean(CrossSqueezedMeanSelfOther,1,'omitmissing')
-                    CrossMeanOverSessOtherSelf(Turn,:,AC) = mean(CrossSqueezedMeanOtherSelf,1,'omitmissing')
-                    CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,AC) = mean(CrossSqueezedAtSwitchMeanSelfOther,1,'omitmissing')
-                    CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,AC) = mean(CrossSqueezedAtSwitchMeanOtherSelf,1,'omitmissing')
+                    CrossMeanOverSessSelfOther(Turn,:,AC) = mean(CrossSqueezedMeanSelfOther,1,'omitmissing');
+                    CrossMeanOverSessOtherSelf(Turn,:,AC) = mean(CrossSqueezedMeanOtherSelf,1,'omitmissing');
+                    CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,AC) = mean(CrossSqueezedAtSwitchMeanSelfOther,1,'omitmissing');
+                    CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,AC) = mean(CrossSqueezedAtSwitchMeanOtherSelf,1,'omitmissing');
                 end
 
             end
@@ -1657,16 +1657,16 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
 
 
 
-            FigName = strcat(A_Name,'-',B_Name,'-',SubTypeTrials)
-            figure('Name',sprintf(FigName), 'NumberTitle', 'off','Position',[488,49.800000000000004,500.2,732.8000000000001])
+            FigName = strcat(A_Name,'-',B_Name,'-',SubTypeTrials);
+            figure('Name',sprintf(FigName), 'NumberTitle', 'off','Position',[488,49.800000000000004,500.2,732.8000000000001]);
             for Turn = 1 : 3
                 if Turn == 1
-                    clear SP, SP = subplot(3,2,1)
-                    hold on
+                    clear SP, SP = subplot(3,2,1);
+                    hold on;
                     %                 %% red curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanSelfOther(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanSelfOther(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
-                    DegreeFreddom = sum(AtSwitch_SelfOther_SwitchNum(Turn,1,idata))
+                    DegreeFreddom = sum(AtSwitch_SelfOther_SwitchNum(Turn,1,idata));
                     t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
                     margin_of_errorAtSwitchSelfOther = t_critical * SEM_OverSessAtSwitch_SelfOther(Turn,:,1,idata);
                     ci_lowerAtSwitchSelfOther = MeanOverSessAtSwitch_MeanSelfOther(Turn,:,1) - margin_of_errorAtSwitchSelfOther;
@@ -1680,12 +1680,12 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     if  sum(ci_upperAtSwitchSelfOther > Valid_Max_FCO) > 0
                         ci_upperAtSwitchSelfOther(ci_upperAtSwitchSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
                     end
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [ci_lowerAtSwitchSelfOther, fliplr(ci_upperAtSwitchSelfOther)],ActorAcolor, 'FaceAlpha', 0.3,'EdgeColor','none');
 
                     %                 %% blue curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessSelfOther(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessSelfOther(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
                     CrossMarginOfError_SelfOther = t_critical * CrossSEM_OverSess_SelfOther(Turn,:,2,idata);
                     Cross_ci_lowerSelfOther = CrossMeanOverSessSelfOther(Turn,:,2) - CrossMarginOfError_SelfOther;
@@ -1701,8 +1701,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         Cross_ci_upperSelfOther(Cross_ci_upperSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
                     end
 
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerSelfOther, fliplr(Cross_ci_upperSelfOther)],'b', 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -1713,7 +1713,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     % %
                     %                  fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerSelfOther(Turn,:,2), fliplr(Cross_ci_upperSelfOther(Turn,:,2))],'r', 'FaceAlpha', 0.3,'EdgeColor','none');
                     % %                 %% pink curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,2),'o-','Color',ActorBAtSwitchCol,'MarkerFaceColor',ActorBAtSwitchCol,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,2),'o-','Color',ActorBAtSwitchCol,'MarkerFaceColor',ActorBAtSwitchCol,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
                     CrossMarginOfError_AtSwitchSelfOther = t_critical * CrossAtSwitch_SEM_OverSess_SelfOther(Turn,:,2,idata);
                     Cross_ci_lowerSelfOther = CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,2) - CrossMarginOfError_AtSwitchSelfOther;
@@ -1729,8 +1729,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         Cross_ci_upperSelfOther(Cross_ci_upperSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
                     end
 
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerSelfOther, fliplr(Cross_ci_upperSelfOther)],ActorBAtSwitchCol, 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -1739,9 +1739,9 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     % plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperAtSwitchSelfOther(Turn,:,2),'-m','LineWidth',CI_Lines_LineWidth)
                     %
                     % fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerAtSwitchSelfOther(Turn,:,2), fliplr(Cross_ci_upperAtSwitchSelfOther(Turn,:,2))],'m', 'FaceAlpha', 0.3,'EdgeColor','none');
-                    xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth)
+                    xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth);
 
-                    pbaspect([1 1 1])
+                    pbaspect([1 1 1]);
                     ylim([YlimRange(1) YlimRange(2)]);
                     % ylabel(Ylabel);
 
@@ -1768,10 +1768,10 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         delete([hPlots; hXLines; hPatches]);
                     end
                     %%
-                    clear SP, SP = subplot(3,2,2)
-                    hold on
+                    clear SP, SP = subplot(3,2,2);
+                    hold on;
                     %                 %% blue curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
                     DegreeFreddom =sum(AtSwitch_OtherSelf_SwitchNum(Turn,1,idata));
                     t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
@@ -1789,8 +1789,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         ci_upperAtSwitchOtherSelf(ci_upperAtSwitchOtherSelf > Valid_Max_FCO) = Valid_Max_FCO;
                     end
 
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [ci_lowerAtSwitchOtherSelf, fliplr(ci_upperAtSwitchOtherSelf)],ActorAcolor, 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -1800,7 +1800,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     %
                     % fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [ci_lowerOtherSelf(Turn,:,1), fliplr(ci_upperOtherSelf(Turn,:,1))],'b', 'FaceAlpha', 0.3,'EdgeColor','none');
                     %                 %% red curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessOtherSelf(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessOtherSelf(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
                     CrossMarginOfError_OtherSelf = t_critical * CrossSEM_OverSess_OtherSelf(Turn,:,2,idata);
                     Cross_ci_lowerOtherSelf = CrossMeanOverSessOtherSelf(Turn,:,2) - CrossMarginOfError_OtherSelf;
@@ -1816,8 +1816,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         Cross_ci_upperOtherSelf(Cross_ci_upperOtherSelf > Valid_Max_FCO) = Valid_Max_FCO;
                     end
 
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerOtherSelf, fliplr(Cross_ci_upperOtherSelf)],ActorBcolor, 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -1827,7 +1827,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     % %
                     %                  fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerOtherSelf(Turn,:,2), fliplr(Cross_ci_upperOtherSel(Turn,:,2))],'r', 'FaceAlpha', 0.3,'EdgeColor','none');
                     %                 %% pink curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2),'o-','Color',ActorBAtSwitchCol,'MarkerFaceColor',ActorBAtSwitchCol,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2),'o-','Color',ActorBAtSwitchCol,'MarkerFaceColor',ActorBAtSwitchCol,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
                     CrossMarginOfError_AtSwitchOtherSelf = t_critical * CrossAtSwitch_SEM_OverSess_OtherSelf(Turn,:,2,idata);
                     Cross_ci_lowerOtherSelf = CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2) - CrossMarginOfError_AtSwitchOtherSelf;
@@ -1843,8 +1843,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         Cross_ci_upperOtherSelf(Cross_ci_upperOtherSelf > Valid_Max_FCO) = Valid_Max_FCO;
                     end
 
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerOtherSelf, fliplr(Cross_ci_upperOtherSelf)],ActorBAtSwitchCol, 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -1853,8 +1853,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     % plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperAtSwitchOtherSelf(Turn,:,2),'-m','LineWidth',CI_Lines_LineWidth)
                     %
                     % fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerAtSwitchOtherSelf(Turn,:,2), fliplr(Cross_ci_upperAtSwitchOtherSelf(Turn,:,2))],'m', 'FaceAlpha', 0.3,'EdgeColor','none');
-                    xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth)
-                    pbaspect([1 1 1])
+                    xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth);
+                    pbaspect([1 1 1]);
                     ylim([YlimRange(1) YlimRange(2)]);
                     ylabel(Ylabel);
 
@@ -1885,12 +1885,12 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                 end
                 %%
                 if Turn == 2
-                    clear SP, SP = subplot(3,2,3)
-                    hold on
+                    clear SP, SP = subplot(3,2,3);
+                    hold on;
                     %                 %% blue curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanSelfOther(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanSelfOther(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
-                    DegreeFreddom = sum(AtSwitch_SelfOther_SwitchNum(Turn,1,idata))
+                    DegreeFreddom = sum(AtSwitch_SelfOther_SwitchNum(Turn,1,idata));
                     t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
                     margin_of_errorAtSwitchSelfOther = t_critical * SEM_OverSessAtSwitch_SelfOther(Turn,:,1,idata);
                     ci_lowerAtSwitchSelfOther = MeanOverSessAtSwitch_MeanSelfOther(Turn,:,1) - margin_of_errorAtSwitchSelfOther;
@@ -1905,8 +1905,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     if  sum(ci_upperAtSwitchSelfOther > Valid_Max_FCO) > 0
                         ci_upperAtSwitchSelfOther(ci_upperAtSwitchSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
                     end
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [ci_lowerAtSwitchSelfOther, fliplr(ci_upperAtSwitchSelfOther)],ActorAcolor, 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -1916,9 +1916,9 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     %
                     %                  fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [ci_lowerSelfOther(Turn,:,1), fliplr(ci_upperSelfOther(Turn,:,1))],'b', 'FaceAlpha', 0.3,'EdgeColor','none');
                     % %                 %% red curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessSelfOther(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessSelfOther(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
-                    CrossMarginOfError_SelfOther = t_critical * CrossSEM_OverSess_SelfOther(Turn,:,2,idata)
+                    CrossMarginOfError_SelfOther = t_critical * CrossSEM_OverSess_SelfOther(Turn,:,2,idata);
                     Cross_ci_lowerSelfOther = CrossMeanOverSessSelfOther(Turn,:,2) - CrossMarginOfError_SelfOther;
                     Cross_ci_upperSelfOther = CrossMeanOverSessSelfOther(Turn,:,2) + CrossMarginOfError_SelfOther;
 
@@ -1931,8 +1931,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     if sum(Cross_ci_upperSelfOther > Valid_Max_FCO)> 0
                         Cross_ci_upperSelfOther(Cross_ci_upperSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
                     end
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerSelfOther, fliplr(Cross_ci_upperSelfOther)],'b', 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -1942,7 +1942,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     % %
                     %                  fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerSelfOther(Turn,:,2), fliplr(Cross_ci_upperSelfOther(Turn,:,2))],'r', 'FaceAlpha', 0.3,'EdgeColor','none');
                     % %                 %% pink curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,2),'o-','Color',ActorBAtSwitchCol,'MarkerFaceColor',ActorBAtSwitchCol,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,2),'o-','Color',ActorBAtSwitchCol,'MarkerFaceColor',ActorBAtSwitchCol,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
                     CrossMarginOfError_AtSwitchSelfOther = t_critical * CrossAtSwitch_SEM_OverSess_SelfOther(Turn,:,2,idata);
                     Cross_ci_lowerSelfOther = CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,2) - CrossMarginOfError_AtSwitchSelfOther;
@@ -1958,8 +1958,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         Cross_ci_upperSelfOther(Cross_ci_upperSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
                     end
 
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerSelfOther, fliplr(Cross_ci_upperSelfOther)],ActorBAtSwitchCol, 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -1968,8 +1968,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     % plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperAtSwitchSelfOther(Turn,:,2),'-m','LineWidth',CI_Lines_LineWidth)
                     %
                     % fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerAtSwitchSelfOther(Turn,:,2), fliplr(Cross_ci_upperAtSwitchSelfOther(Turn,:,2))],'m', 'FaceAlpha', 0.3,'EdgeColor','none');
-                    xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth)
-                    pbaspect([1 1 1])
+                    xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth);
+                    pbaspect([1 1 1]);
                     ylim([YlimRange(1) YlimRange(2)]);
                     %ylabel(Ylabel)
                     set(SP,'XTick', 6);
@@ -1995,10 +1995,10 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         delete([hPlots; hXLines; hPatches]);
                     end
                     %%
-                    clear SP, SP = subplot(3,2,4)
-                    hold on
+                    clear SP, SP = subplot(3,2,4);
+                    hold on;
                     %                 %% blue curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
                     DegreeFreddom = sum(AtSwitch_OtherSelf_SwitchNum(Turn,1,idata));
                     t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
@@ -2016,8 +2016,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         ci_upperAtSwitchOtherSelf(ci_upperAtSwitchOtherSelf > Valid_Max_FCO) = Valid_Max_FCO;
                     end
 
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [ci_lowerAtSwitchOtherSelf, fliplr(ci_upperAtSwitchOtherSelf)],ActorAcolor, 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -2027,7 +2027,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     %
                     % fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [ci_lowerOtherSelf(Turn,:,1), fliplr(ci_upperOtherSelf(Turn,:,1))],'b', 'FaceAlpha', 0.3,'EdgeColor','none');
                     %                 %% red curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessOtherSelf(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessOtherSelf(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
                     CrossMarginOfError_OtherSelf = t_critical * mean(CrossSEM_OverSess_OtherSelf(Turn,:,2,idata),4,'omitmissing');
                     Cross_ci_lowerOtherSelf = CrossMeanOverSessOtherSelf(Turn,:,2) - CrossMarginOfError_OtherSelf;
@@ -2043,8 +2043,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         Cross_ci_upperOtherSelf(Cross_ci_upperOtherSelf > Valid_Max_FCO) = Valid_Max_FCO;
                     end
 
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerOtherSelf, fliplr(Cross_ci_upperOtherSelf)],ActorBcolor, 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -2055,7 +2055,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     % %
                     %                  fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerOtherSelf(Turn,:,2), fliplr(Cross_ci_upperOtherSel(Turn,:,2))],'r', 'FaceAlpha', 0.3,'EdgeColor','none');
                     %                 %% pink curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2),'o-','Color',ActorBAtSwitchCol,'MarkerFaceColor',ActorBAtSwitchCol,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2),'o-','Color',ActorBAtSwitchCol,'MarkerFaceColor',ActorBAtSwitchCol,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
                     CrossMarginOfError_AtSwitchOtherSelf = t_critical * CrossAtSwitch_SEM_OverSess_OtherSelf(Turn,:,2,idata);
                     Cross_ci_lowerOtherSelf = CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2) - CrossMarginOfError_AtSwitchOtherSelf;
@@ -2071,8 +2071,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         Cross_ci_upperOtherSelf(Cross_ci_upperOtherSelf > Valid_Max_FCO) = Valid_Max_FCO;
                     end
 
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerOtherSelf, fliplr(Cross_ci_upperOtherSelf)],ActorBAtSwitchCol, 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -2081,8 +2081,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     % plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperAtSwitchOtherSelf(Turn,:,2),'-m','LineWidth',CI_Lines_LineWidth)
                     %
                     % fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerAtSwitchOtherSelf(Turn,:,2), fliplr(Cross_ci_upperAtSwitchOtherSelf(Turn,:,2))],'m', 'FaceAlpha', 0.3,'EdgeColor','none');
-                    xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth)
-                    pbaspect([1 1 1])
+                    xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth);
+                    pbaspect([1 1 1]);
                     ylim([YlimRange(1) YlimRange(2)]);
                     ylabel(Ylabel);
 
@@ -2115,14 +2115,14 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                 end
                 %%
                 if Turn == 3
-                    clear SP, SP = subplot(3,2,5)
-                    hold on
+                    clear SP, SP = subplot(3,2,5);
+                    hold on;
                     %                 %% blue curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanSelfOther(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanSelfOther(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
                     DegreeFreddom = sum(AtSwitch_SelfOther_SwitchNum(Turn,1,:));
                     t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
-                    margin_of_errorAtSwitchSelfOther = t_critical * SEM_OverSessAtSwitch_SelfOther(Turn,:,1,idata)
+                    margin_of_errorAtSwitchSelfOther = t_critical * SEM_OverSessAtSwitch_SelfOther(Turn,:,1,idata);
                     ci_lowerAtSwitchSelfOther = MeanOverSessAtSwitch_MeanSelfOther(Turn,:,1) - margin_of_errorAtSwitchSelfOther;
                     ci_upperAtSwitchSelfOther = MeanOverSessAtSwitch_MeanSelfOther(Turn,:,1) + margin_of_errorAtSwitchSelfOther;
                     %here you make sure if upper CI is more than 1 and lowe CI
@@ -2134,8 +2134,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     if  sum(ci_upperAtSwitchSelfOther > Valid_Max_FCO) > 0
                         ci_upperAtSwitchSelfOther(ci_upperAtSwitchSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
                     end
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [ci_lowerAtSwitchSelfOther, fliplr(ci_upperAtSwitchSelfOther)],ActorAcolor, 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -2146,7 +2146,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     %
                     %                  fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [ci_lowerSelfOther(Turn,:,1), fliplr(ci_upperSelfOther(Turn,:,1))],'b', 'FaceAlpha', 0.3,'EdgeColor','none');
                     % %                 %% red curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessSelfOther(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessSelfOther(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
                     CrossMarginOfError_SelfOther = t_critical * CrossSEM_OverSess_SelfOther(Turn,:,2,idata);
                     Cross_ci_lowerSelfOther = CrossMeanOverSessSelfOther(Turn,:,2) - CrossMarginOfError_SelfOther;
@@ -2161,8 +2161,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     if sum(Cross_ci_upperSelfOther > Valid_Max_FCO)> 0
                         Cross_ci_upperSelfOther(Cross_ci_upperSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
                     end
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerSelfOther, fliplr(Cross_ci_upperSelfOther)],'b', 'FaceAlpha', 0.3,'EdgeColor','none');
 
                     %
@@ -2172,7 +2172,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     % %
                     %                  fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerSelfOther(Turn,:,2), fliplr(Cross_ci_upperSelfOther(Turn,:,2))],'r', 'FaceAlpha', 0.3,'EdgeColor','none');
                     %                 %% pink curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,2),'o-','Color',ActorBAtSwitchCol,'MarkerFaceColor',ActorBAtSwitchCol,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,2),'o-','Color',ActorBAtSwitchCol,'MarkerFaceColor',ActorBAtSwitchCol,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
                     CrossMarginOfError_AtSwitchSelfOther = t_critical * CrossAtSwitch_SEM_OverSess_SelfOther(Turn,:,2,idata);
                     Cross_ci_lowerSelfOther = CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,2) - CrossMarginOfError_AtSwitchSelfOther;
@@ -2186,8 +2186,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     if sum(Cross_ci_upperSelfOther > Valid_Max_FCO)> 0
                         Cross_ci_upperSelfOther(Cross_ci_upperSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
                     end
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerSelfOther, fliplr(Cross_ci_upperSelfOther)],ActorBAtSwitchCol, 'FaceAlpha', 0.3,'EdgeColor','none');
 
                     %
@@ -2196,8 +2196,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     % plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperAtSwitchSelfOther(Turn,:,2),'-m','LineWidth',CI_Lines_LineWidth)
                     %
                     % fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerAtSwitchSelfOther(Turn,:,2), fliplr(Cross_ci_upperAtSwitchSelfOther(Turn,:,2))],'m', 'FaceAlpha', 0.3,'EdgeColor','none');
-                    xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth)
-                    pbaspect([1 1 1])
+                    xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth);
+                    pbaspect([1 1 1]);
                     ylim([YlimRange(1) YlimRange(2)]);
                     %ylabel(Ylabel);
 
@@ -2208,7 +2208,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
 
 
                     % title(strcat(sprintf(A_Name),' own to other'))
-                    OveralSwitch = []
+                    OveralSwitch = [];
                     OveralSwitch = sum(SelfOtherSwitchNum(Turn,1,idata));
                     % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
                     title(strcat(sprintf(A_Name),' own to other:'," ",string(OveralSwitch)));
@@ -2231,10 +2231,10 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
 
                     end
                     %%
-                    clear SP, SP = subplot(3,2,6)
-                    hold on
+                    clear SP, SP = subplot(3,2,6);
+                    hold on;
                     %                 %% blue curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
                     DegreeFreddom = sum(AtSwitch_OtherSelf_SwitchNum(Turn,1,idata));
                     t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
@@ -2251,8 +2251,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         ci_upperAtSwitchOtherSelf(ci_upperAtSwitchOtherSelf > Valid_Max_FCO) = Valid_Max_FCO;
                     end
 
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [ci_lowerAtSwitchOtherSelf, fliplr(ci_upperAtSwitchOtherSelf)],ActorAcolor, 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -2262,7 +2262,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     %
                     % fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [ci_lowerOtherSelf(Turn,:,1), fliplr(ci_upperOtherSelf(Turn,:,1))],'b', 'FaceAlpha', 0.3,'EdgeColor','none');
                     %                 %% red curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessOtherSelf(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessOtherSelf(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
                     CrossMarginOfError_OtherSelf = t_critical * CrossSEM_OverSess_OtherSelf(Turn,:,2,idata);
                     Cross_ci_lowerOtherSelf = CrossMeanOverSessOtherSelf(Turn,:,2) - CrossMarginOfError_OtherSelf;
@@ -2278,8 +2278,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         Cross_ci_upperOtherSelf(Cross_ci_upperOtherSelf > Valid_Max_FCO) = Valid_Max_FCO;
                     end
 
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerOtherSelf, fliplr(Cross_ci_upperOtherSelf)],'b', 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -2289,7 +2289,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     % %
                     %                  fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerOtherSelf(Turn,:,2), fliplr(Cross_ci_upperOtherSel(Turn,:,2))],'r', 'FaceAlpha', 0.3,'EdgeColor','none');
                     %                 %% pink curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2),'o-','Color',ActorBAtSwitchCol,'MarkerFaceColor',ActorBAtSwitchCol,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2),'o-','Color',ActorBAtSwitchCol,'MarkerFaceColor',ActorBAtSwitchCol,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
                     CrossMarginOfError_AtSwitchOtherSelf = t_critical * CrossAtSwitch_SEM_OverSess_OtherSelf(Turn,:,2,idata);
                     Cross_ci_lowerOtherSelf = CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2) - CrossMarginOfError_AtSwitchOtherSelf;
@@ -2304,8 +2304,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         Cross_ci_upperOtherSelf(Cross_ci_upperOtherSelf > Valid_Max_FCO) = Valid_Max_FCO;
                     end
 
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerOtherSelf, fliplr(Cross_ci_upperOtherSelf)],ActorBAtSwitchCol, 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -2314,8 +2314,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     % plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperAtSwitchOtherSelf(Turn,:,2),'-m','LineWidth',CI_Lines_LineWidth)
                     %
                     % fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerAtSwitchOtherSelf(Turn,:,2), fliplr(Cross_ci_upperAtSwitchOtherSelf(Turn,:,2))],'m', 'FaceAlpha', 0.3,'EdgeColor','none');
-                    xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth)
-                    pbaspect([1 1 1])
+                    xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth);
+                    pbaspect([1 1 1]);
                     ylim([YlimRange(1) YlimRange(2)]);
                     ylabel(Ylabel);
 
@@ -2388,13 +2388,13 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
             figure('Name',sprintf(FigName), 'NumberTitle', 'off','Position',[488,49.800000000000004,500.2,732.8000000000001])
             for Turn = 1 : 3
                 if Turn == 1
-                    clear SP, SP = subplot(3,2,1)
-                    hold on
+                    clear SP, SP = subplot(3,2,1);
+                    hold on;
                     %                 %% red curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanSelfOther(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanSelfOther(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
-                    DegreeFreddom = sum(AtSwitch_SelfOther_SwitchNum(Turn,2,idata))
-                    t_critical = tinv(1 - alpha/2, DegreeFreddom - 1)
+                    DegreeFreddom = sum(AtSwitch_SelfOther_SwitchNum(Turn,2,idata));
+                    t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
                     margin_of_errorAtSwitchSelfOther = t_critical * SEM_OverSessAtSwitch_SelfOther(Turn,:,2,idata);
                     ci_lowerAtSwitchSelfOther = MeanOverSessAtSwitch_MeanSelfOther(Turn,:,2) - margin_of_errorAtSwitchSelfOther;
                     ci_upperAtSwitchSelfOther = MeanOverSessAtSwitch_MeanSelfOther(Turn,:,2) + margin_of_errorAtSwitchSelfOther;
@@ -2408,14 +2408,14 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     if  sum(ci_upperAtSwitchSelfOther > Valid_Max_FCO) > 0
                         ci_upperAtSwitchSelfOther(ci_upperAtSwitchSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
                     end
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [ci_lowerAtSwitchSelfOther, fliplr(ci_upperAtSwitchSelfOther)],ActorBcolor, 'FaceAlpha', 0.3,'EdgeColor','none');
 
                     %                 %% blue curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessSelfOther(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessSelfOther(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
-                    CrossMarginOfError_SelfOther = t_critical * mean(CrossSEM_OverSess_SelfOther(Turn,:,1,idata),4,'omitmissing')
+                    CrossMarginOfError_SelfOther = t_critical * mean(CrossSEM_OverSess_SelfOther(Turn,:,1,idata),4,'omitmissing');
                     Cross_ci_lowerSelfOther = CrossMeanOverSessSelfOther(Turn,:,1) - CrossMarginOfError_SelfOther;
                     Cross_ci_upperSelfOther = CrossMeanOverSessSelfOther(Turn,:,1) + CrossMarginOfError_SelfOther;
 
@@ -2429,8 +2429,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         Cross_ci_upperSelfOther(Cross_ci_upperSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
                     end
 
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerSelfOther, fliplr(Cross_ci_upperSelfOther)],ActorAcolor, 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -2440,8 +2440,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     %                  plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther(Turn,:,2),'-r','LineWidth',CI_Lines_LineWidth)
                     % %
                     %                  fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerSelfOther(Turn,:,2), fliplr(Cross_ci_upperSelfOther(Turn,:,2))],'r', 'FaceAlpha', 0.3,'EdgeColor','none');
-                    % %                 %% pink curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,1),'o-','Color',ActorAatSwitchCol,'MarkerFaceColor',ActorAatSwitchCol,'LineWidth',MainLineWidth)
+                    % %                 %% pink curve;
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,1),'o-','Color',ActorAatSwitchCol,'MarkerFaceColor',ActorAatSwitchCol,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
                     CrossMarginOfError_AtSwitchSelfOther = t_critical * mean(CrossAtSwitch_SEM_OverSess_SelfOther(Turn,:,1,idata),4,'omitmissing');
                     Cross_ci_lowerSelfOther = CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,1) - CrossMarginOfError_AtSwitchSelfOther;
@@ -2457,12 +2457,12 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         Cross_ci_upperSelfOther(Cross_ci_upperSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
                     end
 
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerSelfOther, fliplr(Cross_ci_upperSelfOther)],ActorAatSwitchCol, 'FaceAlpha', 0.3,'EdgeColor','none');
 
-                    xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth)
-                    pbaspect([1 1 1])
+                    xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth);
+                    pbaspect([1 1 1]);
                     ylim([YlimRange(1) YlimRange(2)]);
                     % ylabel(Ylabel);
 
@@ -2490,10 +2490,10 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         delete([hPlots; hXLines; hPatches]);
                     end
                     %%
-                    clear SP, SP = subplot(3,2,2)
-                    hold on
+                    clear SP, SP = subplot(3,2,2);
+                    hold on;
                     %                 %% blue curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
                     DegreeFreddom = sum(AtSwitch_OtherSelf_SwitchNum(Turn,2,idata));
                     t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
@@ -2511,8 +2511,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         ci_upperAtSwitchOtherSelf(ci_upperAtSwitchOtherSelf > Valid_Max_FCO) = Valid_Max_FCO;
                     end
 
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [ci_lowerAtSwitchOtherSelf, fliplr(ci_upperAtSwitchOtherSelf)],ActorBcolor, 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -2522,7 +2522,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     %
                     % fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [ci_lowerOtherSelf(Turn,:,1), fliplr(ci_upperOtherSelf(Turn,:,1))],'b', 'FaceAlpha', 0.3,'EdgeColor','none');
                     %                 %% red curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessOtherSelf(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessOtherSelf(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
                     CrossMarginOfError_OtherSelf = t_critical * mean(CrossSEM_OverSess_OtherSelf(Turn,:,1,idata),4,'omitmissing');
                     Cross_ci_lowerOtherSelf = CrossMeanOverSessOtherSelf(Turn,:,1) - CrossMarginOfError_OtherSelf;
@@ -2537,8 +2537,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         Cross_ci_upperOtherSelf(Cross_ci_upperOtherSelf > Valid_Max_FCO) = Valid_Max_FCO;
                     end
 
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerOtherSelf, fliplr(Cross_ci_upperOtherSelf)],ActorAcolor, 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -2548,7 +2548,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     % %
                     %                  fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerOtherSelf(Turn,:,2), fliplr(Cross_ci_upperOtherSel(Turn,:,2))],'r', 'FaceAlpha', 0.3,'EdgeColor','none');
                     %                 %% pink curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1),'o-','Color',ActorAatSwitchCol,'MarkerFaceColor',ActorAatSwitchCol,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1),'o-','Color',ActorAatSwitchCol,'MarkerFaceColor',ActorAatSwitchCol,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
                     CrossMarginOfError_AtSwitchOtherSelf = t_critical * mean(CrossAtSwitch_SEM_OverSess_OtherSelf(Turn,:,1,idata),4,'omitmissing');
                     Cross_ci_lowerOtherSelf = CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1) - CrossMarginOfError_AtSwitchOtherSelf;
@@ -2563,11 +2563,11 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     if  sum(Cross_ci_upperOtherSelf > Valid_Max_FCO) > 0
                         Cross_ci_upperOtherSelf(Cross_ci_upperOtherSelf > Valid_Max_FCO) = Valid_Max_FCO;
                     end
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerOtherSelf, fliplr(Cross_ci_upperOtherSelf)],ActorAatSwitchCol, 'FaceAlpha', 0.3,'EdgeColor','none');
-                    xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth)
-                    pbaspect([1 1 1])
+                    xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth);
+                    pbaspect([1 1 1]);
                     ylim([YlimRange(1) YlimRange(2)]);
 
                     ylabel(Ylabel);
@@ -2576,7 +2576,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     set(SP, 'XColor', 'none'); % Make x-axis invisible
 
                     % title(strcat(sprintf(B_Name),' other to own '))
-                    OveralSwitch = []
+                    OveralSwitch = [];
                     OveralSwitch = sum(OtherSelfSwitchNum(Turn,2,idata));
                     % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
                     title(strcat(sprintf(B_Name),' other to own:'," ",string(OveralSwitch)));
@@ -2598,10 +2598,10 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                 end
                 %%
                 if Turn == 2
-                    clear SP, SP = subplot(3,2,3)
-                    hold on
+                    clear SP, SP = subplot(3,2,3);
+                    hold on;
                     %                 %% blue curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanSelfOther(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanSelfOther(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
                     DegreeFreddom = sum(AtSwitch_SelfOther_SwitchNum(Turn,2,idata));
                     t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
@@ -2619,8 +2619,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         ci_upperAtSwitchSelfOther(ci_upperAtSwitchSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
                     end
 
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [ci_lowerAtSwitchSelfOther, fliplr(ci_upperAtSwitchSelfOther)],ActorBcolor, 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -2630,7 +2630,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     %
                     %                  fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [ci_lowerSelfOther(Turn,:,1), fliplr(ci_upperSelfOther(Turn,:,1))],'b', 'FaceAlpha', 0.3,'EdgeColor','none');
                     % %                 %% red curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessSelfOther(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessSelfOther(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
                     CrossMarginOfError_SelfOther = t_critical * mean(CrossSEM_OverSess_SelfOther(Turn,:,1,idata),4,'omitmissing');
                     Cross_ci_lowerSelfOther = CrossMeanOverSessSelfOther(Turn,:,1) - CrossMarginOfError_SelfOther;
@@ -2646,8 +2646,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         Cross_ci_upperSelfOther(Cross_ci_upperSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
                     end
 
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerSelfOther, fliplr(Cross_ci_upperSelfOther)],ActorAcolor, 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -2657,7 +2657,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     % %
                     %                  fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerSelfOther(Turn,:,2), fliplr(Cross_ci_upperSelfOther(Turn,:,2))],'r', 'FaceAlpha', 0.3,'EdgeColor','none');
                     % %                 %% pink curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,1),'o-','Color',ActorAatSwitchCol,'MarkerFaceColor',ActorAatSwitchCol,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,1),'o-','Color',ActorAatSwitchCol,'MarkerFaceColor',ActorAatSwitchCol,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
                     CrossMarginOfError_AtSwitchSelfOther = t_critical * mean(CrossAtSwitch_SEM_OverSess_SelfOther(Turn,:,1,idata),4,'omitmissing');
                     Cross_ci_lowerSelfOther = CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,1) - CrossMarginOfError_AtSwitchSelfOther;
@@ -2673,8 +2673,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         Cross_ci_upperSelfOther(Cross_ci_upperSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
                     end
 
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerSelfOther, fliplr(Cross_ci_upperSelfOther)],ActorAatSwitchCol, 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -2683,8 +2683,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     % plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperAtSwitchSelfOther(Turn,:,2),'-m','LineWidth',CI_Lines_LineWidth)
                     %
                     % fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerAtSwitchSelfOther(Turn,:,2), fliplr(Cross_ci_upperAtSwitchSelfOther(Turn,:,2))],'m', 'FaceAlpha', 0.3,'EdgeColor','none');
-                    xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth)
-                    pbaspect([1 1 1])
+                    xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth);
+                    pbaspect([1 1 1]);
                     ylim([YlimRange(1) YlimRange(2)]);
                     % ylabel(Ylabel)
 
@@ -2693,7 +2693,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     set(SP, 'XColor', 'none'); % Make x-axis invisible
 
                     % title(strcat(sprintf(B_Name),' own to other'))
-                    OveralSwitch = []
+                    OveralSwitch = [];
                     OveralSwitch = sum(SelfOtherSwitchNum(Turn,2,idata));
                     % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
                     title(strcat(sprintf(B_Name),' own to other:'," ",string(OveralSwitch)));
@@ -2712,14 +2712,14 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         delete([hPlots; hXLines; hPatches]);
                     end
                     %%
-                    clear SP, SP = subplot(3,2,4)
-                    hold on
+                    clear SP, SP = subplot(3,2,4);
+                    hold on;
                     %                 %% blue curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
-                    DegreeFreddom = sum(AtSwitch_OtherSelf_SwitchNum(Turn,2,idata))
-                    t_critical = tinv(1 - alpha/2, DegreeFreddom - 1)
-                    margin_of_errorAtSwitchOtherSelf = t_critical * mean(SEM_OverSessAtSwitch_OtherSelf(Turn,:,2,idata),4,'omitmissing')
+                    DegreeFreddom = sum(AtSwitch_OtherSelf_SwitchNum(Turn,2,idata));
+                    t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
+                    margin_of_errorAtSwitchOtherSelf = t_critical * mean(SEM_OverSessAtSwitch_OtherSelf(Turn,:,2,idata),4,'omitmissing');
                     ci_lowerAtSwitchOtherSelf = MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2) - margin_of_errorAtSwitchOtherSelf;
                     ci_upperAtSwitchOtherSelf = MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2) + margin_of_errorAtSwitchOtherSelf;
 
@@ -2733,8 +2733,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         ci_upperAtSwitchOtherSelf(ci_upperAtSwitchOtherSelf > Valid_Max_FCO) = Valid_Max_FCO;
                     end
 
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [ci_lowerAtSwitchOtherSelf, fliplr(ci_upperAtSwitchOtherSelf)],ActorBcolor, 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -2744,9 +2744,9 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     %
                     % fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [ci_lowerOtherSelf(Turn,:,1), fliplr(ci_upperOtherSelf(Turn,:,1))],'b', 'FaceAlpha', 0.3,'EdgeColor','none');
                     %                 %% red curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessOtherSelf(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessOtherSelf(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
-                    CrossMarginOfError_OtherSelf = t_critical * mean(CrossSEM_OverSess_OtherSelf(Turn,:,1,idata),4,'omitmissing')
+                    CrossMarginOfError_OtherSelf = t_critical * mean(CrossSEM_OverSess_OtherSelf(Turn,:,1,idata),4,'omitmissing');
                     Cross_ci_lowerOtherSelf = CrossMeanOverSessOtherSelf(Turn,:,1) - CrossMarginOfError_OtherSelf;
                     Cross_ci_upperOtherSelf = CrossMeanOverSessOtherSelf(Turn,:,1) + CrossMarginOfError_OtherSelf;
 
@@ -2760,8 +2760,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         Cross_ci_upperOtherSelf(Cross_ci_upperOtherSelf > Valid_Max_FCO) = Valid_Max_FCO;
                     end
 
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerOtherSelf, fliplr(Cross_ci_upperOtherSelf)],ActorAcolor, 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -2772,9 +2772,9 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     % %
                     %                  fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerOtherSelf(Turn,:,2), fliplr(Cross_ci_upperOtherSel(Turn,:,2))],'r', 'FaceAlpha', 0.3,'EdgeColor','none');
                     %                 %% pink curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1),'o-','Color',ActorAatSwitchCol,'MarkerFaceColor',ActorAatSwitchCol,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1),'o-','Color',ActorAatSwitchCol,'MarkerFaceColor',ActorAatSwitchCol,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
-                    CrossMarginOfError_AtSwitchOtherSelf = t_critical * mean(CrossAtSwitch_SEM_OverSess_OtherSelf(Turn,:,1,idata),4,'omitmissing')
+                    CrossMarginOfError_AtSwitchOtherSelf = t_critical * mean(CrossAtSwitch_SEM_OverSess_OtherSelf(Turn,:,1,idata),4,'omitmissing');
                     Cross_ci_lowerOtherSelf = CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1) - CrossMarginOfError_AtSwitchOtherSelf;
                     Cross_ci_upperOtherSelf = CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1) + CrossMarginOfError_AtSwitchOtherSelf;
                     %here you make sure if upper CI is more than 1 and lowe CI
@@ -2787,11 +2787,11 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         Cross_ci_upperOtherSelf(Cross_ci_upperOtherSelf > Valid_Max_FCO) = Valid_Max_FCO;
                     end
 
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerOtherSelf, fliplr(Cross_ci_upperOtherSelf)],ActorAatSwitchCol, 'FaceAlpha', 0.3,'EdgeColor','none');
                     xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth)
-                    pbaspect([1 1 1])
+                    pbaspect([1 1 1]);
                     ylim([YlimRange(1) YlimRange(2)]);
                     ylabel(Ylabel);
 
@@ -2800,7 +2800,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     set(SP, 'XColor', 'none'); % Make x-axis invisible
 
                     % title(strcat(sprintf(B_Name),' other to own'))
-                    OveralSwitch = []
+                    OveralSwitch = [];
                     OveralSwitch = sum(OtherSelfSwitchNum(Turn,2,idata));
                     % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
                     title(strcat(sprintf(B_Name),' other to own:'," ",string(OveralSwitch)));
@@ -2822,14 +2822,14 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                 end
                 %%
                 if Turn == 3
-                    clear SP, SP = subplot(3,2,5)
-                    hold on
+                    clear SP, SP = subplot(3,2,5);
+                    hold on;
                     %                 %% blue curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanSelfOther(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanSelfOther(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
-                    DegreeFreddom = sum(AtSwitch_SelfOther_SwitchNum(Turn,2,idata))
+                    DegreeFreddom = sum(AtSwitch_SelfOther_SwitchNum(Turn,2,idata));
                     t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
-                    margin_of_errorAtSwitchSelfOther = t_critical * mean(SEM_OverSessAtSwitch_SelfOther(Turn,:,2,idata),4,'omitmissing')
+                    margin_of_errorAtSwitchSelfOther = t_critical * mean(SEM_OverSessAtSwitch_SelfOther(Turn,:,2,idata),4,'omitmissing');
                     ci_lowerAtSwitchSelfOther = MeanOverSessAtSwitch_MeanSelfOther(Turn,:,2) - margin_of_errorAtSwitchSelfOther;
                     ci_upperAtSwitchSelfOther = MeanOverSessAtSwitch_MeanSelfOther(Turn,:,2) + margin_of_errorAtSwitchSelfOther;
 
@@ -2843,8 +2843,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         ci_upperAtSwitchSelfOther(ci_upperAtSwitchSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
                     end
 
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [ci_lowerAtSwitchSelfOther, fliplr(ci_upperAtSwitchSelfOther)],ActorBcolor, 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -2855,7 +2855,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     %
                     %                  fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [ci_lowerSelfOther(Turn,:,1), fliplr(ci_upperSelfOther(Turn,:,1))],'b', 'FaceAlpha', 0.3,'EdgeColor','none');
                     % %                 %% red curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessSelfOther(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessSelfOther(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
                     CrossMarginOfError_SelfOther = t_critical * mean(CrossSEM_OverSess_SelfOther(Turn,:,1,idata),4,'omitmissing');
                     Cross_ci_lowerSelfOther = CrossMeanOverSessSelfOther(Turn,:,1) - CrossMarginOfError_SelfOther;
@@ -2871,8 +2871,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         Cross_ci_upperSelfOther(Cross_ci_upperSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
                     end
 
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerSelfOther, fliplr(Cross_ci_upperSelfOther)],ActorAcolor, 'FaceAlpha', 0.3,'EdgeColor','none');
 
                     %
@@ -2882,9 +2882,9 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     % %
                     %                  fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerSelfOther(Turn,:,2), fliplr(Cross_ci_upperSelfOther(Turn,:,2))],'r', 'FaceAlpha', 0.3,'EdgeColor','none');
                     %                 %% pink curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,1),'o-','Color',ActorAatSwitchCol,'MarkerFaceColor',ActorAatSwitchCol,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,1),'o-','Color',ActorAatSwitchCol,'MarkerFaceColor',ActorAatSwitchCol,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
-                    CrossMarginOfError_AtSwitchSelfOther = t_critical * mean(CrossAtSwitch_SEM_OverSess_SelfOther(Turn,:,1,idata),4,'omitmissing')
+                    CrossMarginOfError_AtSwitchSelfOther = t_critical * mean(CrossAtSwitch_SEM_OverSess_SelfOther(Turn,:,1,idata),4,'omitmissing');
                     Cross_ci_lowerSelfOther = CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,1) - CrossMarginOfError_AtSwitchSelfOther;
                     Cross_ci_upperSelfOther = CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,1) + CrossMarginOfError_AtSwitchSelfOther;
 
@@ -2898,12 +2898,12 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                         Cross_ci_upperSelfOther(Cross_ci_upperSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
                     end
 
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerSelfOther, fliplr(Cross_ci_upperSelfOther)],ActorAatSwitchCol, 'FaceAlpha', 0.3,'EdgeColor','none');
 
-                    xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth)
-                    pbaspect([1 1 1])
+                    xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth);
+                    pbaspect([1 1 1]);
                     ylim([YlimRange(1) YlimRange(2)]);
                     % ylabel(Ylabel)
 
@@ -2912,7 +2912,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     % set(SP, 'XColor', 'none'); % Make x-axis invisible
 
                     % title(strcat(sprintf(B_Name),' own to other'))
-                    OveralSwitch = []
+                    OveralSwitch = [];
                     OveralSwitch = sum(SelfOtherSwitchNum(Turn,2,idata));
                     % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
                     title(strcat(sprintf(B_Name),' own to other:'," ",string(OveralSwitch)));
@@ -2935,14 +2935,14 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     end
                     %%
                     %%
-                    clear SP, SP = subplot(3,2,6)
-                    hold on
+                    clear SP, SP = subplot(3,2,6);
+                    hold on;
                     %                 %% blue curve
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
                     %% calcualte and plot 95% confidence interval based on t dist SEM
-                    DegreeFreddom = sum(AtSwitch_OtherSelf_SwitchNum(Turn,2,idata))
-                    t_critical = tinv(1 - alpha/2, DegreeFreddom - 1)
-                    margin_of_errorAtSwitchOtherSelf = t_critical * mean(SEM_OverSessAtSwitch_OtherSelf(Turn,:,2,idata),4,'omitmissing')
+                    DegreeFreddom = sum(AtSwitch_OtherSelf_SwitchNum(Turn,2,idata));
+                    t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
+                    margin_of_errorAtSwitchOtherSelf = t_critical * mean(SEM_OverSessAtSwitch_OtherSelf(Turn,:,2,idata),4,'omitmissing');
                     ci_lowerAtSwitchOtherSelf = MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2) - margin_of_errorAtSwitchOtherSelf;
                     ci_upperAtSwitchOtherSelf = MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2) + margin_of_errorAtSwitchOtherSelf;
 
@@ -2957,8 +2957,8 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     end
 
 
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+                    plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
                     fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [ci_lowerAtSwitchOtherSelf, fliplr(ci_upperAtSwitchOtherSelf)],ActorBcolor, 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -3023,7 +3023,7 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
                     xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth);
                     pbaspect([1 1 1]);
                     ylim([YlimRange(1) YlimRange(2)]);
-                    ylabel(Ylabel)
+                    ylabel(Ylabel);
 
                     set(SP,'XTick', 6);
                     set(SP,'XTickLabel', {'switch'});
@@ -3112,27 +3112,27 @@ if contains(scriptName,'SingleSess' ) || contains(scriptName,'OnlyLasts')
 
     %% plotting for multi sessions scripts (average among sessions)
 elseif contains(scriptName,'AverageAcrossMonkeys' )
-    FigName = strcat(FirstSessActorA{1},'-',FirstSessActorB{1})
-    figure('Name',sprintf(FigName), 'NumberTitle', 'off','Position',[488,49.800000000000004,500.2,732.8000000000001])
+    FigName = strcat(FirstSessActorA{1},'-',FirstSessActorB{1});
+    figure('Name',sprintf(FigName), 'NumberTitle', 'off','Position',[488,49.800000000000004,500.2,732.8000000000001]);
     for Turn = 1 : 3
         if Turn == 1
-            clear SP, SP = subplot(3,2,5)
-            hold on
+            clear SP, SP = subplot(3,2,5);
+            hold on;
             % here you plot choices when monkey  itself switches from own
             % to other and he was first (timing applies only at switch)
-            XAX = []
+            XAX = [];
             XAX = 1:BeforeAfter_Length+1+BeforeAfter_Length;
-            YAX = []
+            YAX = [];
             YAX = mean([WholeSess_AtSwitchSelfother{1,Turn+2};WholeSess_AtSwitchSelfother{2,Turn}],1,'omitmissing');
-            plot(XAX,YAX,'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth)
+            plot(XAX,YAX,'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
             %% calcualte and plot 95% confidence interval based on t dist SEM
             DegreeFreddom = sum(AtSwitch_SelfOther_SwitchNum(Turn+2,1,:))+sum(AtSwitch_SelfOther_SwitchNum(Turn,2,:));
             t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
 
-            MeanAmongMonksSem = []
+            MeanAmongMonksSem = [];
             MeanAmongMonksSem = calcSEM([WholeSess_AtSwitchSelfother{1,Turn+2};WholeSess_AtSwitchSelfother{2,Turn}]);
 
-            margin_of_errorAtSwitchSelfOther = t_critical .* MeanAmongMonksSem
+            margin_of_errorAtSwitchSelfOther = t_critical .* MeanAmongMonksSem;
             ci_lowerAtSwitchSelfOther = YAX - margin_of_errorAtSwitchSelfOther;
             ci_upperAtSwitchSelfOther = YAX + margin_of_errorAtSwitchSelfOther;
 
@@ -3146,17 +3146,17 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
                 ci_upperAtSwitchSelfOther(ci_upperAtSwitchSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
             end
 
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
             fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [ci_lowerAtSwitchSelfOther, fliplr(ci_upperAtSwitchSelfOther)],ActorAcolor, 'FaceAlpha', 0.3,'EdgeColor','none');
 
             % here you plot choices when monkey's partner switches from
             % own to other When monkey was first(timing applies on all trials)
             YAX = [];
             YAX = mean([WholeSess_CrossSelfOther{1,Turn};WholeSess_CrossSelfOther{2,Turn+2}],1,'omitmissing');
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,YAX,'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth)
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,YAX,'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
             %% calcualte and plot 95% confidence interval based on t dist SEM
-            MeanAmongMonksSem = []
+            MeanAmongMonksSem = [];
             MeanAmongMonksSem = calcSEM([WholeSess_CrossSelfOther{1,Turn};WholeSess_CrossSelfOther{2,Turn+2}]);
 
             CrossMarginOfError_SelfOther = t_critical .* MeanAmongMonksSem;
@@ -3173,8 +3173,8 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
                 Cross_ci_upperSelfOther(Cross_ci_upperSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
             end
 
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
             fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerSelfOther, fliplr(Cross_ci_upperSelfOther)],'b', 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -3182,12 +3182,12 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
 
             % here you plot choices when monkey's partner swichtes from
             % own to other when monkey was first( timing applies at switch )
-            YAX = []
+            YAX = [];
             YAX = mean([WholeSess_AtSwitchCrossSelfother{1,Turn};WholeSess_AtSwitchCrossSelfother{2,Turn+2}],1,'omitmissing');
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,YAX,'o-','Color',ActorBAtSwitchCol,'MarkerFaceColor',ActorBAtSwitchCol,'LineWidth',MainLineWidth)
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,YAX,'o-','Color',ActorBAtSwitchCol,'MarkerFaceColor',ActorBAtSwitchCol,'LineWidth',MainLineWidth);
             %% calcualte and plot 95% confidence interval based on t dist SEM
 
-            MeanAmongMonksSem = []
+            MeanAmongMonksSem = [];
             MeanAmongMonksSem = calcSEM([WholeSess_AtSwitchCrossSelfother{1,Turn};WholeSess_AtSwitchCrossSelfother{2,Turn+2}]);
 
             CrossMarginOfError_AtSwitchSelfOther = t_critical .* MeanAmongMonksSem;
@@ -3204,8 +3204,8 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
                 Cross_ci_upperSelfOther(Cross_ci_upperSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
             end
 
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
             fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerSelfOther, fliplr(Cross_ci_upperSelfOther)],ActorBAtSwitchCol, 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -3214,11 +3214,11 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
             % plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperAtSwitchSelfOther(Turn,:,2),'-m','LineWidth',CI_Lines_LineWidth)
             %
             % fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerAtSwitchSelfOther(Turn,:,2), fliplr(Cross_ci_upperAtSwitchSelfOther(Turn,:,2))],'m', 'FaceAlpha', 0.3,'EdgeColor','none');
-            xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth)
+            xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth);
 
-            pbaspect([1 1 1])
+            pbaspect([1 1 1]);
             ylim([YlimRange(1) YlimRange(2)]);
-            ylabel(Ylabel)
+            ylabel(Ylabel);
             set(SP,'XTick', 6);
             set(SP,'XTickLabel', {'switch'});
             % set(SP, 'XColor', 'none'); % Make x-axis invisible
@@ -3226,8 +3226,8 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
             % title(strcat(sprintf(A_Name),' own to other switch'))
             % title(' SECOND, own to other')
 
-            OveralSwitch = []
-            OveralSwitch = sum(SelfOtherSwitchNum(Turn+2,1,:),3)+sum(SelfOtherSwitchNum(Turn,2,:),3)
+            OveralSwitch = [];
+            OveralSwitch = sum(SelfOtherSwitchNum(Turn+2,1,:),3)+sum(SelfOtherSwitchNum(Turn,2,:),3);
             % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
             title(strcat(' SECOND, own to other:'," ",string(OveralSwitch)));
 
@@ -3250,15 +3250,15 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
 
             end
             %%
-            clear SP, SP = subplot(3,2,6)
-            hold on
+            clear SP, SP = subplot(3,2,6);
+            hold on;
             % here you plot choices when monkey itself switches from own
             % to other and he was first (timing applies only at switch)
             XAX = [];
             XAX = 1:BeforeAfter_Length+1+BeforeAfter_Length;
             YAX = [];
             YAX = mean([WholeSess_AtSwitchOtherSelf{1,Turn+2};WholeSess_AtSwitchOtherSelf{2,Turn}],1,'omitmissing');
-            plot(XAX,YAX,'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth)
+            plot(XAX,YAX,'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
             %% calcualte and plot 95% confidence interval based on t dist SEM
             DegreeFreddom = sum(AtSwitch_OtherSelf_SwitchNum(Turn+2,1,:))+sum(AtSwitch_OtherSelf_SwitchNum(Turn,2,:));
             t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
@@ -3287,7 +3287,7 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
             % own to other When monkey was first(timing applies on all trials)
             YAX = [];
             YAX = mean([WholeSess_CrossOtherSelf{1,Turn};WholeSess_CrossOtherSelf{2,Turn+2}],1,'omitmissing');
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,YAX,'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth)
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,YAX,'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
             %% calcualte and plot 95% confidence interval based on t dist SEM
             MeanAmongMonksSem = [];
             MeanAmongMonksSem = calcSEM([WholeSess_CrossOtherSelf{1,Turn};WholeSess_CrossOtherSelf{2,Turn+2}]);
@@ -3339,9 +3339,9 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
             plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
             fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerOtherSelf, fliplr(Cross_ci_upperOtherSelf)],ActorBAtSwitchCol, 'FaceAlpha', 0.3,'EdgeColor','none');
 
-            xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth)
+            xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth);
 
-            pbaspect([1 1 1])
+            pbaspect([1 1 1]);
             ylim([YlimRange(1) YlimRange(2)]);
             % ylabel(Ylabel)
             set(SP,'XTick', 6);
@@ -3379,21 +3379,21 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
         end
         %%
         if Turn == 2
-            clear SP, SP = subplot(3,2,3)
-            hold on
+            clear SP, SP = subplot(3,2,3);
+            hold on;
             % here you plot choices when monkey itself switches from own
             % to other and he was first (timing applies only at switch)
             XAX = [];
             XAX = 1:BeforeAfter_Length+1+BeforeAfter_Length;
             YAX = [];
             YAX = mean([WholeSess_AtSwitchSelfother{1,Turn}; WholeSess_AtSwitchSelfother{2,Turn}], 1,'omitmissing');
-            plot(XAX,YAX,'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth)
+            plot(XAX,YAX,'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
 
             %% calculate and plot 95% confidence interval based on t dist SEM
             DegreeFreddom = sum(AtSwitch_SelfOther_SwitchNum(Turn,1,:)) + sum(AtSwitch_SelfOther_SwitchNum(Turn,2,:));
             t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
 
-            MeanAmongMonksSem = []
+            MeanAmongMonksSem = [];
             MeanAmongMonksSem = calcSEM([WholeSess_AtSwitchSelfother{1,Turn}; WholeSess_AtSwitchSelfother{2,Turn}]);
 
             margin_of_errorAtSwitchSelfOther = t_critical .* MeanAmongMonksSem;
@@ -3409,13 +3409,13 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
                 ci_upperAtSwitchSelfOther(ci_upperAtSwitchSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
             end
 
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length, ci_lowerAtSwitchSelfOther, '-', 'Color',CI_LINE_Color, 'LineWidth', CI_Lines_LineWidth)
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length, ci_upperAtSwitchSelfOther, '-', 'Color',CI_LINE_Color, 'LineWidth', CI_Lines_LineWidth)
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length, ci_lowerAtSwitchSelfOther, '-', 'Color',CI_LINE_Color, 'LineWidth', CI_Lines_LineWidth);
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length, ci_upperAtSwitchSelfOther, '-', 'Color',CI_LINE_Color, 'LineWidth', CI_Lines_LineWidth);
             fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [ci_lowerAtSwitchSelfOther, fliplr(ci_upperAtSwitchSelfOther)], ActorAcolor, 'FaceAlpha', 0.3, 'EdgeColor', 'none');
 
             % plot choices when monkey's partner switches from own to other When monkey was first (timing applies on all trials)
             YAX = mean([WholeSess_CrossSelfOther{1,Turn}; WholeSess_CrossSelfOther{2,Turn}], 1,'omitmissing');
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,YAX,'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth)
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,YAX,'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
 
             %% calculate and plot 95% confidence interval based on t dist SEM
             MeanAmongMonksSem = [];
@@ -3435,13 +3435,13 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
                 Cross_ci_upperSelfOther(Cross_ci_upperSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
             end
 
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
             fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerSelfOther, fliplr(Cross_ci_upperSelfOther)], 'b', 'FaceAlpha', 0.3, 'EdgeColor', 'none');
 
             % plot choices when monkey's partner switches from own to other when monkey was first (timing applies at switch)
             YAX = mean([WholeSess_AtSwitchCrossSelfother{1,Turn}; WholeSess_AtSwitchCrossSelfother{2,Turn}], 1);
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,YAX,'o-','Color',ActorBAtSwitchCol,'MarkerFaceColor',ActorBAtSwitchCol,'LineWidth',MainLineWidth)
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,YAX,'o-','Color',ActorBAtSwitchCol,'MarkerFaceColor',ActorBAtSwitchCol,'LineWidth',MainLineWidth);
 
             %% calculate and plot 95% confidence interval based on t dist SEM
             MeanAmongMonksSem = [];
@@ -3461,13 +3461,13 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
                 Cross_ci_upperSelfOther(Cross_ci_upperSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
             end
 
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
             fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerSelfOther, fliplr(Cross_ci_upperSelfOther)], ActorBAtSwitchCol, 'FaceAlpha', 0.3, 'EdgeColor', 'none');
 
-            xline(BeforeAfter_Length+1, '--', 'LineWidth', DashedLine_LineWidth)
+            xline(BeforeAfter_Length+1, '--', 'LineWidth', DashedLine_LineWidth);
 
-            pbaspect([1 1 1])
+            pbaspect([1 1 1]);
             ylim([YlimRange(1) YlimRange(2)]);
             % ylabel(Ylabel);
             set(SP,'XTick', 6);
@@ -3483,7 +3483,7 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
 
             set(SP,'XTick', 6);
             set(SP,'XTickLabel', {'switch'});
-            ylabel(Ylabel)
+            ylabel(Ylabel);
 
             if OveralSwitch == 0
                 % Find and delete all lines
@@ -3494,15 +3494,15 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
             end
 
             %%
-            clear SP, SP = subplot(3,2,4)
-            hold on
+            clear SP, SP = subplot(3,2,4);
+            hold on;
             % here you plot choices when monkey itself switches from own
             % to other and he was first (timing applies only at switch)
             XAX = [];
             XAX = 1:BeforeAfter_Length+1+BeforeAfter_Length;
             YAX = [];
             YAX = mean([WholeSess_AtSwitchOtherSelf{1,Turn};WholeSess_AtSwitchOtherSelf{2,Turn}],1,'omitmissing');
-            plot(XAX,YAX,'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth)
+            plot(XAX,YAX,'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
             %% calcualte and plot 95% confidence interval based on t dist SEM
             DegreeFreddom = sum(AtSwitch_OtherSelf_SwitchNum(Turn,1,:))+sum(AtSwitch_OtherSelf_SwitchNum(Turn,2,:));
             t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
@@ -3532,7 +3532,7 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
             % own to other When monkey was first(timing applies on all trials)
             YAX = [];
             YAX = mean([WholeSess_CrossOtherSelf{1,Turn};WholeSess_CrossOtherSelf{2,Turn}],1,'omitmissing');
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,YAX,'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth)
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,YAX,'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
             %% calcualte and plot 95% confidence interval based on t dist SEM
 
             MeanAmongMonksSem = [];
@@ -3585,9 +3585,9 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
             plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
             fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerOtherSelf, fliplr(Cross_ci_upperOtherSelf)],ActorBAtSwitchCol, 'FaceAlpha', 0.3,'EdgeColor','none');
 
-            xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth)
+            xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth);
 
-            pbaspect([1 1 1])
+            pbaspect([1 1 1]);
             ylim([YlimRange(1) YlimRange(2)]);
             % ylabel(Ylabel);
             set(SP,'XTick', 6);
@@ -3622,23 +3622,23 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
         end
         %%
         if Turn == 3
-            clear SP, SP = subplot(3,2,1)
-            hold on
+            clear SP, SP = subplot(3,2,1);
+            hold on;
             % here you plot choices when monkey  itself switches from own
             % to other and he was first (timing applies only at switch)
-            XAX = []
+            XAX = [];
             XAX = 1:BeforeAfter_Length+1+BeforeAfter_Length;
-            YAX = []
+            YAX = [];
             YAX = mean([WholeSess_AtSwitchSelfother{1,Turn-2};WholeSess_AtSwitchSelfother{2,Turn}],1,'omitmissing');
-            plot(XAX,YAX,'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth)
+            plot(XAX,YAX,'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
             %% calculate and plot 95% confidence interval based on t dist SEM
             DegreeFreddom = sum(AtSwitch_SelfOther_SwitchNum(Turn-2,1,:))+sum(AtSwitch_SelfOther_SwitchNum(Turn,2,:));
             t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
 
-            MeanAmongMonksSem = []
+            MeanAmongMonksSem = [];
             MeanAmongMonksSem = calcSEM([WholeSess_AtSwitchSelfother{1,Turn-2};WholeSess_AtSwitchSelfother{2,Turn}]);
 
-            margin_of_errorAtSwitchSelfOther = t_critical .* MeanAmongMonksSem
+            margin_of_errorAtSwitchSelfOther = t_critical .* MeanAmongMonksSem;
             ci_lowerAtSwitchSelfOther = YAX - margin_of_errorAtSwitchSelfOther;
             ci_upperAtSwitchSelfOther = YAX + margin_of_errorAtSwitchSelfOther;
             %here you make sure if upper CI is more than 1 and lowe CI
@@ -3651,21 +3651,21 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
                 ci_upperAtSwitchSelfOther(ci_upperAtSwitchSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
             end
 
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
             fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [ci_lowerAtSwitchSelfOther, fliplr(ci_upperAtSwitchSelfOther)],ActorAcolor, 'FaceAlpha', 0.3,'EdgeColor','none');
 
             % here you plot choices when monkey's partner switches from
             % own to other When monkey was first (timing applies on all trials)
-            YAX = []
-            YAX = mean([WholeSess_CrossSelfOther{1,Turn};WholeSess_CrossSelfOther{2,Turn-2}],1,'omitmissing')
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,YAX,'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth)
+            YAX = [];
+            YAX = mean([WholeSess_CrossSelfOther{1,Turn};WholeSess_CrossSelfOther{2,Turn-2}],1,'omitmissing');
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,YAX,'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
             %% calculate and plot 95% confidence interval based on t dist SEM
 
-            MeanAmongMonksSem = []
+            MeanAmongMonksSem = [];
             MeanAmongMonksSem = calcSEM([WholeSess_CrossSelfOther{1,Turn};WholeSess_CrossSelfOther{2,Turn-2}]);
 
-            CrossMarginOfError_SelfOther = t_critical .* MeanAmongMonksSem
+            CrossMarginOfError_SelfOther = t_critical .* MeanAmongMonksSem;
             Cross_ci_lowerSelfOther = YAX - CrossMarginOfError_SelfOther;
             Cross_ci_upperSelfOther = YAX + CrossMarginOfError_SelfOther;
 
@@ -3679,22 +3679,22 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
                 Cross_ci_upperSelfOther(Cross_ci_upperSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
             end
 
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
             fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerSelfOther, fliplr(Cross_ci_upperSelfOther)],'b', 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
             % here you plot choices when monkey's partner switches from
             % own to other when monkey was first (timing applies at switch)
-            YAX = []
-            YAX = mean([WholeSess_AtSwitchCrossSelfother{1,Turn};WholeSess_AtSwitchCrossSelfother{2,Turn-2}],1,'omitmissing')
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,YAX,'o-','Color',ActorBAtSwitchCol,'MarkerFaceColor',ActorBAtSwitchCol,'LineWidth',MainLineWidth)
+            YAX = [];
+            YAX = mean([WholeSess_AtSwitchCrossSelfother{1,Turn};WholeSess_AtSwitchCrossSelfother{2,Turn-2}],1,'omitmissing');
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,YAX,'o-','Color',ActorBAtSwitchCol,'MarkerFaceColor',ActorBAtSwitchCol,'LineWidth',MainLineWidth);
             %% calculate and plot 95% confidence interval based on t dist SEM
 
-            MeanAmongMonksSem = []
+            MeanAmongMonksSem = [];
             MeanAmongMonksSem = calcSEM([WholeSess_AtSwitchCrossSelfother{1,Turn};WholeSess_AtSwitchCrossSelfother{2,Turn-2}]);
 
-            CrossMarginOfError_AtSwitchSelfOther = t_critical .* MeanAmongMonksSem
+            CrossMarginOfError_AtSwitchSelfOther = t_critical .* MeanAmongMonksSem;
             Cross_ci_lowerSelfOther = YAX - CrossMarginOfError_AtSwitchSelfOther;
             Cross_ci_upperSelfOther = YAX + CrossMarginOfError_AtSwitchSelfOther;
 
@@ -3708,13 +3708,13 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
                 Cross_ci_upperSelfOther(Cross_ci_upperSelfOther > Valid_Max_FCO) = Valid_Max_FCO;
             end
 
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperSelfOther,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
             fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerSelfOther, fliplr(Cross_ci_upperSelfOther)],ActorBAtSwitchCol, 'FaceAlpha', 0.3,'EdgeColor','none');
 
-            xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth)
+            xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth);
 
-            pbaspect([1 1 1])
+            pbaspect([1 1 1]);
             ylim([YlimRange(1) YlimRange(2)]);
             ylabel(Ylabel);
             set(SP,'XTick', 6);
@@ -3724,8 +3724,8 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
             % title(strcat(sprintf(A_Name),' own to other switch'))
             % title(' FIRST, own to other')
 
-            OveralSwitch = []
-            OveralSwitch = sum(SelfOtherSwitchNum(Turn-2,1,:),3)+sum(SelfOtherSwitchNum(Turn,2,:),3)
+            OveralSwitch = [];
+            OveralSwitch = sum(SelfOtherSwitchNum(Turn-2,1,:),3)+sum(SelfOtherSwitchNum(Turn,2,:),3);
             % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
             title(strcat(' FIRST, own to other:'," ",string(OveralSwitch)));
             set(gca, 'XColor', 'none'); % Make x-axis invisible
@@ -3744,23 +3744,23 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
             end
 
             %%
-            clear SP, SP = subplot(3,2,2)
-            hold on
+            clear SP, SP = subplot(3,2,2);
+            hold on;
             % here you plot choices when monkey  itself switches from own
             % to other and he was first (timing applies only at switch)
-            XAX = []
+            XAX = [];
             XAX = 1:BeforeAfter_Length+1+BeforeAfter_Length;
-            YAX = []
+            YAX = [];
             YAX = mean([WholeSess_AtSwitchOtherSelf{1,Turn-2};WholeSess_AtSwitchOtherSelf{2,Turn}],1,'omitmissing');
-            plot(XAX,YAX,'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth)
+            plot(XAX,YAX,'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
             %% calculate and plot 95% confidence interval based on t dist SEM
             DegreeFreddom = sum(AtSwitch_OtherSelf_SwitchNum(Turn-2,1,:))+sum(AtSwitch_OtherSelf_SwitchNum(Turn,2,:));
             t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
 
-            MeanAmongMonksSem = []
+            MeanAmongMonksSem = [];
             MeanAmongMonksSem = calcSEM([WholeSess_AtSwitchOtherSelf{1,Turn-2};WholeSess_AtSwitchOtherSelf{2,Turn}]);
 
-            margin_of_errorAtSwitchOtherSelf = t_critical .* MeanAmongMonksSem
+            margin_of_errorAtSwitchOtherSelf = t_critical .* MeanAmongMonksSem;
             ci_lowerAtSwitchOtherSelf = YAX - margin_of_errorAtSwitchOtherSelf;
             ci_upperAtSwitchOtherSelf = YAX + margin_of_errorAtSwitchOtherSelf;
 
@@ -3774,21 +3774,21 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
                 ci_upperAtSwitchOtherSelf(ci_upperAtSwitchOtherSelf > Valid_Max_FCO) = Valid_Max_FCO;
             end
 
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_lowerAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,ci_upperAtSwitchOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
             fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [ci_lowerAtSwitchOtherSelf, fliplr(ci_upperAtSwitchOtherSelf)],ActorAcolor, 'FaceAlpha', 0.3,'EdgeColor','none');
 
             % here you plot choices when monkey's partner switches from
             % own to other When monkey was first (timing applies on all trials)
-            YAX = []
-            YAX = mean([WholeSess_CrossOtherSelf{1,Turn};WholeSess_CrossOtherSelf{2,Turn-2}],1,'omitmissing')
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,YAX,'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth)
+            YAX = [];
+            YAX = mean([WholeSess_CrossOtherSelf{1,Turn};WholeSess_CrossOtherSelf{2,Turn-2}],1,'omitmissing');
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,YAX,'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
             %% calculate and plot 95% confidence interval based on t dist SEM
 
-            MeanAmongMonksSem = []
+            MeanAmongMonksSem = [];
             MeanAmongMonksSem = calcSEM([WholeSess_CrossOtherSelf{1,Turn};WholeSess_CrossOtherSelf{2,Turn-2}]);
 
-            CrossMarginOfError_OtherSelf = t_critical .* MeanAmongMonksSem
+            CrossMarginOfError_OtherSelf = t_critical .* MeanAmongMonksSem;
             Cross_ci_lowerOtherSelf = YAX - CrossMarginOfError_OtherSelf;
             Cross_ci_upperOtherSelf = YAX + CrossMarginOfError_OtherSelf;
 
@@ -3802,20 +3802,20 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
                 Cross_ci_upperOtherSelf(Cross_ci_upperOtherSelf > Valid_Max_FCO) = Valid_Max_FCO;
             end
 
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
             fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerOtherSelf, fliplr(Cross_ci_upperOtherSelf)],'b', 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
             % here you plot choices when monkey's partner switches from
             % own to other when monkey was first (timing applies at switch)
-            YAX = []
-            YAX = mean([WholeSess_AtSwitchCrossOtherSelf{1,Turn};WholeSess_AtSwitchCrossOtherSelf{2,Turn-2}],1,'omitmissing')
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,YAX,'o-','Color',ActorBAtSwitchCol,'MarkerFaceColor',ActorBAtSwitchCol,'LineWidth',MainLineWidth)
+            YAX = [];
+            YAX = mean([WholeSess_AtSwitchCrossOtherSelf{1,Turn};WholeSess_AtSwitchCrossOtherSelf{2,Turn-2}],1,'omitmissing');
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,YAX,'o-','Color',ActorBAtSwitchCol,'MarkerFaceColor',ActorBAtSwitchCol,'LineWidth',MainLineWidth);
             %% calculate and plot 95% confidence interval based on t dist SEM
 
 
-            MeanAmongMonksSem = []
+            MeanAmongMonksSem = [];
             MeanAmongMonksSem = calcSEM([WholeSess_AtSwitchCrossOtherSelf{1,Turn};WholeSess_AtSwitchCrossOtherSelf{2,Turn-2}]);
 
             CrossMarginOfError_AtSwitchOtherSelf = t_critical .* MeanAmongMonksSem;
@@ -3832,13 +3832,13 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
                 Cross_ci_upperOtherSelf(Cross_ci_upperOtherSelf > Valid_Max_FCO) = Valid_Max_FCO;
             end
 
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
             fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerOtherSelf, fliplr(Cross_ci_upperOtherSelf)],ActorBAtSwitchCol, 'FaceAlpha', 0.3,'EdgeColor','none');
 
-            xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth)
+            xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth);
 
-            pbaspect([1 1 1])
+            pbaspect([1 1 1]);
             ylim([YlimRange(1) YlimRange(2)]);
             % ylabel(Ylabel);
             set(SP,'XTick', 6);
@@ -3848,8 +3848,8 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
             % title(strcat(sprintf(A_Name),' own to other switch'))
             % title(' FIRST, other to own')
 
-            OveralSwitch = []
-            OveralSwitch = sum(OtherSelfSwitchNum(Turn-2,1,:),3)+sum(OtherSelfSwitchNum(Turn,2,:),3)
+            OveralSwitch = [];
+            OveralSwitch = sum(OtherSelfSwitchNum(Turn-2,1,:),3)+sum(OtherSelfSwitchNum(Turn,2,:),3);
             % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
             title(strcat(' FIRST, other to own:'," ",string(OveralSwitch)));
             set(gca, 'XColor', 'none'); % Make x-axis invisible
@@ -3892,17 +3892,17 @@ elseif contains(scriptName,'AverageAcrossMonkeys' )
     %     'String',{'Actor B second'});
     CS = length(MergedData);
 
-    filename = []
-    filename = strcat(FirstSessActorA{1},'-',FirstSessActorB{1},'MONKEYSaverage.jpg')
+    filename = [];
+    filename = strcat(FirstSessActorA{1},'-',FirstSessActorB{1},'MONKEYSaverage.jpg');
     %filenameSCABLE = strcat(FirstSessActorA{1},'-',FirstSessActorB{1},'MONKEYSaverage')
 
-    sgtitle(strcat(FirstSessActorA{1},'-',FirstSessActorB{1},'-Sess Num: ',string(CS),' -MONKEYS average'))
+    sgtitle(strcat(FirstSessActorA{1},'-',FirstSessActorB{1},'-Sess Num: ',string(CS),' -MONKEYS average'));
     ax = gcf;
-    exportgraphics(ax,sprintf(filename),'Resolution',600)
+    exportgraphics(ax,sprintf(filename),'Resolution',600);
 
     %print(ax,sprintf(filenameSCABLE), '-dsvg','-r600
     filename2 = strcat(FirstSessActorA{1},'-',FirstSessActorB{1},'MONKEYSaverage.pdf');
-    exportgraphics(ax,sprintf(filename2),'Resolution',600)
+    exportgraphics(ax,sprintf(filename2),'Resolution',600);
 
 
 
@@ -3943,8 +3943,8 @@ else
     figure('Name',sprintf(FigName), 'NumberTitle', 'off','Position',[488,49.800000000000004,500.2,732.8000000000001]);
     for Turn = 1 : 3
         if Turn == 1
-            clear SP, SP = subplot(3,2,1)
-            hold on
+            clear SP, SP = subplot(3,2,1);
+            hold on;
             %                 %% red curve
             plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanSelfOther(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
             %% calcualte and plot 95% confidence interval based on t dist SEM
@@ -4051,13 +4051,13 @@ else
                 delete([hPlots; hXLines; hPatches]);
             end
             %%
-            clear SP, SP = subplot(3,2,2)
-            hold on
+            clear SP, SP = subplot(3,2,2);
+            hold on;
             %                 %% blue curve
             plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
             %% calcualte and plot 95% confidence interval based on t dist SEM
-            DegreeFreddom =sum(AtSwitch_OtherSelf_SwitchNum(Turn,1,:))
-            t_critical = tinv(1 - alpha/2, DegreeFreddom - 1)
+            DegreeFreddom =sum(AtSwitch_OtherSelf_SwitchNum(Turn,1,:));
+            t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
             margin_of_errorAtSwitchOtherSelf = t_critical .* SEM_OverSessAtSwitch_OtherSelf(Turn,:,1);
             ci_lowerAtSwitchOtherSelf = MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1) - margin_of_errorAtSwitchOtherSelf;
             ci_upperAtSwitchOtherSelf = MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1) + margin_of_errorAtSwitchOtherSelf;
@@ -4167,14 +4167,14 @@ else
         end
         %%
         if Turn == 2
-            clear SP, SP = subplot(3,2,3)
-            hold on
+            clear SP, SP = subplot(3,2,3);
+            hold on;
             %                 %% blue curve
             plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanSelfOther(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
             %% calcualte and plot 95% confidence interval based on t dist SEM
             DegreeFreddom = sum(AtSwitch_SelfOther_SwitchNum(Turn,1,:));
             t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
-            margin_of_errorAtSwitchSelfOther = t_critical .* SEM_OverSessAtSwitch_SelfOther(Turn,:,1)
+            margin_of_errorAtSwitchSelfOther = t_critical .* SEM_OverSessAtSwitch_SelfOther(Turn,:,1);
             ci_lowerAtSwitchSelfOther = MeanOverSessAtSwitch_MeanSelfOther(Turn,:,1) - margin_of_errorAtSwitchSelfOther;
             ci_upperAtSwitchSelfOther = MeanOverSessAtSwitch_MeanSelfOther(Turn,:,1) + margin_of_errorAtSwitchSelfOther;
 
@@ -4253,8 +4253,8 @@ else
             % plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperAtSwitchSelfOther(Turn,:,2),'-m','LineWidth',CI_Lines_LineWidth)
             %
             % fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerAtSwitchSelfOther(Turn,:,2), fliplr(Cross_ci_upperAtSwitchSelfOther(Turn,:,2))],'m', 'FaceAlpha', 0.3,'EdgeColor','none');
-            xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth)
-            pbaspect([1 1 1])
+            xline(BeforeAfter_Length+1,'--','LineWidth',DashedLine_LineWidth);
+            pbaspect([1 1 1]);
             ylim([YlimRange(1) YlimRange(2)]);
             % ylabel(Ylabel);
             set(SP,'XTick', 6);
@@ -4280,14 +4280,14 @@ else
                 delete([hPlots; hXLines; hPatches]);
             end
             %%
-            clear SP, SP = subplot(3,2,4)
-            hold on
+            clear SP, SP = subplot(3,2,4);
+            hold on;
             %                 %% blue curve
             plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
             %% calcualte and plot 95% confidence interval based on t dist SEM
             DegreeFreddom = sum(AtSwitch_OtherSelf_SwitchNum(Turn,1,:));
             t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
-            margin_of_errorAtSwitchOtherSelf = t_critical .* SEM_OverSessAtSwitch_OtherSelf(Turn,:,1)
+            margin_of_errorAtSwitchOtherSelf = t_critical .* SEM_OverSessAtSwitch_OtherSelf(Turn,:,1);
             ci_lowerAtSwitchOtherSelf = MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1) - margin_of_errorAtSwitchOtherSelf;
             ci_upperAtSwitchOtherSelf = MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1) + margin_of_errorAtSwitchOtherSelf;
 
@@ -4342,7 +4342,7 @@ else
             %                 %% pink curve
             plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2),'o-','Color',ActorBAtSwitchCol,'MarkerFaceColor',ActorBAtSwitchCol,'LineWidth',MainLineWidth);
             %% calcualte and plot 95% confidence interval based on t dist SEM
-            CrossMarginOfError_AtSwitchOtherSelf = t_critical .*CrossAtSwitch_SEM_OverSess_OtherSelf(Turn,:,2)
+            CrossMarginOfError_AtSwitchOtherSelf = t_critical .*CrossAtSwitch_SEM_OverSess_OtherSelf(Turn,:,2);
             Cross_ci_lowerOtherSelf = CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2) - CrossMarginOfError_AtSwitchOtherSelf;
             Cross_ci_upperOtherSelf = CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2) + CrossMarginOfError_AtSwitchOtherSelf;
 
@@ -4375,7 +4375,7 @@ else
             set(SP, 'XColor', 'none'); % Make x-axis invisible
 
             % title(strcat(sprintf(FirstSessActorA{1}),' other to own'));
-            OveralSwitch = []
+            OveralSwitch = [];
             OveralSwitch = sum(OtherSelfSwitchNum(Turn,1,:));
             % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
             title(strcat(sprintf(FirstSessActorA{1}),' other to own:'," ",string(OveralSwitch)));
@@ -4398,8 +4398,8 @@ else
         end
         %%
         if Turn == 3
-            clear SP, SP = subplot(3,2,5)
-            hold on
+            clear SP, SP = subplot(3,2,5);
+            hold on;
             %                 %% blue curve
             plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanSelfOther(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
             %% calcualte and plot 95% confidence interval based on t dist SEM
@@ -4458,7 +4458,7 @@ else
             % %
             %                  fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerSelfOther(Turn,:,2), fliplr(Cross_ci_upperSelfOther(Turn,:,2))],'r', 'FaceAlpha', 0.3,'EdgeColor','none');
             %                 %% pink curve
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,2),'o-','Color',ActorBAtSwitchCol,'MarkerFaceColor',ActorBAtSwitchCol,'LineWidth',MainLineWidth)
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,2),'o-','Color',ActorBAtSwitchCol,'MarkerFaceColor',ActorBAtSwitchCol,'LineWidth',MainLineWidth);
             %% calcualte and plot 95% confidence interval based on t dist SEM
             CrossMarginOfError_AtSwitchSelfOther = t_critical .* CrossAtSwitch_SEM_OverSess_SelfOther(Turn,:,2);
             Cross_ci_lowerSelfOther = CrossMeanOverSessAtSwitch_MeanSelfOther(Turn,:,2) - CrossMarginOfError_AtSwitchSelfOther;
@@ -4515,8 +4515,8 @@ else
 
             end
             %%
-            clear SP, SP = subplot(3,2,6)
-            hold on
+            clear SP, SP = subplot(3,2,6);
+            hold on;
             %                 %% blue curve
             plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1),'o-','Color',ActorAcolor,'MarkerFaceColor',ActorAcolor,'LineWidth',MainLineWidth);
             %% calcualte and plot 95% confidence interval based on t dist SEM
@@ -4676,7 +4676,7 @@ else
     figure('Name',sprintf(FigName), 'NumberTitle', 'off','Position',[488,49.800000000000004,500.2,732.8000000000001]);
     for Turn = 1 : 3
         if Turn == 1
-            clear SP, SP = subplot(3,2,1)
+            clear SP, SP = subplot(3,2,1);
             hold on
             %                 %% red curve
             plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanSelfOther(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
@@ -4777,14 +4777,14 @@ else
                 delete([hPlots; hXLines; hPatches]);
             end
             %%
-            clear SP, SP = subplot(3,2,2)
-            hold on
+            clear SP, SP = subplot(3,2,2);
+            hold on;
             %                 %% blue curve
             plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
             %% calcualte and plot 95% confidence interval based on t dist SEM
             DegreeFreddom = sum(AtSwitch_OtherSelf_SwitchNum(Turn,2,:));
             t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
-            margin_of_errorAtSwitchOtherSelf = t_critical .* SEM_OverSessAtSwitch_OtherSelf(Turn,:,2)
+            margin_of_errorAtSwitchOtherSelf = t_critical .* SEM_OverSessAtSwitch_OtherSelf(Turn,:,2);
             ci_lowerAtSwitchOtherSelf = MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2) - margin_of_errorAtSwitchOtherSelf;
             ci_upperAtSwitchOtherSelf = MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2) + margin_of_errorAtSwitchOtherSelf;
 
@@ -4825,8 +4825,8 @@ else
                 Cross_ci_upperOtherSelf(Cross_ci_upperOtherSelf > Valid_Max_FCO) = Valid_Max_FCO;
             end
 
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
-            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth)
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_lowerOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
+            plot(1:BeforeAfter_Length+1+BeforeAfter_Length,Cross_ci_upperOtherSelf,'-','Color',CI_LINE_Color,'LineWidth',CI_Lines_LineWidth);
             fill([1:BeforeAfter_Length+1+BeforeAfter_Length, fliplr(1:BeforeAfter_Length+1+BeforeAfter_Length)], [Cross_ci_lowerOtherSelf, fliplr(Cross_ci_upperOtherSelf)],ActorAcolor, 'FaceAlpha', 0.3,'EdgeColor','none');
 
 
@@ -4884,8 +4884,8 @@ else
         end
         %%
         if Turn == 2
-            clear SP, SP = subplot(3,2,3)
-            hold on
+            clear SP, SP = subplot(3,2,3);
+            hold on;
             %                 %% blue curve
             plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanSelfOther(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
             %% calcualte and plot 95% confidence interval based on t dist SEM
@@ -4978,7 +4978,7 @@ else
             set(SP, 'XColor', 'none'); % Make x-axis invisible
 
             % title(strcat(sprintf(FirstSessActorB{1}),' own to other'));
-            OveralSwitch = []
+            OveralSwitch = [];
             OveralSwitch = sum(SelfOtherSwitchNum(Turn,2,:));
             % subtitle(strcat('(Num : ',string(OveralSwitch),')'));
             title(strcat(sprintf(FirstSessActorB{1}),' own to other:'," ",string(OveralSwitch)));
@@ -4996,7 +4996,7 @@ else
                 delete([hPlots; hXLines; hPatches]);
             end
             %%
-            clear SP, SP = subplot(3,2,4)
+            clear SP, SP = subplot(3,2,4);
             hold on
             %                 %% blue curve
             plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
@@ -5056,7 +5056,7 @@ else
             %                 %% pink curve
             plot(1:BeforeAfter_Length+1+BeforeAfter_Length,CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1),'o-','Color',ActorAatSwitchCol,'MarkerFaceColor',ActorAatSwitchCol,'LineWidth',MainLineWidth);
             %% calcualte and plot 95% confidence interval based on t dist SEM
-            CrossMarginOfError_AtSwitchOtherSelf = t_critical .* CrossAtSwitch_SEM_OverSess_OtherSelf(Turn,:,1)
+            CrossMarginOfError_AtSwitchOtherSelf = t_critical .* CrossAtSwitch_SEM_OverSess_OtherSelf(Turn,:,1);
             Cross_ci_lowerOtherSelf = CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1) - CrossMarginOfError_AtSwitchOtherSelf;
             Cross_ci_upperOtherSelf = CrossMeanOverSessAtSwitch_MeanOtherSelf(Turn,:,1) + CrossMarginOfError_AtSwitchOtherSelf;
             %here you make sure if upper CI is more than 1 and lowe CI
@@ -5103,12 +5103,12 @@ else
         end
         %%
         if Turn == 3
-            clear SP, SP = subplot(3,2,5)
-            hold on
+            clear SP, SP = subplot(3,2,5);
+            hold on;
             %                 %% blue curve
             plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanSelfOther(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
             %% calcualte and plot 95% confidence interval based on t dist SEM
-            DegreeFreddom = sum(AtSwitch_SelfOther_SwitchNum(Turn,2,:))
+            DegreeFreddom = sum(AtSwitch_SelfOther_SwitchNum(Turn,2,:));
             t_critical = tinv(1 - alpha/2, DegreeFreddom - 1);
             margin_of_errorAtSwitchSelfOther = t_critical .* SEM_OverSessAtSwitch_SelfOther(Turn,:,2);
             ci_lowerAtSwitchSelfOther = MeanOverSessAtSwitch_MeanSelfOther(Turn,:,2) - margin_of_errorAtSwitchSelfOther;
@@ -5215,8 +5215,8 @@ else
             end
             %%
             %%
-            clear SP, SP = subplot(3,2,6)
-            hold on
+            clear SP, SP = subplot(3,2,6);
+            hold on;
             %                 %% blue curve
             plot(1:BeforeAfter_Length+1+BeforeAfter_Length,MeanOverSessAtSwitch_MeanOtherSelf(Turn,:,2),'o-','Color',ActorBcolor,'MarkerFaceColor',ActorBcolor,'LineWidth',MainLineWidth);
             %% calcualte and plot 95% confidence interval based on t dist SEM
